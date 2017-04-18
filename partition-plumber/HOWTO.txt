@@ -1,0 +1,45 @@
+#############################################################################
+#    Licensed to the Apache Software Foundation (ASF) under one or more
+#    contributor license agreements.  See the NOTICE file distributed with
+#    this work for additional information regarding copyright ownership.
+#    The ASF licenses this file to You under the Apache License, Version 2.0
+#    (the "License"); you may not use this file except in compliance with
+#    the License.  You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+#############################################################################
+
+This tool is used for rebuilding the index files of a partition.
+
+
+====== 1. Building =====
+
+svn co http://svn.apache.org/repos/asf/directory/sandbox/kayyagari/partition-plumber
+cd partition-plumber
+mvn clean install
+
+ ====== 2. Running =====
+ The following assumptions are made 
+ Location of server instance - /opt/apacheds/instances/default
+ DN of the partition - ou=system
+ 
+ Now, to rebuild the index files of the above mentioned partition
+ 
+ 1. stop the server
+ 2. backup all the server data
+ 3. (OPTIONAL) except master.db and master.lg files, delete all the other files present under /opt/apacheds/instances/default/partitions/system
+ 4. run java -jar -d /opt/apacheds/instances/default -p ou=system
+ 5. make sure that all the newly created index files have appropriate permissions for accessing by server user
+ 6. start the server
+ 7. verify the data of ou=system partition
+ 
+ ====== 3. Options ======
+ 
+ java -jar partition-plumber.jar -d <instance-dir-path> -p <dn-of-the-partition> [-e <path-to-directory>]
+ 

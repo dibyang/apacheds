@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487487217
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: ApacheDS is an embbedable directory server entirely 
+ written in Java, which has been certified LDAPv3 compatible    by the O
+ pen Group. Besides LDAP it supports Kerberos 5 and the Change Password 
+ Protocol. It has been designed to introduce    triggers, stored procedu
+ res, queues and views to the world of LDAP which has lacked these rich 
+ constructs.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Mavibot Partition
+Bundle-SymbolicName: com.ls.neo2.directory.server.mavibot.partition
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.ls.neo2.directory.server.core.partition.impl.btree.m
+ avibot;version="2.0.0.M23"
+Implementation-Title: ApacheDS Mavibot Partition
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: net.sf.ehcache;version="[2.8,3)",net.sf.ehcache.config;v
+ ersion="[2.8,3)",org.apache.directory.api.ldap.model.constants;version=
+ "[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0,2)",
+ org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.apache.
+ directory.api.ldap.model.exception;version="[1.0,2)",org.apache.directo
+ ry.api.ldap.model.ldif;version="[1.0,2)",org.apache.directory.api.ldap.
+ model.name;version="[1.0,2)",org.apache.directory.api.ldap.model.schema
+ ;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.comparato
+ rs;version="[1.0,2)",org.apache.directory.api.util;version="[1.0,2)",or
+ g.apache.directory.api.util.exception;version="[1.0,2)",org.apache.dire
+ ctory.mavibot.btree;version="[1.0,2)",org.apache.directory.mavibot.btre
+ e.exception;version="[1.0,2)",org.apache.directory.mavibot.btree.serial
+ izer;version="[1.0,2)",org.apache.directory.mavibot.btree.util;version=
+ "[1.0,2)",org.apache.directory.server.core.api;version="[2.0,3)",org.ap
+ ache.directory.server.core.api.entry;version="[2.0,3)",org.apache.direc
+ tory.server.core.api.interceptor.context;version="[2.0,3)",org.apache.d
+ irectory.server.core.api.partition;version="[2.0,3)",org.apache.directo
+ ry.server.core.avltree;version="[2.0,3)",org.apache.directory.server.co
+ re.partition.impl.btree,org.apache.directory.server.i18n;version="[2.0,
+ 3)",org.apache.directory.server.xdbm;version="[2.0,3)",org.apache.direc
+ tory.server.xdbm.search;version="[2.0,3)",org.apache.directory.server.x
+ dbm.search.impl,org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Mavibot Partition
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

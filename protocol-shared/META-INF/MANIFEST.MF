@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487552044
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Shared library that is used by all protocol provider
+ s in ApacheDS
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Protocol Shared
+Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.shared
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.protocol.shared;uses:="org.a
+ pache.directory.server.core.api,org.apache.directory.server.protocol.sh
+ ared.transport,org.apache.mina.transport.socket";version="2.0.0",org.ap
+ ache.directory.server.protocol.shared.catalog;uses:="org.apache.directo
+ ry.api.ldap.model.name,org.apache.directory.server.core.api,org.apache.
+ directory.server.protocol.shared.store";version="2.0.0",org.apache.dire
+ ctory.server.protocol.shared.kerberos;uses:="javax.security.auth.kerber
+ os,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.l
+ dap.model.name,org.apache.directory.server.core.api,org.apache.director
+ y.server.kerberos.shared.store";version="2.0.0",org.apache.directory.se
+ rver.protocol.shared.store;uses:="org.apache.directory.api.ldap.model.e
+ ntry,org.apache.directory.api.ldap.model.exception,org.apache.directory
+ .api.ldap.model.name,org.apache.directory.server.core.api";version="2.0
+ .0",org.apache.directory.server.protocol.shared.transport;version="2.0.
+ 0.M23";uses:="org.apache.mina.core.service,org.apache.mina.transport.so
+ cket"
+Implementation-Title: ApacheDS Protocol Shared
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: javax.security.auth.kerberos,org.apache.directory.api.ld
+ ap.model.constants;version="[1.0,2)",org.apache.directory.api.ldap.mode
+ l.cursor;version="[1.0,2)",org.apache.directory.api.ldap.model.entry;ve
+ rsion="[1.0,2)",org.apache.directory.api.ldap.model.exception;version="
+ [1.0,2)",org.apache.directory.api.ldap.model.filter;version="[1.0,2)",o
+ rg.apache.directory.api.ldap.model.ldif;version="[1.0,2)",org.apache.di
+ rectory.api.ldap.model.message;version="[1.0,2)",org.apache.directory.a
+ pi.ldap.model.name;version="[1.0,2)",org.apache.directory.api.ldap.mode
+ l.schema;version="[1.0,2)",org.apache.directory.api.util;version="[1.0,
+ 2)",org.apache.directory.server.core.api;version="[2.0,3)",org.apache.d
+ irectory.server.i18n;version="[2.0,3)",org.apache.directory.server.kerb
+ eros.shared.store;version="[2.0,3)",org.apache.directory.shared.kerbero
+ s;version="[2.0,3)",org.apache.directory.shared.kerberos.codec.types;ve
+ rsion="[2.0,3)",org.apache.directory.shared.kerberos.components;version
+ ="[2.0,3)",org.apache.directory.shared.kerberos.exceptions;version="[2.
+ 0,3)",org.apache.mina.core.service;version="[2.0,3)",org.apache.mina.tr
+ ansport.socket;version="[2.0,3)",org.apache.mina.transport.socket.nio;v
+ ersion="[2.0,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Protocol Shared
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

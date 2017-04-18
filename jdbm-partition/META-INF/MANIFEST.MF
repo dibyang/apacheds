@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487479541
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: JDBM BTree backed partition implementation.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS JDBM Partition
+Bundle-SymbolicName: com.ls.neo2.directory.server.jdbm.partition
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.ls.neo2.directory.server.core.partition.impl.btree.j
+ dbm;version="2.0.0.M23"
+Implementation-Title: ApacheDS JDBM Partition
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: jdbm;version="[2.0,3)",jdbm.btree;version="[2.0,3)",jdbm
+ .helper;version="[2.0,3)",jdbm.recman;version="[2.0,3)",net.sf.ehcache;
+ version="[2.8,3)",net.sf.ehcache.config;version="[2.8,3)",org.apache.di
+ rectory.api.ldap.model.constants;version="[1.0,2)",org.apache.directory
+ .api.ldap.model.csn;version="[1.0,2)",org.apache.directory.api.ldap.mod
+ el.cursor;version="[1.0,2)",org.apache.directory.api.ldap.model.entry;v
+ ersion="[1.0,2)",org.apache.directory.api.ldap.model.exception;version=
+ "[1.0,2)",org.apache.directory.api.ldap.model.message;version="[1.0,2)"
+ ,org.apache.directory.api.ldap.model.name;version="[1.0,2)",org.apache.
+ directory.api.ldap.model.schema;version="[1.0,2)",org.apache.directory.
+ api.ldap.model.schema.comparators;version="[1.0,2)",org.apache.director
+ y.api.util;version="[1.0,2)",org.apache.directory.api.util.exception;ve
+ rsion="[1.0,2)",org.apache.directory.server.core.api;version="[2.0,3)",
+ org.apache.directory.server.core.api.entry;version="[2.0,3)",org.apache
+ .directory.server.core.api.interceptor.context;version="[2.0,3)",org.ap
+ ache.directory.server.core.api.partition;version="[2.0,3)",org.apache.d
+ irectory.server.core.avltree;version="[2.0,3)",org.apache.directory.ser
+ ver.core.partition.impl.btree,org.apache.directory.server.i18n;version=
+ "[2.0,3)",org.apache.directory.server.xdbm;version="[2.0,3)",org.apache
+ .directory.server.xdbm.search;version="[2.0,3)",org.apache.directory.se
+ rver.xdbm.search.impl,org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS JDBM Partition
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

@@ -1,0 +1,58 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487495112
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Annotations used to define a DirectoryService
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Core Annotations
+Bundle-SymbolicName: com.ls.neo2.directory.server.core.annotations
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.annotations;uses:="org.
+ apache.directory.server.core.api.partition,org.apache.directory.server.
+ core.authn,org.apache.directory.server.core.factory,org.apache.director
+ y.server.xdbm";version="2.0.0",org.apache.directory.server.core.factory
+ ;version="2.0.0.M23";uses:="org.apache.directory.api.ldap.model.schema,
+ org.apache.directory.server.core.annotations,org.apache.directory.serve
+ r.core.api,org.apache.directory.server.core.api.partition,org.apache.di
+ rectory.server.core.partition.impl.avl,org.apache.directory.server.core
+ .partition.impl.btree.jdbm,org.apache.directory.server.core.partition.i
+ mpl.btree.mavibot,org.apache.directory.server.core.partition.ldif,org.j
+ unit.runner"
+Implementation-Title: ApacheDS Core Annotations
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
+ 2)",org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org
+ .apache.directory.api.ldap.model.ldif;version="[1.0,2)",org.apache.dire
+ ctory.api.ldap.model.name;version="[1.0,2)",org.apache.directory.api.ld
+ ap.model.schema;version="[1.0,2)",org.apache.directory.api.ldap.model.s
+ chema.comparators;version="[1.0,2)",org.apache.directory.api.ldap.model
+ .schema.registries;version="[1.0,2)",org.apache.directory.api.ldap.sche
+ ma.extractor;version="[1.0,2)",org.apache.directory.api.ldap.schema.ext
+ ractor.impl;version="[1.0,2)",org.apache.directory.api.ldap.schema.load
+ er;version="[1.0,2)",org.apache.directory.api.ldap.schema.manager.impl;
+ version="[1.0,2)",org.apache.directory.api.util;version="[1.0,2)",org.a
+ pache.directory.api.util.exception;version="[1.0,2)",org.apache.directo
+ ry.server.core,org.apache.directory.server.core.api;version="[2.0,3)",o
+ rg.apache.directory.server.core.api.changelog;version="[2.0,3)",org.apa
+ che.directory.server.core.api.interceptor;version="[2.0,3)",org.apache.
+ directory.server.core.api.partition;version="[2.0,3)",org.apache.direct
+ ory.server.core.api.schema;version="[2.0,3)",org.apache.directory.serve
+ r.core.authn;version="[2.0,3)",org.apache.directory.server.core.partiti
+ on.impl.avl,org.apache.directory.server.core.partition.impl.btree,org.a
+ pache.directory.server.core.partition.impl.btree.jdbm,org.apache.direct
+ ory.server.core.partition.impl.btree.mavibot,org.apache.directory.serve
+ r.core.partition.ldif;version="[2.0,3)",org.apache.directory.server.i18
+ n;version="[2.0,3)",org.apache.directory.server.xdbm;version="[2.0,3)",
+ org.apache.directory.server.xdbm.impl.avl,org.junit.runner,org.slf4j;ve
+ rsion="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Core Annotations
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

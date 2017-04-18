@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487416603
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Journal interceptor
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Journal Interceptor
+Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.journal
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.journal;version="2.0.0.
+ M23";uses:="org.apache.directory.api.ldap.model.exception,org.apache.di
+ rectory.api.ldap.model.ldif,org.apache.directory.server.core.api,org.ap
+ ache.directory.server.core.api.interceptor,org.apache.directory.server.
+ core.api.interceptor.context,org.apache.directory.server.core.api.journ
+ al"
+Implementation-Title: ApacheDS Journal Interceptor
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
+ 2)",org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org
+ .apache.directory.api.ldap.model.ldif;version="[1.0,2)",org.apache.dire
+ ctory.api.ldap.model.name;version="[1.0,2)",org.apache.directory.api.ld
+ ap.model.schema;version="[1.0,2)",org.apache.directory.server.core.api;
+ version="[2.0,3)",org.apache.directory.server.core.api.interceptor;vers
+ ion="[2.0,3)",org.apache.directory.server.core.api.interceptor.context;
+ version="[2.0,3)",org.apache.directory.server.core.api.journal;version=
+ "[2.0,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Journal Interceptor
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

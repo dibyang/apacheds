@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487605339
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: The JNDI provider which launches the core and associ
+ ated network     services: Changepw, Kerberos, LDAP, and NTP if all are
+  configured.    By default only LDAP is configured to startup.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Server JNDI
+Bundle-SymbolicName: com.ls.neo2.directory.server.jndi
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.configuration;version="2.0.0
+ .M23";uses:="org.apache.directory.server.core.api,org.apache.directory.
+ server.ldap"
+Implementation-Title: ApacheDS Server JNDI
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.commons.lang;version="[2.6,3)",org.apache.dir
+ ectory.api.ldap.model.entry;version="[1.0,2)",org.apache.directory.api.
+ ldap.model.name;version="[1.0,2)",org.apache.directory.api.ldap.model.s
+ chema;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.regi
+ stries;version="[1.0,2)",org.apache.directory.api.ldap.schema.extractor
+ ;version="[1.0,2)",org.apache.directory.api.ldap.schema.extractor.impl;
+ version="[1.0,2)",org.apache.directory.api.ldap.schema.loader;version="
+ [1.0,2)",org.apache.directory.api.ldap.schema.manager.impl;version="[1.
+ 0,2)",org.apache.directory.api.util;version="[1.0,2)",org.apache.direct
+ ory.api.util.exception;version="[1.0,2)",org.apache.directory.server.co
+ re;version="[2.0,3)",org.apache.directory.server.core.api;version="[2.0
+ ,3)",org.apache.directory.server.core.api.entry;version="[2.0,3)",org.a
+ pache.directory.server.core.api.partition;version="[2.0,3)",org.apache.
+ directory.server.core.api.schema;version="[2.0,3)",org.apache.directory
+ .server.core.partition.impl.btree,org.apache.directory.server.core.part
+ ition.ldif;version="[2.0,3)",org.apache.directory.server.i18n;version="
+ [2.0,3)",org.apache.directory.server.ldap;version="[2.0,3)",org.apache.
+ directory.server.protocol.shared.store;version="[2.0,3)",org.slf4j;vers
+ ion="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Server JNDI
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

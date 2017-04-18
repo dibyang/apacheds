@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487392022
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: ChangeLog interceptor
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS ChangeLog Interceptor
+Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.changelog
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.changelog;version="2.0.
+ 0.M23";uses:="org.apache.directory.api.ldap.model.cursor,org.apache.dir
+ ectory.api.ldap.model.exception,org.apache.directory.api.ldap.model.ldi
+ f,org.apache.directory.server.core.api,org.apache.directory.server.core
+ .api.changelog,org.apache.directory.server.core.api.interceptor,org.apa
+ che.directory.server.core.api.interceptor.context"
+Implementation-Title: ApacheDS ChangeLog Interceptor
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.constants;version="[
+ 1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0,2)",or
+ g.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.apache.di
+ rectory.api.ldap.model.exception;version="[1.0,2)",org.apache.directory
+ .api.ldap.model.ldif;version="[1.0,2)",org.apache.directory.api.ldap.mo
+ del.message;version="[1.0,2)",org.apache.directory.api.ldap.model.messa
+ ge.controls;version="[1.0,2)",org.apache.directory.api.ldap.model.name;
+ version="[1.0,2)",org.apache.directory.api.ldap.model.schema;version="[
+ 1.0,2)",org.apache.directory.api.util;version="[1.0,2)",org.apache.dire
+ ctory.server.core.api;version="[2.0,3)",org.apache.directory.server.cor
+ e.api.changelog;version="[2.0,3)",org.apache.directory.server.core.api.
+ entry;version="[2.0,3)",org.apache.directory.server.core.api.intercepto
+ r;version="[2.0,3)",org.apache.directory.server.core.api.interceptor.co
+ ntext;version="[2.0,3)",org.apache.directory.server.core.api.partition;
+ version="[2.0,3)",org.apache.directory.server.core.shared;version="[2.0
+ ,3)",org.apache.directory.server.i18n;version="[2.0,3)",org.slf4j;versi
+ on="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS ChangeLog Interceptor
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

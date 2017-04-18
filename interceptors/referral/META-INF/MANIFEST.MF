@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487433556
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Referral interceptor
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Referral Interceptor
+Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.referral
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.referral;version="2.0.0
+ .M23";uses:="org.apache.directory.api.ldap.model.exception,org.apache.d
+ irectory.server.core.api,org.apache.directory.server.core.api.intercept
+ or,org.apache.directory.server.core.api.interceptor.context"
+Implementation-Title: ApacheDS Referral Interceptor
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.constants;version="[
+ 1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org
+ .apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache
+ .directory.api.ldap.model.message;version="[1.0,2)",org.apache.director
+ y.api.ldap.model.name;version="[1.0,2)",org.apache.directory.api.ldap.m
+ odel.schema;version="[1.0,2)",org.apache.directory.api.ldap.model.url;v
+ ersion="[1.0,2)",org.apache.directory.api.util;version="[1.0,2)",org.ap
+ ache.directory.server.core.api;version="[2.0,3)",org.apache.directory.s
+ erver.core.api.entry;version="[2.0,3)",org.apache.directory.server.core
+ .api.interceptor;version="[2.0,3)",org.apache.directory.server.core.api
+ .interceptor.context;version="[2.0,3)",org.apache.directory.server.core
+ .api.partition;version="[2.0,3)",org.apache.directory.server.core.share
+ d;version="[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3)",
+ org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Referral Interceptor
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

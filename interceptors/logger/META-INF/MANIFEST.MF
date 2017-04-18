@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487632026
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Logger interceptor
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Logger Interceptor
+Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.logger
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.logger;version="2.0.0.M
+ 23";uses:="org.apache.directory.api.ldap.model.entry,org.apache.directo
+ ry.api.ldap.model.exception,org.apache.directory.server.core.api,org.ap
+ ache.directory.server.core.api.filtering,org.apache.directory.server.co
+ re.api.interceptor,org.apache.directory.server.core.api.interceptor.con
+ text"
+Implementation-Title: ApacheDS Logger Interceptor
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.constants;version="[
+ 1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org
+ .apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache
+ .directory.server.core.api;version="[2.0,3)",org.apache.directory.serve
+ r.core.api.filtering;version="[2.0,3)",org.apache.directory.server.core
+ .api.interceptor;version="[2.0,3)",org.apache.directory.server.core.api
+ .interceptor.context;version="[2.0,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Logger Interceptor
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

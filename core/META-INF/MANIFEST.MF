@@ -1,0 +1,83 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487458182
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Server's core contains the JNDI provider, intercepto
+ rs, schema, and     database subsystems.  The core is the heart of the 
+ server without protocols     enabled.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Core
+Bundle-SymbolicName: com.ls.neo2.directory.server.core
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core;uses:="org.apache.direc
+ tory.api.ldap.codec.api,org.apache.directory.api.ldap.model.csn,org.apa
+ che.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.
+ exception,org.apache.directory.api.ldap.model.ldif,org.apache.directory
+ .api.ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apa
+ che.directory.api.ldap.util.tree,org.apache.directory.server.core.api,o
+ rg.apache.directory.server.core.api.administrative,org.apache.directory
+ .server.core.api.changelog,org.apache.directory.server.core.api.event,o
+ rg.apache.directory.server.core.api.filtering,org.apache.directory.serv
+ er.core.api.interceptor,org.apache.directory.server.core.api.intercepto
+ r.context,org.apache.directory.server.core.api.journal,org.apache.direc
+ tory.server.core.api.partition,org.apache.directory.server.core.api.sch
+ ema,org.apache.directory.server.core.api.subtree,org.apache.directory.s
+ erver.core.shared.partition";version="2.0.0",org.apache.directory.serve
+ r.core.security;version="2.0.0.M23";uses:="org.apache.directory.api.lda
+ p.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.
+ directory.server.core.api"
+Implementation-Title: ApacheDS Core
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: javax.security.auth.x500,net.sf.ehcache;version="[2.8,3)
+ ",org.apache.commons.lang;version="[2.6,3)",org.apache.directory.api.ld
+ ap.codec.api;version="[1.0,2)",org.apache.directory.api.ldap.model.cons
+ tants;version="[1.0,2)",org.apache.directory.api.ldap.model.csn;version
+ ="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0,2)"
+ ,org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.apache
+ .directory.api.ldap.model.exception;version="[1.0,2)",org.apache.direct
+ ory.api.ldap.model.ldif;version="[1.0,2)",org.apache.directory.api.ldap
+ .model.message;version="[1.0,2)",org.apache.directory.api.ldap.model.na
+ me;version="[1.0,2)",org.apache.directory.api.ldap.model.schema;version
+ ="[1.0,2)",org.apache.directory.api.ldap.model.url;version="[1.0,2)",or
+ g.apache.directory.api.ldap.util.tree;version="[1.0,2)",org.apache.dire
+ ctory.api.util;version="[1.0,2)",org.apache.directory.api.util.exceptio
+ n;version="[1.0,2)",org.apache.directory.server.core.admin;version="[2.
+ 0,3)",org.apache.directory.server.core.api;version="[2.0,3)",org.apache
+ .directory.server.core.api.administrative;version="[2.0,3)",org.apache.
+ directory.server.core.api.authn.ppolicy;version="[2.0,3)",org.apache.di
+ rectory.server.core.api.changelog;version="[2.0,3)",org.apache.director
+ y.server.core.api.event;version="[2.0,3)",org.apache.directory.server.c
+ ore.api.filtering;version="[2.0,3)",org.apache.directory.server.core.ap
+ i.interceptor;version="[2.0,3)",org.apache.directory.server.core.api.in
+ terceptor.context;version="[2.0,3)",org.apache.directory.server.core.ap
+ i.journal;version="[2.0,3)",org.apache.directory.server.core.api.partit
+ ion;version="[2.0,3)",org.apache.directory.server.core.api.schema;versi
+ on="[2.0,3)",org.apache.directory.server.core.api.subtree;version="[2.0
+ ,3)",org.apache.directory.server.core.authn;version="[2.0,3)",org.apach
+ e.directory.server.core.authn.ppolicy;version="[2.0,3)",org.apache.dire
+ ctory.server.core.authz;version="[2.0,3)",org.apache.directory.server.c
+ ore.changelog;version="[2.0,3)",org.apache.directory.server.core.collec
+ tive;version="[2.0,3)",org.apache.directory.server.core.event;version="
+ [2.0,3)",org.apache.directory.server.core.exception;version="[2.0,3)",o
+ rg.apache.directory.server.core.journal;version="[2.0,3)",org.apache.di
+ rectory.server.core.normalization;version="[2.0,3)",org.apache.director
+ y.server.core.operational;version="[2.0,3)",org.apache.directory.server
+ .core.referral;version="[2.0,3)",org.apache.directory.server.core.schem
+ a;version="[2.0,3)",org.apache.directory.server.core.shared;version="[2
+ .0,3)",org.apache.directory.server.core.shared.partition;version="[2.0,
+ 3)",org.apache.directory.server.core.subtree;version="[2.0,3)",org.apac
+ he.directory.server.core.trigger;version="[2.0,3)",org.apache.directory
+ .server.i18n;version="[2.0,3)",org.bouncycastle.jce.provider;version="[
+ 1.53,2)",org.bouncycastle.x509;version="[1.53,2)",org.slf4j;version="[1
+ .7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Core
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

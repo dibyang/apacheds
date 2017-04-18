@@ -1,0 +1,66 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487500685
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Contains a JNDI provider implementation which wraps 
+ the core so existing      applications based on JNDI can use the server
+  embedded transparently.      Remote and local runtime operations will 
+ appear and feel exactly the same     with a performance boost when loca
+ l.  All operations via this JNDI provider     bypass the LDAP stack to 
+ perform ooerations directly on the ApacheDS core.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Core JNDI
+Bundle-SymbolicName: com.ls.neo2.directory.server.core.jndi
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M23
+ ";uses:="javax.naming,javax.naming.directory,javax.naming.event,javax.n
+ aming.ldap,javax.naming.spi,org.apache.directory.api.ldap.model.constan
+ ts,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.l
+ dap.model.filter,org.apache.directory.api.ldap.model.message,org.apache
+ .directory.api.ldap.model.name,org.apache.directory.api.ldap.model.sche
+ ma,org.apache.directory.server.core.api,org.apache.directory.server.cor
+ e.api.event,org.apache.directory.server.core.api.filtering,org.apache.d
+ irectory.server.core.api.interceptor.context"
+Implementation-Title: ApacheDS Core JNDI
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
+ avax.naming.ldap,javax.naming.spi,org.apache.directory.api.asn1;version
+ ="[1.0,2)",org.apache.directory.api.ldap.codec.api;version="[1.0,2)",or
+ g.apache.directory.api.ldap.codec.controls.cascade;version="[1.0,2)",or
+ g.apache.directory.api.ldap.codec.controls.manageDsaIT;version="[1.0,2)
+ ",org.apache.directory.api.ldap.codec.controls.search.entryChange;versi
+ on="[1.0,2)",org.apache.directory.api.ldap.codec.controls.search.pagedS
+ earch;version="[1.0,2)",org.apache.directory.api.ldap.codec.controls.se
+ arch.persistentSearch;version="[1.0,2)",org.apache.directory.api.ldap.c
+ odec.controls.search.subentries;version="[1.0,2)",org.apache.directory.
+ api.ldap.extras.controls.ppolicy;version="[1.0,2)",org.apache.directory
+ .api.ldap.extras.controls.ppolicy_impl;version="[1.0,2)",org.apache.dir
+ ectory.api.ldap.extras.controls.syncrepl_impl;version="[1.0,2)",org.apa
+ che.directory.api.ldap.model.constants;version="[1.0,2)",org.apache.dir
+ ectory.api.ldap.model.cursor;version="[1.0,2)",org.apache.directory.api
+ .ldap.model.entry;version="[1.0,2)",org.apache.directory.api.ldap.model
+ .exception;version="[1.0,2)",org.apache.directory.api.ldap.model.filter
+ ;version="[1.0,2)",org.apache.directory.api.ldap.model.message;version=
+ "[1.0,2)",org.apache.directory.api.ldap.model.message.controls;version=
+ "[1.0,2)",org.apache.directory.api.ldap.model.name;version="[1.0,2)",or
+ g.apache.directory.api.ldap.model.schema;version="[1.0,2)",org.apache.d
+ irectory.api.ldap.util;version="[1.0,2)",org.apache.directory.api.util;
+ version="[1.0,2)",org.apache.directory.api.util.exception;version="[1.0
+ ,2)",org.apache.directory.server.core.api;version="[2.0,3)",org.apache.
+ directory.server.core.api.entry;version="[2.0,3)",org.apache.directory.
+ server.core.api.event;version="[2.0,3)",org.apache.directory.server.cor
+ e.api.filtering;version="[2.0,3)",org.apache.directory.server.core.api.
+ interceptor.context;version="[2.0,3)",org.apache.directory.server.core.
+ shared;version="[2.0,3)",org.apache.directory.server.i18n;version="[2.0
+ ,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Core JNDI
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607
