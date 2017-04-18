@@ -1,0 +1,80 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492485842356
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: ApacheDS is an embbedable directory server entirely 
+ written in Java, which has been certified LDAPv3 compatible    by the O
+ pen Group. Besides LDAP it supports Kerberos 5 and the Change Password 
+ Protocol. It has been designed to introduce    triggers, stored procedu
+ res, queues and views to the world of LDAP which has lacked these rich 
+ constructs.
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ApacheDS Service Builder
+Bundle-SymbolicName: org.apache.directory.server.service.builder
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.config.builder;uses:="org.ap
+ ache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.m
+ odel.ldif,org.apache.directory.api.ldap.model.schema,org.apache.directo
+ ry.server.config,org.apache.directory.server.config.beans,org.apache.di
+ rectory.server.core.api,org.apache.directory.server.core.api.authn.ppol
+ icy,org.apache.directory.server.core.api.changelog,org.apache.directory
+ .server.core.api.interceptor,org.apache.directory.server.core.api.journ
+ al,org.apache.directory.server.core.api.partition,org.apache.directory.
+ server.core.authn,org.apache.directory.server.core.partition.impl.btree
+ .jdbm,org.apache.directory.server.core.partition.impl.btree.mavibot,org
+ .apache.directory.server.integration.http,org.apache.directory.server.k
+ erberos.kdc,org.apache.directory.server.ldap,org.apache.directory.serve
+ r.ldap.handlers.sasl,org.apache.directory.server.ldap.replication.consu
+ mer,org.apache.directory.server.ntp,org.apache.directory.server.protoco
+ l.shared.transport";version="2.0.0",org.apache.directory.server.config.
+ listener;version="2.0.0.M23";uses:="org.apache.directory.api.ldap.model
+ .exception,org.apache.directory.server.config,org.apache.directory.serv
+ er.core.api,org.apache.directory.server.core.api.event,org.apache.direc
+ tory.server.core.api.interceptor.context"
+Implementation-Title: ApacheDS Service Builder
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
+ 2)",org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org
+ .apache.directory.api.ldap.model.ldif;version="[1.0,2)",org.apache.dire
+ ctory.api.ldap.model.message;version="[1.0,2)",org.apache.directory.api
+ .ldap.model.name;version="[1.0,2)",org.apache.directory.api.ldap.model.
+ schema;version="[1.0,2)",org.apache.directory.api.util;version="[1.0,2)
+ ",org.apache.directory.server.config,org.apache.directory.server.config
+ .beans;version="[2.0,3)",org.apache.directory.server.core;version="[2.0
+ ,3)",org.apache.directory.server.core.api;version="[2.0,3)",org.apache.
+ directory.server.core.api.authn.ppolicy;version="[2.0,3)",org.apache.di
+ rectory.server.core.api.changelog;version="[2.0,3)",org.apache.director
+ y.server.core.api.event;version="[2.0,3)",org.apache.directory.server.c
+ ore.api.interceptor;version="[2.0,3)",org.apache.directory.server.core.
+ api.interceptor.context;version="[2.0,3)",org.apache.directory.server.c
+ ore.api.journal;version="[2.0,3)",org.apache.directory.server.core.api.
+ partition;version="[2.0,3)",org.apache.directory.server.core.authn;vers
+ ion="[2.0,3)",org.apache.directory.server.core.authn.ppolicy;version="[
+ 2.0,3)",org.apache.directory.server.core.changelog;version="[2.0,3)",or
+ g.apache.directory.server.core.journal;version="[2.0,3)",org.apache.dir
+ ectory.server.core.partition.impl.btree.jdbm;version="[2.0,3)",org.apac
+ he.directory.server.core.partition.impl.btree.mavibot;version="[2.0,3)"
+ ,org.apache.directory.server.i18n;version="[2.0,3)",org.apache.director
+ y.server.integration.http;version="[2.0,3)",org.apache.directory.server
+ .kerberos,org.apache.directory.server.kerberos.changepwd,org.apache.dir
+ ectory.server.kerberos.kdc;version="[2.0,3)",org.apache.directory.serve
+ r.ldap;version="[2.0,3)",org.apache.directory.server.ldap.handlers.sasl
+ ;version="[2.0,3)",org.apache.directory.server.ldap.handlers.sasl.ntlm;
+ version="[2.0,3)",org.apache.directory.server.ldap.replication;version=
+ "[2.0,3)",org.apache.directory.server.ldap.replication.consumer;version
+ ="[2.0,3)",org.apache.directory.server.ldap.replication.provider;versio
+ n="[2.0,3)",org.apache.directory.server.ntp;version="[2.0,3)",org.apach
+ e.directory.server.protocol.shared.transport;version="[2.0,3)",org.apac
+ he.directory.server.xdbm;version="[2.0,3)",org.apache.directory.shared.
+ kerberos.codec.types;version="[2.0,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: ApacheDS Service Builder
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607

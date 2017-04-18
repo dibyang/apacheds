@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1492487594021
+Build-Jdk: 1.7.0_45
+Built-By: dib
+Bundle-Description: Annotations used to define a LdapServer
+Bundle-DocURL: http://www.apache.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apacheds Server Annotations
+Bundle-SymbolicName: com.ls.neo2.directory.server.annotations
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 2.0.0.M23
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.directory.server.annotations;uses:="org.apach
+ e.commons.pool,org.apache.directory.api.ldap.model.message,org.apache.d
+ irectory.ldap.client.api,org.apache.directory.server.factory,org.apache
+ .directory.server.ldap.handlers.sasl,org.apache.directory.server.ldap.h
+ andlers.sasl.cramMD5,org.apache.directory.server.ldap.handlers.sasl.dig
+ estMD5,org.apache.directory.server.ldap.handlers.sasl.gssapi,org.apache
+ .directory.server.ldap.handlers.sasl.ntlm";version="2.0.0",org.apache.d
+ irectory.server.factory;version="2.0.0.M23";uses:="org.apache.directory
+ .server.annotations,org.apache.directory.server.core.api,org.apache.dir
+ ectory.server.kerberos.kdc,org.apache.directory.server.ldap,org.apache.
+ directory.server.ldap.replication.consumer,org.junit.runner"
+Implementation-Title: Apacheds Server Annotations
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Version: 2.0.0-M23
+Import-Package: org.apache.commons.pool;version="[1.6,2)",org.apache.dir
+ ectory.api.ldap.model.message;version="[1.0,2)",org.apache.directory.ap
+ i.util;version="[1.0,2)",org.apache.directory.ldap.client.api;version="
+ [1.0,2)",org.apache.directory.server.core.annotations;version="[2.0,3)"
+ ,org.apache.directory.server.core.api;version="[2.0,3)",org.apache.dire
+ ctory.server.i18n;version="[2.0,3)",org.apache.directory.server.kerbero
+ s;version="[2.0,3)",org.apache.directory.server.kerberos.changepwd;vers
+ ion="[2.0,3)",org.apache.directory.server.kerberos.kdc;version="[2.0,3)
+ ",org.apache.directory.server.ldap;version="[2.0,3)",org.apache.directo
+ ry.server.ldap.handlers.sasl;version="[2.0,3)",org.apache.directory.ser
+ ver.ldap.handlers.sasl.cramMD5;version="[2.0,3)",org.apache.directory.s
+ erver.ldap.handlers.sasl.digestMD5;version="[2.0,3)",org.apache.directo
+ ry.server.ldap.handlers.sasl.gssapi;version="[2.0,3)",org.apache.direct
+ ory.server.ldap.handlers.sasl.ntlm;version="[2.0,3)",org.apache.directo
+ ry.server.ldap.replication;version="[2.0,3)",org.apache.directory.serve
+ r.ldap.replication.consumer;version="[2.0,3)",org.apache.directory.serv
+ er.protocol.shared.transport;version="[2.0,3)",org.junit.runner
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: Apacheds Server Annotations
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 2.0.0-M23
+Tool: Bnd-2.3.0.201405100607
