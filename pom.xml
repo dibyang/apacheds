@@ -30,7 +30,7 @@
 
   <groupId>com.ls.neo2.directory.server</groupId>
   <artifactId>apacheds-parent</artifactId>
-  <version>2.0.0-M23</version>
+  <version>2.0.0</version>
   <packaging>pom</packaging>
 
   <name>ApacheDS</name>
@@ -296,11 +296,24 @@
               <java.io.tmpdir>${basedir}/target</java.io.tmpdir>
             </systemPropertyVariables>
           </configuration>
-         </plugin>
+         </plugin>         
       </plugins>
     </pluginManagement>
     
     <plugins>
+      <!-- Source attach plugin -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-source-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>attach-sources</id>
+					<goals>
+						<goal>jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>

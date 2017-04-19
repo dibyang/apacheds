@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492487458182
+Bnd-LastModified: 1492506567614
 Build-Jdk: 1.7.0_45
 Built-By: dib
 Bundle-Description: Server's core contains the JNDI provider, intercepto
@@ -11,7 +11,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core
 Bundle-SymbolicName: com.ls.neo2.directory.server.core
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core;uses:="org.apache.direc
  tory.api.ldap.codec.api,org.apache.directory.api.ldap.model.csn,org.apa
@@ -27,13 +27,13 @@ Export-Package: org.apache.directory.server.core;uses:="org.apache.direc
  tory.server.core.api.partition,org.apache.directory.server.core.api.sch
  ema,org.apache.directory.server.core.api.subtree,org.apache.directory.s
  erver.core.shared.partition";version="2.0.0",org.apache.directory.serve
- r.core.security;version="2.0.0.M23";uses:="org.apache.directory.api.lda
- p.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.
- directory.server.core.api"
+ r.core.security;version="2.0.0";uses:="org.apache.directory.api.ldap.mo
+ del.entry,org.apache.directory.api.ldap.model.exception,org.apache.dire
+ ctory.server.core.api"
 Implementation-Title: ApacheDS Core
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0
 Import-Package: javax.security.auth.x500,net.sf.ehcache;version="[2.8,3)
  ",org.apache.commons.lang;version="[2.6,3)",org.apache.directory.api.ld
  ap.codec.api;version="[1.0,2)",org.apache.directory.api.ldap.model.cons
@@ -79,5 +79,5 @@ Import-Package: javax.security.auth.x500,net.sf.ehcache;version="[2.8,3)
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
+Specification-Version: 2.0.0
 Tool: Bnd-2.3.0.201405100607
