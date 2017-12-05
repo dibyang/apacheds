@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506577900
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442799381
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: A partition that backs it's entries and indices in A
  vlTrees within memory.
@@ -10,18 +10,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS LDIF Partition
 Bundle-SymbolicName: com.ls.neo2.directory.server.ldif.partition
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.partition.ldif;version=
- "2.0.0";uses:="javax.naming,org.apache.directory.api.ldap.model.csn,org
- .apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.mo
- del.exception,org.apache.directory.api.ldap.model.schema,org.apache.dir
- ectory.server.core.api,org.apache.directory.server.core.api.interceptor
- .context,org.apache.directory.server.core.partition.impl.avl"
+ "2.0.0.M23";uses:="javax.naming,org.apache.directory.api.ldap.model.csn
+ ,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.lda
+ p.model.exception,org.apache.directory.api.ldap.model.schema,org.apache
+ .directory.server.core.api,org.apache.directory.server.core.api.interce
+ ptor.context,org.apache.directory.server.core.partition.impl.avl"
 Implementation-Title: ApacheDS LDIF Partition
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
  sion="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0
  ,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.ap
@@ -39,5 +39,5 @@ Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS LDIF Partition
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506523988
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442708891
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Contains helper classes that are part of the ApacheD
  S Core.
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core Shared
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.shared
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.shared;uses:="jdbm,jdbm
  .btree,jdbm.helper,net.sf.ehcache,org.apache.directory.api.ldap.model.c
@@ -22,16 +22,16 @@ Export-Package: org.apache.directory.server.core.shared;uses:="jdbm,jdbm
  che.directory.server.core.api.changelog,org.apache.directory.server.cor
  e.api.filtering,org.apache.directory.server.core.api.interceptor.contex
  t,org.apache.mina.core.session";version="2.0.0",org.apache.directory.se
- rver.core.shared.partition;version="2.0.0";uses:="org.apache.directory.
- api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.
- apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.mode
- l.schema,org.apache.directory.server.core.api,org.apache.directory.serv
- er.core.api.filtering,org.apache.directory.server.core.api.interceptor.
- context,org.apache.directory.server.core.api.partition"
+ rver.core.shared.partition;version="2.0.0.M23";uses:="org.apache.direct
+ ory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,
+ org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.
+ model.schema,org.apache.directory.server.core.api,org.apache.directory.
+ server.core.api.filtering,org.apache.directory.server.core.api.intercep
+ tor.context,org.apache.directory.server.core.api.partition"
 Implementation-Title: ApacheDS Core Shared
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: javax.naming.directory,jdbm;version="[2.0,3)",jdbm.btree
  ;version="[2.0,3)",jdbm.helper;version="[2.0,3)",jdbm.recman;version="[
  2.0,3)",net.sf.ehcache;version="[2.8,3)",org.apache.directory.api.ldap.
@@ -59,5 +59,5 @@ Import-Package: javax.naming.directory,jdbm;version="[2.0,3)",jdbm.btree
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core Shared
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

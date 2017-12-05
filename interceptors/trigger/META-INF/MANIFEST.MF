@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506562907
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442783525
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Triggers interceptor
 Bundle-DocURL: http://www.apache.org/
@@ -9,18 +9,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Triggers Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.trigger
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.apache.directory.server.core.trigger;version="2.0.0"
- ;uses:="org.apache.directory.api.ldap.model.entry,org.apache.directory.
- api.ldap.model.exception,org.apache.directory.api.ldap.model.name,org.a
- pache.directory.api.ldap.trigger,org.apache.directory.server.core.api,o
- rg.apache.directory.server.core.api.interceptor,org.apache.directory.se
- rver.core.api.interceptor.context"
+Export-Package: org.apache.directory.server.core.trigger;version="2.0.0.
+ M23";uses:="org.apache.directory.api.ldap.model.entry,org.apache.direct
+ ory.api.ldap.model.exception,org.apache.directory.api.ldap.model.name,o
+ rg.apache.directory.api.ldap.trigger,org.apache.directory.server.core.a
+ pi,org.apache.directory.server.core.api.interceptor,org.apache.director
+ y.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Triggers Interceptor
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: javax.naming.directory,org.apache.directory.api.ldap.mod
  el.constants;version="[1.0,2)",org.apache.directory.api.ldap.model.entr
  y;version="[1.0,2)",org.apache.directory.api.ldap.model.exception;versi
@@ -42,5 +42,5 @@ Import-Package: javax.naming.directory,org.apache.directory.api.ldap.mod
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Triggers Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

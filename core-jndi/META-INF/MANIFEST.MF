@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506589387
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442817717
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Contains a JNDI provider implementation which wraps 
  the core so existing      applications based on JNDI can use the server
@@ -14,21 +14,21 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core JNDI
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.jndi
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.apache.directory.server.core.jndi;version="2.0.0";us
- es:="javax.naming,javax.naming.directory,javax.naming.event,javax.namin
- g.ldap,javax.naming.spi,org.apache.directory.api.ldap.model.constants,o
- rg.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.
- model.filter,org.apache.directory.api.ldap.model.message,org.apache.dir
- ectory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,o
- rg.apache.directory.server.core.api,org.apache.directory.server.core.ap
- i.event,org.apache.directory.server.core.api.filtering,org.apache.direc
- tory.server.core.api.interceptor.context"
+Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M23
+ ";uses:="javax.naming,javax.naming.directory,javax.naming.event,javax.n
+ aming.ldap,javax.naming.spi,org.apache.directory.api.ldap.model.constan
+ ts,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.l
+ dap.model.filter,org.apache.directory.api.ldap.model.message,org.apache
+ .directory.api.ldap.model.name,org.apache.directory.api.ldap.model.sche
+ ma,org.apache.directory.server.core.api,org.apache.directory.server.cor
+ e.api.event,org.apache.directory.server.core.api.filtering,org.apache.d
+ irectory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Core JNDI
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
  avax.naming.ldap,javax.naming.spi,org.apache.directory.api.asn1;version
  ="[1.0,2)",org.apache.directory.api.ldap.codec.api;version="[1.0,2)",or
@@ -62,5 +62,5 @@ Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core JNDI
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

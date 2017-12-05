@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506667322
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442949427
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
  written in Java, which has been certified LDAPv3 compatible    by the O
@@ -14,15 +14,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Jetty HTTP Server Integration
 Bundle-SymbolicName: com.ls.neo2.directory.server.http.integration
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.integration.http;version="2.
- 0.0";uses:="org.apache.directory.server.core.api,org.apache.directory.s
- erver.protocol.shared.transport"
+ 0.0.M23";uses:="org.apache.directory.server.core.api,org.apache.directo
+ ry.server.protocol.shared.transport"
 Implementation-Title: ApacheDS Jetty HTTP Server Integration
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
  2)",org.apache.directory.api.ldap.model.name;version="[1.0,2)",org.apac
  he.directory.server.bridge.http;version="[2.0,3)",org.apache.directory.
@@ -37,5 +37,5 @@ Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Jetty HTTP Server Integration
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

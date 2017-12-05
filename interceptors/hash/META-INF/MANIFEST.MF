@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506647443
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442920076
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Password Hashing interceptor
 Bundle-DocURL: http://www.apache.org/
@@ -9,18 +9,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Password Hashing Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.hash
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.apache.directory.server.core.hash;version="2.0.0";us
- es:="org.apache.directory.api.ldap.model.constants,org.apache.directory
- .api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,or
- g.apache.directory.server.config.beans,org.apache.directory.server.core
- .api,org.apache.directory.server.core.api.interceptor,org.apache.direct
- ory.server.core.api.interceptor.context"
+Export-Package: org.apache.directory.server.core.hash;version="2.0.0.M23
+ ";uses:="org.apache.directory.api.ldap.model.constants,org.apache.direc
+ tory.api.ldap.model.exception,org.apache.directory.api.ldap.model.schem
+ a,org.apache.directory.server.config.beans,org.apache.directory.server.
+ core.api,org.apache.directory.server.core.api.interceptor,org.apache.di
+ rectory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Password Hashing Interceptor
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org
  .apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache
@@ -33,5 +33,5 @@ Import-Package: org.apache.directory.api.ldap.model.constants;version="[
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Password Hashing Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607

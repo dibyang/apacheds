@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1492506586723
-Build-Jdk: 1.7.0_45
+Bnd-LastModified: 1512442813990
+Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Annotations used to define a DirectoryService
 Bundle-DocURL: http://www.apache.org/
@@ -9,23 +9,23 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core Annotations
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.annotations
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.M23
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.annotations;uses:="org.
  apache.directory.server.core.api.partition,org.apache.directory.server.
  core.authn,org.apache.directory.server.core.factory,org.apache.director
  y.server.xdbm";version="2.0.0",org.apache.directory.server.core.factory
- ;version="2.0.0";uses:="org.apache.directory.api.ldap.model.schema,org.
- apache.directory.server.core.annotations,org.apache.directory.server.co
- re.api,org.apache.directory.server.core.api.partition,org.apache.direct
- ory.server.core.partition.impl.avl,org.apache.directory.server.core.par
- tition.impl.btree.jdbm,org.apache.directory.server.core.partition.impl.
- btree.mavibot,org.apache.directory.server.core.partition.ldif,org.junit
- .runner"
+ ;version="2.0.0.M23";uses:="org.apache.directory.api.ldap.model.schema,
+ org.apache.directory.server.core.annotations,org.apache.directory.serve
+ r.core.api,org.apache.directory.server.core.api.partition,org.apache.di
+ rectory.server.core.partition.impl.avl,org.apache.directory.server.core
+ .partition.impl.btree.jdbm,org.apache.directory.server.core.partition.i
+ mpl.btree.mavibot,org.apache.directory.server.core.partition.ldif,org.j
+ unit.runner"
 Implementation-Title: ApacheDS Core Annotations
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0
+Implementation-Version: 2.0.0-M23
 Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
  2)",org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org
  .apache.directory.api.ldap.model.ldif;version="[1.0,2)",org.apache.dire
@@ -54,5 +54,5 @@ Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core Annotations
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0
+Specification-Version: 2.0.0-M23
 Tool: Bnd-2.3.0.201405100607
