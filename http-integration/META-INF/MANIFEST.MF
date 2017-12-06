@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512463199965
+Bnd-LastModified: 1512538986080
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
@@ -32,9 +32,9 @@ Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
  rity;version="[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3
  )",org.apache.directory.server.protocol.shared.transport;version="[2.0,
  3)",org.bouncycastle.jce.provider;version="[1.55,2)",org.eclipse.jetty.
- server;version="[9.4,10)",org.eclipse.jetty.server.handler;version="[9.
- 4,10)",org.eclipse.jetty.util.ssl;version="[9.4,10)",org.eclipse.jetty.
- webapp;version="[9.4,10)",org.eclipse.jetty.xml;version="[9.4,10)",org.
+ server;version="[9.2,10)",org.eclipse.jetty.server.handler;version="[9.
+ 2,10)",org.eclipse.jetty.util.ssl;version="[9.2,10)",org.eclipse.jetty.
+ webapp;version="[9.2,10)",org.eclipse.jetty.xml;version="[9.2,10)",org.
  slf4j;version="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Jetty HTTP Server Integration
