@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512463124418
+Bnd-LastModified: 1512539350217
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: The NTP protocol provider for ApacheDS

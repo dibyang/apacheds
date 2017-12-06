@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512462896197
+Bnd-LastModified: 1512539138881
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Numeric attribute value incrementing interceptor

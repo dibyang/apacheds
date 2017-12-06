@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512462971686
+Bnd-LastModified: 1512539207877
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Server's core contains the JNDI provider, intercepto
