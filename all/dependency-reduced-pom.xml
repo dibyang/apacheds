@@ -3,7 +3,7 @@
   <parent>
     <artifactId>apacheds-parent</artifactId>
     <groupId>com.ls.neo2.directory.server</groupId>
-    <version>2.0.0-M23</version>
+    <version>2.0.0-M24</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>apacheds-all</artifactId>

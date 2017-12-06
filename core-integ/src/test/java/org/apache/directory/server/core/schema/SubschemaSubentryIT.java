@@ -36,8 +36,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import javax.naming.NamingException;
-
 import org.apache.directory.api.ldap.model.entry.Attribute;
 import org.apache.directory.api.ldap.model.entry.DefaultAttribute;
 import org.apache.directory.api.ldap.model.entry.DefaultEntry;

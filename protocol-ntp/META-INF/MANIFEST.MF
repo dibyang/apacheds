@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442884013
+Bnd-LastModified: 1512463124418
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: The NTP protocol provider for ApacheDS
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Ntp
 Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.ntp
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.ntp.io;uses:="org.apache.dir
  ectory.server.ntp.messages";version="2.0.0",org.apache.directory.server
@@ -18,22 +18,26 @@ Export-Package: org.apache.directory.server.ntp.io;uses:="org.apache.dir
  ocol.shared";version="2.0.0",org.apache.directory.server.ntp.protocol;u
  ses:="org.apache.mina.core.buffer,org.apache.mina.core.service,org.apac
  he.mina.core.session,org.apache.mina.filter.codec";version="2.0.0",org.
- apache.directory.server.ntp.service;version="2.0.0.M23";uses:="org.apac
+ apache.directory.server.ntp.service;version="2.0.0.M24";uses:="org.apac
  he.directory.server.ntp,org.apache.directory.server.ntp.messages"
 Implementation-Title: ApacheDS Protocol Ntp
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
+ otocol-ntp
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
-Import-Package: org.apache.directory.server.protocol.shared;version="[2.
- 0,3)",org.apache.directory.server.protocol.shared.transport;version="[2
- .0,3)",org.apache.mina.core.buffer;version="[2.0,3)",org.apache.mina.co
- re.filterchain;version="[2.0,3)",org.apache.mina.core.future;version="[
- 2.0,3)",org.apache.mina.core.service;version="[2.0,3)",org.apache.mina.
- core.session;version="[2.0,3)",org.apache.mina.filter.codec;version="[2
- .0,3)",org.apache.mina.transport.socket;version="[2.0,3)",org.slf4j;ver
- sion="[1.7,2)"
+Implementation-Version: 2.0.0-M24
+Import-Package: org.apache.directory.server.ntp,org.apache.directory.ser
+ ver.ntp.io,org.apache.directory.server.ntp.messages,org.apache.director
+ y.server.ntp.protocol,org.apache.directory.server.protocol.shared;versi
+ on="[2.0,3)",org.apache.directory.server.protocol.shared.transport;vers
+ ion="[2.0,3)",org.apache.mina.core.buffer;version="[2.0,3)",org.apache.
+ mina.core.filterchain;version="[2.0,3)",org.apache.mina.core.future;ver
+ sion="[2.0,3)",org.apache.mina.core.service;version="[2.0,3)",org.apach
+ e.mina.core.session;version="[2.0,3)",org.apache.mina.filter.codec;vers
+ ion="[2.0,3)",org.apache.mina.transport.socket;version="[2.0,3)",org.sl
+ f4j;version="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Ntp
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442864741
+Bnd-LastModified: 1512463084919
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: The DNS protocol provider for ApacheDS
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Dns
 Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.dns
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.dns;uses:="org.apache.direct
  ory.server.dns.messages,org.apache.directory.server.protocol.shared";ve
@@ -34,30 +34,37 @@ Export-Package: org.apache.directory.server.dns;uses:="org.apache.direct
  .server.dns.store.jndi.operations;uses:="javax.naming,javax.naming.dire
  ctory,org.apache.directory.server.dns.messages,org.apache.directory.ser
  ver.dns.store.jndi";version="2.0.0",org.apache.directory.server.dns.uti
- l;version="2.0.0.M23"
+ l;version="2.0.0.M24"
 Implementation-Title: ApacheDS Protocol Dns
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
+ otocol-dns
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Import-Package: javax.naming,javax.naming.directory,javax.naming.ldap,or
  g.apache.commons.lang.builder;version="[2.6,3)",org.apache.directory.ap
  i.ldap.model.exception;version="[1.0,2)",org.apache.directory.api.ldap.
  model.name;version="[1.0,2)",org.apache.directory.api.util;version="[1.
  0,2)",org.apache.directory.server.core;version="[2.0,3)",org.apache.dir
  ectory.server.core.api;version="[2.0,3)",org.apache.directory.server.co
- re.jndi;version="[2.0,3)",org.apache.directory.server.i18n;version="[2.
- 0,3)",org.apache.directory.server.protocol.shared;version="[2.0,3)",org
- .apache.directory.server.protocol.shared.catalog;version="[2.0,3)",org.
- apache.directory.server.protocol.shared.transport;version="[2.0,3)",org
- .apache.mina.core.buffer;version="[2.0,3)",org.apache.mina.core.filterc
- hain;version="[2.0,3)",org.apache.mina.core.future;version="[2.0,3)",or
- g.apache.mina.core.service;version="[2.0,3)",org.apache.mina.core.sessi
- on;version="[2.0,3)",org.apache.mina.filter.codec;version="[2.0,3)",org
- .apache.mina.handler.chain;version="[2.0,3)",org.apache.mina.transport.
- socket;version="[2.0,3)",org.apache.mina.transport.socket.nio;version="
- [2.0,3)",org.slf4j;version="[1.7,2)"
+ re.jndi;version="[2.0,3)",org.apache.directory.server.dns,org.apache.di
+ rectory.server.dns.io.decoder,org.apache.directory.server.dns.io.encode
+ r,org.apache.directory.server.dns.messages,org.apache.directory.server.
+ dns.protocol,org.apache.directory.server.dns.service,org.apache.directo
+ ry.server.dns.store,org.apache.directory.server.dns.store.jndi,org.apac
+ he.directory.server.dns.store.jndi.operations,org.apache.directory.serv
+ er.i18n;version="[2.0,3)",org.apache.directory.server.protocol.shared;v
+ ersion="[2.0,3)",org.apache.directory.server.protocol.shared.catalog;ve
+ rsion="[2.0,3)",org.apache.directory.server.protocol.shared.transport;v
+ ersion="[2.0,3)",org.apache.mina.core.buffer;version="[2.0,3)",org.apac
+ he.mina.core.filterchain;version="[2.0,3)",org.apache.mina.core.future;
+ version="[2.0,3)",org.apache.mina.core.service;version="[2.0,3)",org.ap
+ ache.mina.core.session;version="[2.0,3)",org.apache.mina.filter.codec;v
+ ersion="[2.0,3)",org.apache.mina.handler.chain;version="[2.0,3)",org.ap
+ ache.mina.transport.socket;version="[2.0,3)",org.apache.mina.transport.
+ socket.nio;version="[2.0,3)",org.slf4j;version="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Dns
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

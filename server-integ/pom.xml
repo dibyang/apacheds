@@ -22,7 +22,7 @@
   <parent>
     <groupId>com.ls.neo2.directory.server</groupId>
     <artifactId>apacheds-parent</artifactId>
-    <version>2.0.0-M23</version>
+    <version>2.0.0-M24</version>
   </parent>
   
   <artifactId>apacheds-server-integ</artifactId>
@@ -112,32 +112,32 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-asn1-api</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-extras-sp</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-codec-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-extras-codec</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-model</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-util</artifactId>
     </dependency>
 
@@ -165,18 +165,18 @@
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-codec-standalone</artifactId>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-client-api</artifactId>
     </dependency>  
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-dsml-engine</artifactId>
     </dependency>
   </dependencies>
@@ -214,7 +214,7 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>org.apache.directory.api</groupId>
+                  <groupId>com.ls.neo2.directory.api</groupId>
                   <artifactId>api-ldap-extras-codec</artifactId>
                   <outputDirectory>${codec.plugin.directory}</outputDirectory>
                 </artifactItem>
@@ -313,7 +313,7 @@
                 <include>**/*StoredProcedureIT.java</include>
               </includes>
               <systemPropertyVariables>
-                <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.JdbmPartitionFactory</apacheds.partition.factory>
+                <apacheds.partition.factory>org.apache.directory.server.core.factory.JdbmPartitionFactory</apacheds.partition.factory>
                 <felix.cache.rootdir>
                   ${project.build.directory}
                 </felix.cache.rootdir>
@@ -340,7 +340,7 @@
        		    </goals>
                 <configuration>
                   <systemPropertyVariables>
-                    <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.AvlPartitionFactory</apacheds.partition.factory>
+                    <apacheds.partition.factory>org.apache.directory.server.core.factory.AvlPartitionFactory</apacheds.partition.factory>
 	                <felix.cache.rootdir>
 	                  ${project.build.directory}
 	                </felix.cache.rootdir>
@@ -367,7 +367,7 @@
        		    </goals>
                 <configuration>
                   <systemPropertyVariables>
-                    <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.LdifPartitionFactory</apacheds.partition.factory>
+                    <apacheds.partition.factory>org.apache.directory.server.core.factory.LdifPartitionFactory</apacheds.partition.factory>
 	                <felix.cache.rootdir>
 	                  ${project.build.directory}
 	                </felix.cache.rootdir>

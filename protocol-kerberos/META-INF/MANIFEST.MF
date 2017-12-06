@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442869654
+Bnd-LastModified: 1512463095641
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: The Kerberos Protocol Provider for ApacheDS
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Kerberos
 Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.kerberos
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.kerberos;uses:="javax.securi
  ty.auth.kerberos,org.apache.directory.shared.kerberos.codec.types";vers
@@ -52,52 +52,60 @@ Export-Package: org.apache.directory.server.kerberos;uses:="javax.securi
  d.store,org.apache.directory.shared.kerberos.exceptions,org.apache.dire
  ctory.shared.kerberos.messages,org.apache.mina.core.service,org.apache.
  mina.core.session";version="2.0.0",org.apache.directory.server.kerberos
- .sam;version="2.0.0.M23";uses:="javax.naming.directory,javax.security.a
+ .sam;version="2.0.0.M24";uses:="javax.naming.directory,javax.security.a
  uth.kerberos,org.apache.directory.server.kerberos.shared.store,org.apac
  he.directory.shared.kerberos.codec.types"
 Implementation-Title: ApacheDS Protocol Kerberos
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
+ otocol-kerberos
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Import-Package: javax.naming,javax.naming.directory,javax.security.auth.
- kerberos,net.sf.ehcache;version="[2.8,3)",org.apache.directory.api.asn1
- ,org.apache.directory.api.asn1.ber;version="[1.0,2)",org.apache.directo
- ry.api.asn1.ber.tlv;version="[1.0,2)",org.apache.directory.api.ldap.mod
- el.constants;version="[1.0,2)",org.apache.directory.api.ldap.model.entr
- y;version="[1.0,2)",org.apache.directory.api.ldap.model.exception;versi
- on="[1.0,2)",org.apache.directory.api.ldap.model.name;version="[1.0,2)"
- ,org.apache.directory.api.ldap.model.schema;version="[1.0,2)",org.apach
- e.directory.api.util;version="[1.0,2)",org.apache.directory.server.core
- .api;version="[2.0,3)",org.apache.directory.server.core.shared;version=
- "[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3)",org.apache
- .directory.server.kerberos.changepwd.exceptions;version="[2.0,3)",org.a
- pache.directory.server.kerberos.changepwd.io;version="[2.0,3)",org.apac
- he.directory.server.kerberos.changepwd.messages;version="[2.0,3)",org.a
- pache.directory.server.kerberos.shared.crypto.checksum;version="[2.0,3)
- ",org.apache.directory.server.kerberos.shared.crypto.encryption;version
- ="[2.0,3)",org.apache.directory.server.kerberos.shared.replay;version="
- [2.0,3)",org.apache.directory.server.kerberos.shared.store;version="[2.
- 0,3)",org.apache.directory.server.protocol.shared;version="[2.0,3)",org
- .apache.directory.server.protocol.shared.kerberos;version="[2.0,3)",org
- .apache.directory.server.protocol.shared.transport;version="[2.0,3)",or
- g.apache.directory.shared.kerberos;version="[2.0,3)",org.apache.directo
- ry.shared.kerberos.codec;version="[2.0,3)",org.apache.directory.shared.
- kerberos.codec.changePwdData;version="[2.0,3)",org.apache.directory.sha
- red.kerberos.codec.options;version="[2.0,3)",org.apache.directory.share
- d.kerberos.codec.types;version="[2.0,3)",org.apache.directory.shared.ke
- rberos.components;version="[2.0,3)",org.apache.directory.shared.kerbero
- s.crypto.checksum;version="[2.0,3)",org.apache.directory.shared.kerbero
- s.exceptions;version="[2.0,3)",org.apache.directory.shared.kerberos.fla
- gs;version="[2.0,3)",org.apache.directory.shared.kerberos.messages;vers
- ion="[2.0,3)",org.apache.mina.core.buffer;version="[2.0,3)",org.apache.
- mina.core.filterchain;version="[2.0,3)",org.apache.mina.core.future;ver
- sion="[2.0,3)",org.apache.mina.core.service;version="[2.0,3)",org.apach
- e.mina.core.session;version="[2.0,3)",org.apache.mina.filter.codec;vers
- ion="[2.0,3)",org.apache.mina.transport.socket;version="[2.0,3)",org.ap
- ache.mina.transport.socket.nio;version="[2.0,3)",org.slf4j;version="[1.
- 7,2)"
+ kerberos,net.sf.ehcache;version="[2.10,3)",org.apache.directory.api.asn
+ 1;version="[1.0,2)",org.apache.directory.api.asn1.ber;version="[1.0,2)"
+ ,org.apache.directory.api.asn1.ber.tlv;version="[1.0,2)",org.apache.dir
+ ectory.api.ldap.model.constants;version="[1.0,2)",org.apache.directory.
+ api.ldap.model.entry;version="[1.0,2)",org.apache.directory.api.ldap.mo
+ del.exception;version="[1.0,2)",org.apache.directory.api.ldap.model.nam
+ e;version="[1.0,2)",org.apache.directory.api.ldap.model.schema;version=
+ "[1.0,2)",org.apache.directory.api.util;version="[1.0,2)",org.apache.di
+ rectory.server.core.api;version="[2.0,3)",org.apache.directory.server.c
+ ore.shared;version="[2.0,3)",org.apache.directory.server.i18n;version="
+ [2.0,3)",org.apache.directory.server.kerberos,org.apache.directory.serv
+ er.kerberos.changepwd,org.apache.directory.server.kerberos.changepwd.ex
+ ceptions;version="[2.0,3)",org.apache.directory.server.kerberos.changep
+ wd.io;version="[2.0,3)",org.apache.directory.server.kerberos.changepwd.
+ messages;version="[2.0,3)",org.apache.directory.server.kerberos.changep
+ wd.protocol,org.apache.directory.server.kerberos.changepwd.service,org.
+ apache.directory.server.kerberos.kdc,org.apache.directory.server.kerber
+ os.kdc.authentication,org.apache.directory.server.kerberos.kdc.ticketgr
+ ant,org.apache.directory.server.kerberos.protocol,org.apache.directory.
+ server.kerberos.protocol.codec,org.apache.directory.server.kerberos.sha
+ red.crypto.checksum;version="[2.0,3)",org.apache.directory.server.kerbe
+ ros.shared.crypto.encryption;version="[2.0,3)",org.apache.directory.ser
+ ver.kerberos.shared.replay;version="[2.0,3)",org.apache.directory.serve
+ r.kerberos.shared.store;version="[2.0,3)",org.apache.directory.server.p
+ rotocol.shared;version="[2.0,3)",org.apache.directory.server.protocol.s
+ hared.kerberos;version="[2.0,3)",org.apache.directory.server.protocol.s
+ hared.transport;version="[2.0,3)",org.apache.directory.shared.kerberos;
+ version="[2.0,3)",org.apache.directory.shared.kerberos.codec;version="[
+ 2.0,3)",org.apache.directory.shared.kerberos.codec.changePwdData;versio
+ n="[2.0,3)",org.apache.directory.shared.kerberos.codec.options;version=
+ "[2.0,3)",org.apache.directory.shared.kerberos.codec.types;version="[2.
+ 0,3)",org.apache.directory.shared.kerberos.components;version="[2.0,3)"
+ ,org.apache.directory.shared.kerberos.crypto.checksum;version="[2.0,3)"
+ ,org.apache.directory.shared.kerberos.exceptions;version="[2.0,3)",org.
+ apache.directory.shared.kerberos.flags;version="[2.0,3)",org.apache.dir
+ ectory.shared.kerberos.messages;version="[2.0,3)",org.apache.mina.core.
+ buffer;version="[2.0,3)",org.apache.mina.core.filterchain;version="[2.0
+ ,3)",org.apache.mina.core.future;version="[2.0,3)",org.apache.mina.core
+ .service;version="[2.0,3)",org.apache.mina.core.session;version="[2.0,3
+ )",org.apache.mina.filter.codec;version="[2.0,3)",org.apache.mina.trans
+ port.socket;version="[2.0,3)",org.apache.mina.transport.socket.nio;vers
+ ion="[2.0,3)",org.slf4j;version="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Kerberos
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

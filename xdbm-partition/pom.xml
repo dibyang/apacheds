@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.ls.neo2.directory.server</groupId>
     <artifactId>apacheds-parent</artifactId>
-    <version>2.0.0-M23</version>
+    <version>2.0.0-M24</version>
   </parent>
   
   <artifactId>apacheds-xdbm-partition</artifactId>
@@ -70,17 +70,17 @@
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-model</artifactId>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-schema-data</artifactId>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-util</artifactId>
     </dependency>
   </dependencies>
@@ -116,11 +116,11 @@
             <Bundle-SymbolicName>${project.groupId}.xdbm.partition</Bundle-SymbolicName>
             <Export-Package>
                 {local-packages};version=${project.version};-noimport:=true,
-                com.ls.neo2.directory.server.core.partition.impl.avl;version="${project.version}";-noimport:=true,
-                com.ls.neo2.directory.server.core.partition.impl.btree;version="${project.version}";-noimport:=true,
-                com.ls.neo2.directory.server.log.impl.avl;version="${project.version}";-noimport:=true,
-                com.ls.neo2.directory.server.xdbm.impl.avl;version="${project.version}";-noimport:=true,
-                com.ls.neo2.directory.server.xdbm.search.impl;version="${project.version}";-noimport:=true
+                org.apache.directory.server.core.partition.impl.avl;version="${project.version}";-noimport:=true,
+                org.apache.directory.server.core.partition.impl.btree;version="${project.version}";-noimport:=true,
+                org.apache.directory.server.log.impl.avl;version="${project.version}";-noimport:=true,
+                org.apache.directory.server.xdbm.impl.avl;version="${project.version}";-noimport:=true,
+                org.apache.directory.server.xdbm.search.impl;version="${project.version}";-noimport:=true
             </Export-Package>
           </instructions>
         </configuration>

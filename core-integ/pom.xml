@@ -24,7 +24,7 @@
   <parent>
     <groupId>com.ls.neo2.directory.server</groupId>
     <artifactId>apacheds-parent</artifactId>
-    <version>2.0.0-M23</version>
+    <version>2.0.0-M24</version>
   </parent>
   
   <artifactId>apacheds-core-integ</artifactId>
@@ -35,7 +35,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-codec-standalone</artifactId>
       <scope>test</scope>
     </dependency>
@@ -101,44 +101,44 @@
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-client-api</artifactId>
       <scope>provided</scope>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-extras-codec</artifactId>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-asn1-api</artifactId>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-extras-sp</artifactId>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-codec-core</artifactId>
     </dependency>
     
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-model</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-ldap-schema-data</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.directory.api</groupId>
+      <groupId>com.ls.neo2.directory.api</groupId>
       <artifactId>api-util</artifactId>
     </dependency>
   </dependencies>
@@ -212,7 +212,7 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.apache.directory.api</groupId>
+                      <groupId>com.ls.neo2.directory.api</groupId>
                       <artifactId>api-ldap-extras-codec</artifactId>
                       <version>${org.apache.directory.api.version}</version>
                       <outputDirectory>${codec.plugin.directory}</outputDirectory>
@@ -257,7 +257,7 @@
 	            <org.osgi.framework.storage>
 	              ${project.build.directory}/osgi-cache
 	            </org.osgi.framework.storage>
-                <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.JdbmPartitionFactory</apacheds.partition.factory>
+                <apacheds.partition.factory>org.apache.directory.server.core.factory.JdbmPartitionFactory</apacheds.partition.factory>
               </systemPropertyVariables>
             </configuration>
             <executions>
@@ -269,7 +269,7 @@
                 </goals>
                 <configuration>
                   <systemPropertyVariables>
-                    <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.AvlPartitionFactory</apacheds.partition.factory>
+                    <apacheds.partition.factory>org.apache.directory.server.core.factory.AvlPartitionFactory</apacheds.partition.factory>
 	                <felix.cache.rootdir>
 	                  ${project.build.directory}
 	                </felix.cache.rootdir>
@@ -293,7 +293,7 @@
                 </goals>
                 <configuration>
                   <systemPropertyVariables>
-                    <apacheds.partition.factory>com.ls.neo2.directory.server.core.factory.LdifPartitionFactory</apacheds.partition.factory>
+                    <apacheds.partition.factory>org.apache.directory.server.core.factory.LdifPartitionFactory</apacheds.partition.factory>
 	                <felix.cache.rootdir>
 	                  ${project.build.directory}
 	                </felix.cache.rootdir>
@@ -324,7 +324,7 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.apache.directory.api</groupId>
+                      <groupId>com.ls.neo2.directory.api</groupId>
                       <artifactId>api-ldap-extras-codec</artifactId>
                       <version>${org.apache.directory.api.version}</version>
                       <outputDirectory>${codec.plugin.directory}</outputDirectory>

@@ -1,25 +1,27 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442779242
+Bnd-LastModified: 1512462954416
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Subtree interceptor
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Subtree Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.subtree
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.subtree;version="2.0.0.
- M23";uses:="org.apache.directory.api.ldap.model.exception,org.apache.di
+ M24";uses:="org.apache.directory.api.ldap.model.exception,org.apache.di
  rectory.server.core.api,org.apache.directory.server.core.api.filtering,
  org.apache.directory.server.core.api.interceptor,org.apache.directory.s
  erver.core.api.interceptor.context"
 Implementation-Title: ApacheDS Subtree Interceptor
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
+ terceptors/apacheds-interceptors-subtree
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Import-Package: javax.naming.directory,org.apache.directory.api.ldap.cod
  ec.controls.search.subentries;version="[1.0,2)",org.apache.directory.ap
  i.ldap.model.constants;version="[1.0,2)",org.apache.directory.api.ldap.
@@ -41,5 +43,5 @@ Import-Package: javax.naming.directory,org.apache.directory.api.ldap.cod
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Subtree Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

@@ -1,25 +1,27 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442694294
+Bnd-LastModified: 1512462857272
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Contains classes that store interfaces with various 
  constants in ApacheDS.
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core Constants
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.constants
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.apache.directory.server.constants;version="2.0.0.M23
+Export-Package: org.apache.directory.server.constants;version="2.0.0.M24
  "
 Implementation-Title: ApacheDS Core Constants
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
+ re-constants
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core Constants
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

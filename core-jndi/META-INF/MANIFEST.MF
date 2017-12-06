@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442817717
+Bnd-LastModified: 1512463014585
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Contains a JNDI provider implementation which wraps 
@@ -8,15 +8,15 @@ Bundle-Description: Contains a JNDI provider implementation which wraps
  appear and feel exactly the same     with a performance boost when loca
  l.  All operations via this JNDI provider     bypass the LDAP stack to 
  perform ooerations directly on the ApacheDS core.
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core JNDI
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.jndi
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M23
+Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M24
  ";uses:="javax.naming,javax.naming.directory,javax.naming.event,javax.n
  aming.ldap,javax.naming.spi,org.apache.directory.api.ldap.model.constan
  ts,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.l
@@ -26,9 +26,11 @@ Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M23
  e.api.event,org.apache.directory.server.core.api.filtering,org.apache.d
  irectory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Core JNDI
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
+ re-jndi
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
  avax.naming.ldap,javax.naming.spi,org.apache.directory.api.asn1;version
  ="[1.0,2)",org.apache.directory.api.ldap.codec.api;version="[1.0,2)",or
@@ -62,5 +64,5 @@ Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core JNDI
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

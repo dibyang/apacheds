@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442796118
+Bnd-LastModified: 1512462988366
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Partition with search engine implementation generali
  zed for XDBM entry store scheme
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Generalized (X) DBM Partition
 Bundle-SymbolicName: com.ls.neo2.directory.server.xdbm.partition
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.xdbm;uses:="javax.naming,net
  .sf.ehcache,org.apache.directory.api.ldap.model.cursor,org.apache.direc
@@ -27,45 +27,66 @@ Export-Package: org.apache.directory.server.xdbm;uses:="javax.naming,net
  tory.api.ldap.model.exception,org.apache.directory.api.ldap.model.filte
  r,org.apache.directory.api.ldap.model.schema,org.apache.directory.serve
  r.xdbm,org.apache.directory.server.xdbm.search";version="2.0.0",org.apa
- che.directory.server.xdbm.search;version="2.0.0.M23";uses:="org.apache.
+ che.directory.server.xdbm.search;version="2.0.0.M24";uses:="org.apache.
  directory.api.ldap.model.cursor,org.apache.directory.api.ldap.model.ent
  ry,org.apache.directory.api.ldap.model.exception,org.apache.directory.a
  pi.ldap.model.filter,org.apache.directory.api.ldap.model.message,org.ap
  ache.directory.api.ldap.model.schema,org.apache.directory.server.core.a
- pi.interceptor.context,org.apache.directory.server.xdbm",com.ls.neo2.di
- rectory.server.xdbm.impl.avl;version="2.0.0.M23",com.ls.neo2.directory.
- server.core.partition.impl.avl;version="2.0.0.M23",com.ls.neo2.director
- y.server.log.impl.avl;version="2.0.0.M23",com.ls.neo2.directory.server.
- xdbm.search.impl;version="2.0.0.M23",com.ls.neo2.directory.server.core.
- partition.impl.btree;version="2.0.0.M23"
+ pi.interceptor.context,org.apache.directory.server.xdbm",org.apache.dir
+ ectory.server.core.partition.impl.avl;version="2.0.0.M24";uses:="org.ap
+ ache.directory.api.ldap.model.schema,org.apache.directory.server.core.a
+ pi,org.apache.directory.server.core.partition.impl.btree,org.apache.dir
+ ectory.server.xdbm",org.apache.directory.server.core.partition.impl.btr
+ ee;version="2.0.0.M24";uses:="javax.naming,net.sf.ehcache,org.apache.di
+ rectory.api.ldap.model.cursor,org.apache.directory.api.ldap.model.entry
+ ,org.apache.directory.api.ldap.model.exception,org.apache.directory.api
+ .ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apache.
+ directory.api.ldap.model.schema.comparators,org.apache.directory.server
+ .core.api,org.apache.directory.server.core.api.filtering,org.apache.dir
+ ectory.server.core.api.interceptor.context,org.apache.directory.server.
+ core.api.partition,org.apache.directory.server.xdbm,org.apache.director
+ y.server.xdbm.search",org.apache.directory.server.xdbm.impl.avl;version
+ ="2.0.0.M24";uses:="org.apache.directory.api.ldap.model.cursor,org.apac
+ he.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.e
+ xception,org.apache.directory.api.ldap.model.schema,org.apache.director
+ y.server.xdbm",org.apache.directory.server.xdbm.search.impl;version="2.
+ 0.0.M24";uses:="javax.naming,org.apache.directory.api.ldap.model.filter
+ ,org.apache.directory.api.ldap.model.schema,org.apache.directory.server
+ .core.api.interceptor.context,org.apache.directory.server.xdbm,org.apac
+ he.directory.server.xdbm.search",org.apache.directory.server.log.impl.a
+ vl;version="2.0.0.M24"
 Implementation-Title: ApacheDS Generalized (X) DBM Partition
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-xd
+ bm-partition
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
-Import-Package: javax.naming,net.sf.ehcache;version="[2.8,3)",net.sf.ehc
- ache.config;version="[2.8,3)",net.sf.ehcache.store;version="[2.8,3)",or
- g.apache.commons.collections;version="[3.2,4)",org.apache.directory.api
- .i18n;version="[1.0,2)",org.apache.directory.api.ldap.model.constants;v
- ersion="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1
- .0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.
- apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache.
- directory.api.ldap.model.filter;version="[1.0,2)",org.apache.directory.
- api.ldap.model.message;version="[1.0,2)",org.apache.directory.api.ldap.
- model.name;version="[1.0,2)",org.apache.directory.api.ldap.model.schema
- ;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.comparato
- rs;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.normali
- zers;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.regis
- tries;version="[1.0,2)",org.apache.directory.api.util;version="[1.0,2)"
- ,org.apache.directory.api.util.exception;version="[1.0,2)",org.apache.d
- irectory.server.core.api;version="[2.0,3)",org.apache.directory.server.
- core.api.entry;version="[2.0,3)",org.apache.directory.server.core.api.f
- iltering;version="[2.0,3)",org.apache.directory.server.core.api.interce
- ptor.context;version="[2.0,3)",org.apache.directory.server.core.api.par
- tition;version="[2.0,3)",org.apache.directory.server.core.avltree;versi
- on="[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3)",org.apa
- che.directory.server.xdbm,org.slf4j;version="[1.7,2)"
+Implementation-Version: 2.0.0-M24
+Import-Package: javax.naming,net.sf.ehcache;version="[2.10,3)",net.sf.eh
+ cache.config;version="[2.10,3)",net.sf.ehcache.store;version="[2.10,3)"
+ ,org.apache.commons.collections;version="[3.2,4)",org.apache.directory.
+ api.i18n;version="[1.0,2)",org.apache.directory.api.ldap.model.constant
+ s;version="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version=
+ "[1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",o
+ rg.apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apac
+ he.directory.api.ldap.model.filter;version="[1.0,2)",org.apache.directo
+ ry.api.ldap.model.message;version="[1.0,2)",org.apache.directory.api.ld
+ ap.model.name;version="[1.0,2)",org.apache.directory.api.ldap.model.sch
+ ema;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.compar
+ ators;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.norm
+ alizers;version="[1.0,2)",org.apache.directory.api.ldap.model.schema.re
+ gistries;version="[1.0,2)",org.apache.directory.api.util;version="[1.0,
+ 2)",org.apache.directory.api.util.exception;version="[1.0,2)",org.apach
+ e.directory.server.core.api;version="[2.0,3)",org.apache.directory.serv
+ er.core.api.entry;version="[2.0,3)",org.apache.directory.server.core.ap
+ i.filtering;version="[2.0,3)",org.apache.directory.server.core.api.inte
+ rceptor.context;version="[2.0,3)",org.apache.directory.server.core.api.
+ partition;version="[2.0,3)",org.apache.directory.server.core.avltree;ve
+ rsion="[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3)",org.
+ apache.directory.server.xdbm,org.apache.directory.server.xdbm.search.cu
+ rsor,org.apache.directory.server.xdbm.search.evaluator,org.slf4j;versio
+ n="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Generalized (X) DBM Partition
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906

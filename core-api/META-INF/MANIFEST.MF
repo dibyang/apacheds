@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512442702916
+Bnd-LastModified: 1512462870558
 Build-Jdk: 1.8.0_111
 Built-By: dib
 Bundle-Description: Contains interfaces and helper classes that are part
   of the ApacheDS Core API.
-Bundle-DocURL: http://www.apache.org/
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core API
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.api
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M23
+Bundle-Version: 2.0.0.M24
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.api;uses:="net.sf.ehcac
  he,org.apache.directory.api.asn1.util,org.apache.directory.api.ldap.cod
@@ -96,41 +96,52 @@ Export-Package: org.apache.directory.server.core.api;uses:="net.sf.ehcac
  sp";version="2.0.0",org.apache.directory.server.core.api.sp;uses:="org.
  apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.mod
  el.exception,org.apache.directory.server.core.api";version="2.0.0",org.
- apache.directory.server.core.api.subtree;version="2.0.0.M23";uses:="org
+ apache.directory.server.core.api.subtree;version="2.0.0.M24";uses:="org
  .apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.mo
  del.exception,org.apache.directory.api.ldap.model.filter,org.apache.dir
  ectory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,o
  rg.apache.directory.api.ldap.model.subtree,org.apache.directory.server.
  core.api"
 Implementation-Title: ApacheDS Core API
+Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
+ re-api
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M23
+Implementation-Version: 2.0.0-M24
 Import-Package: javax.naming,javax.naming.directory,net.sf.ehcache;versi
- on="[2.8,3)",net.sf.ehcache.config;version="[2.8,3)",org.apache.commons
- .lang;version="[2.6,3)",org.apache.directory.api.asn1.util;version="[1.
- 0,2)",org.apache.directory.api.i18n;version="[1.0,2)",org.apache.direct
- ory.api.ldap.codec.api;version="[1.0,2)",org.apache.directory.api.ldap.
- model.constants;version="[1.0,2)",org.apache.directory.api.ldap.model.c
- sn;version="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version
- ="[1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",
- org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apa
- che.directory.api.ldap.model.filter;version="[1.0,2)",org.apache.direct
- ory.api.ldap.model.ldif;version="[1.0,2)",org.apache.directory.api.ldap
- .model.message;version="[1.0,2)",org.apache.directory.api.ldap.model.na
- me;version="[1.0,2)",org.apache.directory.api.ldap.model.schema;version
- ="[1.0,2)",org.apache.directory.api.ldap.model.schema.normalizers;versi
- on="[1.0,2)",org.apache.directory.api.ldap.model.schema.parsers;version
- ="[1.0,2)",org.apache.directory.api.ldap.model.schema.registries;versio
- n="[1.0,2)",org.apache.directory.api.ldap.model.subtree;version="[1.0,2
- )",org.apache.directory.api.ldap.schema.loader;version="[1.0,2)",org.ap
- ache.directory.api.ldap.util.tree;version="[1.0,2)",org.apache.director
- y.api.util;version="[1.0,2)",org.apache.directory.api.util.exception;ve
- rsion="[1.0,2)",org.apache.directory.ldap.client.api;version="[1.0,2)",
- org.apache.directory.server.i18n;version="[2.0,3)",org.apache.mina.core
- .session;version="[2.0,3)",org.slf4j;version="[1.7,2)"
+ on="[2.10,3)",net.sf.ehcache.config;version="[2.10,3)",org.apache.commo
+ ns.lang;version="[2.6,3)",org.apache.directory.api.asn1.util;version="[
+ 1.0,2)",org.apache.directory.api.i18n;version="[1.0,2)",org.apache.dire
+ ctory.api.ldap.codec.api;version="[1.0,2)",org.apache.directory.api.lda
+ p.model.constants;version="[1.0,2)",org.apache.directory.api.ldap.model
+ .csn;version="[1.0,2)",org.apache.directory.api.ldap.model.cursor;versi
+ on="[1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)
+ ",org.apache.directory.api.ldap.model.exception;version="[1.0,2)",org.a
+ pache.directory.api.ldap.model.filter;version="[1.0,2)",org.apache.dire
+ ctory.api.ldap.model.ldif;version="[1.0,2)",org.apache.directory.api.ld
+ ap.model.message;version="[1.0,2)",org.apache.directory.api.ldap.model.
+ name;version="[1.0,2)",org.apache.directory.api.ldap.model.schema;versi
+ on="[1.0,2)",org.apache.directory.api.ldap.model.schema.normalizers;ver
+ sion="[1.0,2)",org.apache.directory.api.ldap.model.schema.parsers;versi
+ on="[1.0,2)",org.apache.directory.api.ldap.model.schema.registries;vers
+ ion="[1.0,2)",org.apache.directory.api.ldap.model.subtree;version="[1.0
+ ,2)",org.apache.directory.api.ldap.schema.loader;version="[1.0,2)",org.
+ apache.directory.api.ldap.util.tree;version="[1.0,2)",org.apache.direct
+ ory.api.util;version="[1.0,2)",org.apache.directory.api.util.exception;
+ version="[1.0,2)",org.apache.directory.ldap.client.api;version="[1.0,2)
+ ",org.apache.directory.server.core.api,org.apache.directory.server.core
+ .api.administrative,org.apache.directory.server.core.api.changelog,org.
+ apache.directory.server.core.api.entry,org.apache.directory.server.core
+ .api.event,org.apache.directory.server.core.api.filtering,org.apache.di
+ rectory.server.core.api.interceptor,org.apache.directory.server.core.ap
+ i.interceptor.context,org.apache.directory.server.core.api.journal,org.
+ apache.directory.server.core.api.partition,org.apache.directory.server.
+ core.api.schema,org.apache.directory.server.core.api.schema.registries.
+ synchronizers,org.apache.directory.server.core.api.sp,org.apache.direct
+ ory.server.i18n;version="[2.0,3)",org.apache.mina.core.session;version=
+ "[2.0,3)",org.slf4j;version="[1.7,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core API
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M23
-Tool: Bnd-2.3.0.201405100607
+Specification-Version: 2.0.0-M24
+Tool: Bnd-3.3.0.201609221906
