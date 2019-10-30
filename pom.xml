@@ -90,12 +90,12 @@
     <snapshotRepository>
       <id>snapshots</id>
       <name>Snapshots</name>
-      <url>http://13.13.13.247:8081/nexus/content/repositories/snapshots</url>
+      <url>http://13.15.21.5:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
     <repository>
       <id>releases</id>
       <name>Internal Releases</name>
-      <url>http://13.13.13.247:8081/nexus/content/repositories/releases</url>
+      <url>http://13.15.21.5:8081/repository/maven-releases/</url>
 
     </repository>
   </distributionManagement>
@@ -159,9 +159,9 @@
 
   <repositories>
     <repository>
-      <id>repo_247</id>
-      <name>repo_247</name>
-      <url>http://13.13.13.247:8081/nexus/content/groups/public/</url>
+      <id>repo_5</id>
+      <name>repo_5</name>
+      <url>http://13.15.21.5:8081/repository/maven-public/</url>
     </repository>
   </repositories>
 

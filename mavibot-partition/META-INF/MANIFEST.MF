@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1512539242021
+Bnd-LastModified: 1572418211878
 Build-Jdk: 1.8.0_111
-Built-By: dib
+Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
  written in Java, which has been certified LDAPv3 compatible    by the O
  pen Group. Besides LDAP it supports Kerberos 5 and the Change Password 
