@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418568424
+Bnd-LastModified: 1575522285785
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
@@ -14,24 +14,24 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Jetty HTTP Server Integration
 Bundle-SymbolicName: com.ls.neo2.directory.server.http.integration
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.integration.http;version="2.
- 0.0.M24";uses:="org.apache.directory.server.core.api,org.apache.directo
- ry.server.protocol.shared.transport"
+ 0.0.M24V20191128";uses:="org.apache.directory.server.core.api,org.apach
+ e.directory.server.protocol.shared.transport"
 Implementation-Title: ApacheDS Jetty HTTP Server Integration
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ht
  tp-integration
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
  2)",org.apache.directory.api.ldap.model.name;version="[1.0,2)",org.apac
  he.directory.server.bridge.http;version="[2.0,3)",org.apache.directory.
  server.core.api;version="[2.0,3)",org.apache.directory.server.core.secu
  rity;version="[2.0,3)",org.apache.directory.server.i18n;version="[2.0,3
  )",org.apache.directory.server.protocol.shared.transport;version="[2.0,
- 3)",org.bouncycastle.jce.provider;version="[1.55,2)",org.eclipse.jetty.
+ 3)",org.bouncycastle.jce.provider;version="[1.64,2)",org.eclipse.jetty.
  server;version="[9.2,10)",org.eclipse.jetty.server.handler;version="[9.
  2,10)",org.eclipse.jetty.util.ssl;version="[9.2,10)",org.eclipse.jetty.
  webapp;version="[9.2,10)",org.eclipse.jetty.xml;version="[9.2,10)",org.
@@ -39,5 +39,5 @@ Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Jetty HTTP Server Integration
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

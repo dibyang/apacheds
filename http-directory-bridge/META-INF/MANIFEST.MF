@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418554373
+Bnd-LastModified: 1575522250057
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
@@ -14,18 +14,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS DirectoryService-WebApp bridge
 Bundle-SymbolicName: com.ls.neo2.directory.server.http.directory.bridge
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.bridge.http;version="2.0.0.M
- 24";uses:="org.apache.directory.api.ldap.model.message,org.apache.direc
- tory.api.ldap.model.schema,org.apache.directory.ldap.client.api,org.apa
- che.directory.server.core.api"
+ 24V20191128";uses:="org.apache.directory.api.ldap.model.message,org.apa
+ che.directory.api.ldap.model.schema,org.apache.directory.ldap.client.ap
+ i,org.apache.directory.server.core.api"
 Implementation-Title: ApacheDS DirectoryService-WebApp bridge
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ht
  tp-directory-bridge
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.ldap.model.message;version="[1.
  0,2)",org.apache.directory.api.ldap.model.schema;version="[1.0,2)",org.
  apache.directory.ldap.client.api;version="[1.0,2)",org.apache.directory
@@ -33,5 +33,5 @@ Import-Package: org.apache.directory.api.ldap.model.message;version="[1.
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS DirectoryService-WebApp bridge
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

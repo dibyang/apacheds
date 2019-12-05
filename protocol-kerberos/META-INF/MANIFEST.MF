@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418381461
+Bnd-LastModified: 1575521703241
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The Kerberos Protocol Provider for ApacheDS
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Kerberos
 Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.kerberos
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.kerberos;uses:="javax.securi
  ty.auth.kerberos,org.apache.directory.shared.kerberos.codec.types";vers
@@ -52,15 +52,15 @@ Export-Package: org.apache.directory.server.kerberos;uses:="javax.securi
  d.store,org.apache.directory.shared.kerberos.exceptions,org.apache.dire
  ctory.shared.kerberos.messages,org.apache.mina.core.service,org.apache.
  mina.core.session";version="2.0.0",org.apache.directory.server.kerberos
- .sam;version="2.0.0.M24";uses:="javax.naming.directory,javax.security.a
- uth.kerberos,org.apache.directory.server.kerberos.shared.store,org.apac
- he.directory.shared.kerberos.codec.types"
+ .sam;version="2.0.0.M24V20191128";uses:="javax.naming.directory,javax.s
+ ecurity.auth.kerberos,org.apache.directory.server.kerberos.shared.store
+ ,org.apache.directory.shared.kerberos.codec.types"
 Implementation-Title: ApacheDS Protocol Kerberos
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-kerberos
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming,javax.naming.directory,javax.security.auth.
  kerberos,net.sf.ehcache;version="[2.10,3)",org.apache.directory.api.asn
  1;version="[1.0,2)",org.apache.directory.api.asn1.ber;version="[1.0,2)"
@@ -107,5 +107,5 @@ Import-Package: javax.naming,javax.naming.directory,javax.security.auth.
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Kerberos
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

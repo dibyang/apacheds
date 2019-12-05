@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418439569
+Bnd-LastModified: 1575521826693
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
@@ -14,25 +14,25 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Server Config
 Bundle-SymbolicName: com.ls.neo2.directory.server.config
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.config.beans;uses:="org.apac
  he.directory.api.ldap.model.name,org.apache.directory.server.config";ve
- rsion="2.0.0",org.apache.directory.server.config;version="2.0.0.M24";us
- es:="javax.naming,org.apache.directory.api.ldap.model.entry,org.apache.
- directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.
- ldif,org.apache.directory.api.ldap.model.message,org.apache.directory.a
- pi.ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apach
- e.directory.server.config.beans,org.apache.directory.server.core.api,or
- g.apache.directory.server.core.api.interceptor.context,org.apache.direc
- tory.server.core.partition.impl.btree,org.apache.directory.server.core.
- partition.ldif"
+ rsion="2.0.0",org.apache.directory.server.config;version="2.0.0.M24V201
+ 91128";uses:="javax.naming,org.apache.directory.api.ldap.model.entry,or
+ g.apache.directory.api.ldap.model.exception,org.apache.directory.api.ld
+ ap.model.ldif,org.apache.directory.api.ldap.model.message,org.apache.di
+ rectory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,
+ org.apache.directory.server.config.beans,org.apache.directory.server.co
+ re.api,org.apache.directory.server.core.api.interceptor.context,org.apa
+ che.directory.server.core.partition.impl.btree,org.apache.directory.ser
+ ver.core.partition.ldif"
 Implementation-Title: ApacheDS Server Config
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-se
  rver-config
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
  sion="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0
  ,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.ap
@@ -54,5 +54,5 @@ Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Server Config
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

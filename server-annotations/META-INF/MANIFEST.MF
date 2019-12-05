@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418428310
+Bnd-LastModified: 1575521789514
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Annotations used to define a LdapServer
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Apacheds Server Annotations
 Bundle-SymbolicName: com.ls.neo2.directory.server.annotations
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.annotations;uses:="org.apach
  e.commons.pool,org.apache.directory.api.ldap.model.message,org.apache.d
@@ -18,16 +18,16 @@ Export-Package: org.apache.directory.server.annotations;uses:="org.apach
  andlers.sasl.cramMD5,org.apache.directory.server.ldap.handlers.sasl.dig
  estMD5,org.apache.directory.server.ldap.handlers.sasl.gssapi,org.apache
  .directory.server.ldap.handlers.sasl.ntlm";version="2.0.0",org.apache.d
- irectory.server.factory;version="2.0.0.M24";uses:="org.apache.directory
- .server.annotations,org.apache.directory.server.core.api,org.apache.dir
- ectory.server.kerberos.kdc,org.apache.directory.server.ldap,org.apache.
- directory.server.ldap.replication.consumer,org.junit.runner"
+ irectory.server.factory;version="2.0.0.M24V20191128";uses:="org.apache.
+ directory.server.annotations,org.apache.directory.server.core.api,org.a
+ pache.directory.server.kerberos.kdc,org.apache.directory.server.ldap,or
+ g.apache.directory.server.ldap.replication.consumer,org.junit.runner"
 Implementation-Title: Apacheds Server Annotations
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-se
  rver-annotations
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.commons.pool;version="[1.6,2)",org.apache.dir
  ectory.api.ldap.model.message;version="[1.0,2)",org.apache.directory.ap
  i.util;version="[1.0,2)",org.apache.directory.ldap.client.api;version="
@@ -49,5 +49,5 @@ Import-Package: org.apache.commons.pool;version="[1.6,2)",org.apache.dir
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: Apacheds Server Annotations
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

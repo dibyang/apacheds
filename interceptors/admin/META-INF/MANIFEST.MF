@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572417932845
+Bnd-LastModified: 1575521137298
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: AdministrativePoint interceptor
@@ -9,18 +9,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS AdministrativePoint Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.admin
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.admin;version="2.0.0.M2
- 4";uses:="org.apache.directory.api.ldap.model.exception,org.apache.dire
- ctory.server.core.api,org.apache.directory.server.core.api.interceptor,
- org.apache.directory.server.core.api.interceptor.context"
+ 4V20191128";uses:="org.apache.directory.api.ldap.model.exception,org.ap
+ ache.directory.server.core.api,org.apache.directory.server.core.api.int
+ erceptor,org.apache.directory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS AdministrativePoint Interceptor
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-admin
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming.directory,org.apache.directory.api.ldap.mod
  el.entry;version="[1.0,2)",org.apache.directory.api.ldap.model.exceptio
  n;version="[1.0,2)",org.apache.directory.api.ldap.model.filter;version=
@@ -39,5 +39,5 @@ Import-Package: javax.naming.directory,org.apache.directory.api.ldap.mod
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS AdministrativePoint Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418309687
+Bnd-LastModified: 1575521491645
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The Kerberos protocol encoder/decoder module
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Kerberos Codec
 Bundle-SymbolicName: com.ls.neo2.directory.server.kerberos.codec
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.kerberos.changepwd.exception
  s;uses:="org.apache.directory.shared.kerberos.exceptions";version="2.0.
@@ -404,17 +404,17 @@ Export-Package: org.apache.directory.server.kerberos.changepwd.exception
  irectory.shared.kerberos.codec.types,org.apache.directory.shared.kerber
  os.components,org.apache.directory.shared.kerberos.exceptions,org.apach
  e.directory.shared.kerberos.messages";version="2.0.0",org.apache.direct
- ory.shared.kerberos.messages;version="2.0.0.M24";uses:="org.apache.dire
- ctory.api.asn1,org.apache.directory.shared.kerberos,org.apache.director
- y.shared.kerberos.codec.options,org.apache.directory.shared.kerberos.co
- mponents,org.apache.directory.shared.kerberos.exceptions,org.apache.dir
- ectory.shared.kerberos.flags"
+ ory.shared.kerberos.messages;version="2.0.0.M24V20191128";uses:="org.ap
+ ache.directory.api.asn1,org.apache.directory.shared.kerberos,org.apache
+ .directory.shared.kerberos.codec.options,org.apache.directory.shared.ke
+ rberos.components,org.apache.directory.shared.kerberos.exceptions,org.a
+ pache.directory.shared.kerberos.flags"
 Implementation-Title: ApacheDS Protocol Kerberos Codec
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ke
  rberos-codec
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.crypto,javax.crypto.spec,javax.security.auth.kerbe
  ros,net.sf.ehcache;version="[2.10,3)",net.sf.ehcache.store;version="[2.
  10,3)",org.apache.directory.api.asn1;version="[1.0,2)",org.apache.direc
@@ -513,5 +513,5 @@ Import-Package: javax.crypto,javax.crypto.spec,javax.security.auth.kerbe
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Kerberos Codec
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

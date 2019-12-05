@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418106349
+Bnd-LastModified: 1575521259653
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Schema interceptor
@@ -9,22 +9,22 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Schema Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.schema
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.schema;version="2.0.0.M
- 24";uses:="org.apache.directory.api.ldap.model.entry,org.apache.directo
- ry.api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,
- org.apache.directory.api.ldap.model.schema.parsers,org.apache.directory
- .api.ldap.schema.extractor,org.apache.directory.server.core.api,org.apa
- che.directory.server.core.api.filtering,org.apache.directory.server.cor
- e.api.interceptor,org.apache.directory.server.core.api.interceptor.cont
- ext,org.apache.directory.server.core.api.partition"
+ 24V20191128";uses:="org.apache.directory.api.ldap.model.entry,org.apach
+ e.directory.api.ldap.model.exception,org.apache.directory.api.ldap.mode
+ l.schema,org.apache.directory.api.ldap.model.schema.parsers,org.apache.
+ directory.api.ldap.schema.extractor,org.apache.directory.server.core.ap
+ i,org.apache.directory.server.core.api.filtering,org.apache.directory.s
+ erver.core.api.interceptor,org.apache.directory.server.core.api.interce
+ ptor.context,org.apache.directory.server.core.api.partition"
 Implementation-Title: ApacheDS Schema Interceptor
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-schema
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.i18n;version="[1.0,2)",org.apac
  he.directory.api.ldap.model.csn;version="[1.0,2)",org.apache.directory.
  api.ldap.model.cursor;version="[1.0,2)",org.apache.directory.api.ldap.m
@@ -51,5 +51,5 @@ Import-Package: org.apache.directory.api.i18n;version="[1.0,2)",org.apac
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Schema Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

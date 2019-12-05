@@ -30,7 +30,7 @@
 
   <groupId>com.ls.neo2.directory.server</groupId>
   <artifactId>apacheds-parent</artifactId>
-  <version>2.0.0-M24</version>
+  <version>2.0.0-M24V20191128</version>
   <packaging>pom</packaging>
 
   <name>ApacheDS</name>
@@ -46,7 +46,7 @@
     <additionalparam>-Xdoclint:none</additionalparam>
 
     <!-- Set versions for depending projects -->
-    <org.apache.directory.api.version>1.0.0</org.apache.directory.api.version>
+    <org.apache.directory.api.version>1.0.0-V20191128</org.apache.directory.api.version>
     <org.apache.directory.mavibot.version>1.0.0-M8</org.apache.directory.mavibot.version>
     <org.apache.directory.checkstyle-configuration.version>0.3</org.apache.directory.checkstyle-configuration.version>
     <org.apache.directory.junit.junit-addons.version>0.1</org.apache.directory.junit.junit-addons.version>
@@ -55,7 +55,7 @@
     
     <!-- Set versions for depending jars -->
     <ant.version>1.10.1</ant.version>
-    <bcprov.version>1.55</bcprov.version>
+    <bcprov.version>1.64</bcprov.version>
     <commons.cli.version>1.4</commons.cli.version>
     <commons.collections.version>3.2.2</commons.collections.version>
     <commons.daemon.version>1.0.15</commons.daemon.version>
@@ -87,11 +87,6 @@
   <url>http://directory.apache.org/apacheds/1.5</url>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>Snapshots</name>
-      <url>http://13.15.21.5:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
     <repository>
       <id>releases</id>
       <name>Internal Releases</name>
@@ -240,7 +235,7 @@
             <failOnViolation>true</failOnViolation>
             <includeTestSourceDirectory>false</includeTestSourceDirectory>
           </configuration>
-          <executions>
+          <!--<executions>
             <execution>
               <id>validate</id>
               <phase>validate</phase>
@@ -248,7 +243,7 @@
                 <goal>check</goal>
               </goals>
             </execution>
-          </executions>
+          </executions>-->
         </plugin>
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
         <plugin>

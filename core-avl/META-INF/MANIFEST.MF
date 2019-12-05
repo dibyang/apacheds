@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418156421
+Bnd-LastModified: 1575521320108
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: A linked in memory AVL tree implementation with Curs
@@ -10,18 +10,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core AVL
 Bundle-SymbolicName: com.ls.neo2.directory.server.core.avl
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.avltree;uses:="org.apac
  he.directory.api.ldap.model.cursor,org.apache.directory.api.ldap.model.
  exception";version="2.0.0",org.apache.directory.server.core.avltree.avl
- ;version="2.0.0.M24"
+ ;version="2.0.0.M24V20191128"
 Implementation-Title: ApacheDS Core AVL
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
  re-avl
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0,2)",or
  g.apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apach
@@ -30,5 +30,5 @@ Import-Package: org.apache.directory.api.ldap.model.constants;version="[
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core AVL
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418341838
+Bnd-LastModified: 1575521547499
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The DHCP protocol provider for ApacheDS
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Dhcp
 Bundle-SymbolicName: com.ls.neo2.directory.server.protocol.dhcp
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.dhcp;version="2.0.0",org.apa
  che.directory.server.dhcp.io;uses:="org.apache.directory.server.dhcp,or
@@ -35,16 +35,16 @@ Export-Package: org.apache.directory.server.dhcp;version="2.0.0",org.apa
  .0",org.apache.directory.server.dhcp.service;uses:="org.apache.director
  y.server.dhcp,org.apache.directory.server.dhcp.messages,org.apache.dire
  ctory.server.dhcp.options,org.apache.directory.server.dhcp.store";versi
- on="2.0.0",org.apache.directory.server.dhcp.store;version="2.0.0.M24";u
- ses:="javax.naming,javax.naming.directory,org.apache.directory.server.d
- hcp,org.apache.directory.server.dhcp.messages,org.apache.directory.serv
- er.dhcp.options,org.apache.directory.server.dhcp.service"
+ on="2.0.0",org.apache.directory.server.dhcp.store;version="2.0.0.M24V20
+ 191128";uses:="javax.naming,javax.naming.directory,org.apache.directory
+ .server.dhcp,org.apache.directory.server.dhcp.messages,org.apache.direc
+ tory.server.dhcp.options,org.apache.directory.server.dhcp.service"
 Implementation-Title: ApacheDS Protocol Dhcp
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-dhcp
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming,javax.naming.directory,org.apache.directory
  .server.dhcp,org.apache.directory.server.dhcp.io,org.apache.directory.s
  erver.dhcp.messages,org.apache.directory.server.dhcp.options,org.apache
@@ -61,5 +61,5 @@ Import-Package: javax.naming,javax.naming.directory,org.apache.directory
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Dhcp
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

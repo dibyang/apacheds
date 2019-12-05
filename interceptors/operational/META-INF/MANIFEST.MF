@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418073536
+Bnd-LastModified: 1575521220130
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Operational Attribute interceptor
@@ -10,20 +10,20 @@ Bundle-Name: ApacheDS Operational Attribute Interceptor
 Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.operation
  al
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.operational;version="2.
- 0.0.M24";uses:="org.apache.directory.api.ldap.model.entry,org.apache.di
- rectory.api.ldap.model.exception,org.apache.directory.server.core.api,o
- rg.apache.directory.server.core.api.filtering,org.apache.directory.serv
- er.core.api.interceptor,org.apache.directory.server.core.api.intercepto
- r.context"
+ 0.0.M24V20191128";uses:="org.apache.directory.api.ldap.model.entry,org.
+ apache.directory.api.ldap.model.exception,org.apache.directory.server.c
+ ore.api,org.apache.directory.server.core.api.filtering,org.apache.direc
+ tory.server.core.api.interceptor,org.apache.directory.server.core.api.i
+ nterceptor.context"
 Implementation-Title: ApacheDS Operational Attribute Interceptor
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-operational
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.ldap.model.csn;version="[1.0,2)
  ",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.apach
  e.directory.api.ldap.model.exception;version="[1.0,2)",org.apache.direc
@@ -40,5 +40,5 @@ Import-Package: org.apache.directory.api.ldap.model.csn;version="[1.0,2)
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Operational Attribute Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906

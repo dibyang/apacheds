@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1572418182515
+Bnd-LastModified: 1575521358181
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: A partition that backs it's entries and indices in A
@@ -10,20 +10,21 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS LDIF Partition
 Bundle-SymbolicName: com.ls.neo2.directory.server.ldif.partition
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24
+Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.partition.ldif;version=
- "2.0.0.M24";uses:="javax.naming,org.apache.directory.api.ldap.model.csn
- ,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.lda
- p.model.exception,org.apache.directory.api.ldap.model.schema,org.apache
- .directory.server.core.api,org.apache.directory.server.core.api.interce
- ptor.context,org.apache.directory.server.core.partition.impl.avl"
+ "2.0.0.M24V20191128";uses:="javax.naming,org.apache.directory.api.ldap.
+ model.csn,org.apache.directory.api.ldap.model.entry,org.apache.director
+ y.api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,o
+ rg.apache.directory.server.core.api,org.apache.directory.server.core.ap
+ i.interceptor.context,org.apache.directory.server.core.partition.impl.a
+ vl"
 Implementation-Title: ApacheDS LDIF Partition
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ld
  if-partition
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: com.ls.neo2.directory.server
-Implementation-Version: 2.0.0-M24
+Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
  sion="[1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0
  ,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.ap
@@ -41,5 +42,5 @@ Import-Package: javax.naming,org.apache.directory.api.ldap.model.csn;ver
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS LDIF Partition
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24
+Specification-Version: 2.0.0-M24V20191128
 Tool: Bnd-3.3.0.201609221906
