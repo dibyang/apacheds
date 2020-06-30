@@ -267,7 +267,7 @@
             <phase>generate-resources</phase>
             <configuration>
               <includeScope>runtime</includeScope>
-              <outputFile>${project.build.directory}/test-classes/deps.txt</outputFile>
+<!--              <outputFile>${project.build.directory}/test-classes/deps.txt</outputFile>-->
             </configuration>
           </execution>
         </executions>
