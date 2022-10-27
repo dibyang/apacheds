@@ -20,7 +20,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.ls.neo2.directory.server</groupId>
+    <groupId>net.xdob.directory.server</groupId>
     <artifactId>apacheds-parent</artifactId>
     <version>2.0.0-M24-SNAPSHOT</version>
   </parent>
@@ -31,167 +31,167 @@
   <dependencies>
     <!-- Bundles under test -->
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-i18n</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-annotations</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-avl</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-constants</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-jndi</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-core-shared</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-http-directory-bridge</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-http-integration</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-admin</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-authn</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-authz</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-changelog</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-collective</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-event</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-exception</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-hash</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-journal</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-logger</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-normalization</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-number</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-operational</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-referral</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-schema</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-subtree</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-interceptors-trigger</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-ldap</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-kerberos</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-dhcp</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-dns</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-ntp</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-protocol-shared</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-xdbm-partition</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-jdbm-partition</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-mavibot-partition</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-ldif-partition</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-server-annotations</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-server-config</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-server-jndi</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.server</groupId>
+      <groupId>net.xdob.directory.server</groupId>
       <artifactId>apacheds-service-builder</artifactId>
     </dependency>
     <dependency>
@@ -199,7 +199,7 @@
       <artifactId>bcprov-jdk15on</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.ls.neo2.directory.api</groupId>
+      <groupId>net.xdob.directory.api</groupId>
       <artifactId>api-ldap-net-mina</artifactId>
       <version>${org.apache.directory.api.version}</version>
     </dependency>

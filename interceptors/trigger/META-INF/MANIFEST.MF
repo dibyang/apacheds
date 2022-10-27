@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1575521277621
+Bnd-LastModified: 1666840635428
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Triggers interceptor
@@ -7,7 +7,7 @@ Bundle-DocURL: https://www.apache.org/
 Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Triggers Interceptor
-Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.trigger
+Bundle-SymbolicName: net.xdob.directory.server.interceptors.trigger
 Bundle-Vendor: The Apache Software Foundation
 Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
@@ -21,7 +21,7 @@ Implementation-Title: ApacheDS Triggers Interceptor
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-trigger
 Implementation-Vendor: The Apache Software Foundation
-Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Vendor-Id: net.xdob.directory.server
 Implementation-Version: 2.0.0-M24V20191128
 Import-Package: javax.naming.directory,org.apache.directory.api.ldap.mod
  el.constants;version="[1.0,2)",org.apache.directory.api.ldap.model.entr

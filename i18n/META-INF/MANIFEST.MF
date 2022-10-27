@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1575521103001
+Bnd-LastModified: 1666840539080
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Internationalization of errors and other messages
@@ -7,7 +7,7 @@ Bundle-DocURL: https://www.apache.org/
 Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS I18n
-Bundle-SymbolicName: com.ls.neo2.directory.server.i18n
+Bundle-SymbolicName: net.xdob.directory.server.i18n
 Bundle-Vendor: The Apache Software Foundation
 Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
@@ -17,7 +17,7 @@ Implementation-Title: ApacheDS I18n
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-i1
  8n
 Implementation-Vendor: The Apache Software Foundation
-Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Vendor-Id: net.xdob.directory.server
 Implementation-Version: 2.0.0-M24V20191128
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS I18n

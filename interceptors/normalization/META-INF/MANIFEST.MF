@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1575521208552
+Bnd-LastModified: 1666840616304
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Normalization interceptor
@@ -7,8 +7,8 @@ Bundle-DocURL: https://www.apache.org/
 Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Normalization Interceptor
-Bundle-SymbolicName: com.ls.neo2.directory.server.interceptors.normaliza
- tion
+Bundle-SymbolicName: net.xdob.directory.server.interceptors.normalizatio
+ n
 Bundle-Vendor: The Apache Software Foundation
 Bundle-Version: 2.0.0.M24V20191128
 Created-By: Apache Maven Bundle Plugin
@@ -23,7 +23,7 @@ Implementation-Title: ApacheDS Normalization Interceptor
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-normalization
 Implementation-Vendor: The Apache Software Foundation
-Implementation-Vendor-Id: com.ls.neo2.directory.server
+Implementation-Vendor-Id: net.xdob.directory.server
 Implementation-Version: 2.0.0-M24V20191128
 Import-Package: org.apache.directory.api.ldap.model.cursor;version="[1.0
  ,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.ap

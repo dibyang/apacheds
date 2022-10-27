@@ -23,7 +23,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>apacheds-parent</artifactId>
-    <groupId>com.ls.neo2.directory.server</groupId>
+    <groupId>net.xdob.directory.server</groupId>
     <version>2.0.0-M24V20191128</version>
   </parent>
   
@@ -64,7 +64,7 @@
     </dependency>
     
     <dependency>
-      <groupId>com.ls.neo2.directory.api</groupId>
+      <groupId>net.xdob.directory.api</groupId>
       <artifactId>api-ldap-model</artifactId>
     </dependency>
 
