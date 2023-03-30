@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840559693
+Bnd-LastModified: 1680166639540
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Contains interfaces and helper classes that are part
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core API
 Bundle-SymbolicName: net.xdob.directory.server.core.api
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.api;uses:="net.sf.ehcac
  he,org.apache.directory.api.asn1.util,org.apache.directory.api.ldap.cod
@@ -96,7 +96,7 @@ Export-Package: org.apache.directory.server.core.api;uses:="net.sf.ehcac
  sp";version="2.0.0",org.apache.directory.server.core.api.sp;uses:="org.
  apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.mod
  el.exception,org.apache.directory.server.core.api";version="2.0.0",org.
- apache.directory.server.core.api.subtree;version="2.0.0.M24V20191128";u
+ apache.directory.server.core.api.subtree;version="2.0.0.M24V20230330";u
  ses:="org.apache.directory.api.ldap.model.entry,org.apache.directory.ap
  i.ldap.model.exception,org.apache.directory.api.ldap.model.filter,org.a
  pache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model
@@ -107,7 +107,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
  re-api
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming,javax.naming.directory,net.sf.ehcache;versi
  on="[2.10,3)",net.sf.ehcache.config;version="[2.10,3)",org.apache.commo
  ns.lang;version="[2.6,3)",org.apache.directory.api.asn1.util;version="[
@@ -143,5 +143,5 @@ Import-Package: javax.naming,javax.naming.directory,net.sf.ehcache;versi
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core API
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

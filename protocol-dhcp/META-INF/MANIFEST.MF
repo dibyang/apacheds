@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840715474
+Bnd-LastModified: 1680166809138
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The DHCP protocol provider for ApacheDS
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Dhcp
 Bundle-SymbolicName: net.xdob.directory.server.protocol.dhcp
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.dhcp;version="2.0.0",org.apa
  che.directory.server.dhcp.io;uses:="org.apache.directory.server.dhcp,or
@@ -36,7 +36,7 @@ Export-Package: org.apache.directory.server.dhcp;version="2.0.0",org.apa
  y.server.dhcp,org.apache.directory.server.dhcp.messages,org.apache.dire
  ctory.server.dhcp.options,org.apache.directory.server.dhcp.store";versi
  on="2.0.0",org.apache.directory.server.dhcp.store;version="2.0.0.M24V20
- 191128";uses:="javax.naming,javax.naming.directory,org.apache.directory
+ 230330";uses:="javax.naming,javax.naming.directory,org.apache.directory
  .server.dhcp,org.apache.directory.server.dhcp.messages,org.apache.direc
  tory.server.dhcp.options,org.apache.directory.server.dhcp.service"
 Implementation-Title: ApacheDS Protocol Dhcp
@@ -44,7 +44,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-dhcp
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming,javax.naming.directory,org.apache.directory
  .server.dhcp,org.apache.directory.server.dhcp.io,org.apache.directory.s
  erver.dhcp.messages,org.apache.directory.server.dhcp.options,org.apache
@@ -61,5 +61,5 @@ Import-Package: javax.naming,javax.naming.directory,org.apache.directory
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Dhcp
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

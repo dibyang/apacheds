@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840608849
+Bnd-LastModified: 1680166684006
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Exception interceptor
@@ -9,10 +9,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Exception Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.exception
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.exception;version="2.0.
- 0.M24V20191128";uses:="org.apache.directory.api.ldap.model.exception,or
+ 0.M24V20230330";uses:="org.apache.directory.api.ldap.model.exception,or
  g.apache.directory.server.core.api,org.apache.directory.server.core.api
  .interceptor,org.apache.directory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Exception Interceptor
@@ -20,7 +20,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-exception
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: org.apache.commons.collections.map;version="[3.2,4)",org
  .apache.directory.api.ldap.model.constants;version="[1.0,2)",org.apache
  .directory.api.ldap.model.entry;version="[1.0,2)",org.apache.directory.
@@ -36,5 +36,5 @@ Import-Package: org.apache.commons.collections.map;version="[3.2,4)",org
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Exception Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

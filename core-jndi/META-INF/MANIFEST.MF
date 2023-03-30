@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840665772
+Bnd-LastModified: 1680166753046
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Contains a JNDI provider implementation which wraps 
@@ -14,10 +14,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core JNDI
 Bundle-SymbolicName: net.xdob.directory.server.core.jndi
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.jndi;version="2.0.0.M24
- V20191128";uses:="javax.naming,javax.naming.directory,javax.naming.even
+ V20230330";uses:="javax.naming,javax.naming.directory,javax.naming.even
  t,javax.naming.ldap,javax.naming.spi,org.apache.directory.api.ldap.mode
  l.constants,org.apache.directory.api.ldap.model.entry,org.apache.direct
  ory.api.ldap.model.filter,org.apache.directory.api.ldap.model.message,o
@@ -30,7 +30,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
  re-jndi
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
  avax.naming.ldap,javax.naming.spi,org.apache.directory.api.asn1;version
  ="[1.0,2)",org.apache.directory.api.ldap.codec.api;version="[1.0,2)",or
@@ -64,5 +64,5 @@ Import-Package: javax.naming,javax.naming.directory,javax.naming.event,j
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core JNDI
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

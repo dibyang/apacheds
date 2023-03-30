@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840654197
+Bnd-LastModified: 1680166738719
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: JDBM BTree backed partition implementation.
@@ -9,10 +9,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS JDBM Partition
 Bundle-SymbolicName: net.xdob.directory.server.jdbm.partition
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.partition.impl.btree.jd
- bm;version="2.0.0.M24V20191128";uses:="jdbm,jdbm.btree,jdbm.helper,org.
+ bm;version="2.0.0.M24V20230330";uses:="jdbm,jdbm.btree,jdbm.helper,org.
  apache.directory.api.ldap.model.cursor,org.apache.directory.api.ldap.mo
  del.entry,org.apache.directory.api.ldap.model.exception,org.apache.dire
  ctory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,or
@@ -25,7 +25,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-jd
  bm-partition
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: jdbm;version="[2.0,3)",jdbm.btree;version="[2.0,3)",jdbm
  .helper;version="[2.0,3)",jdbm.recman;version="[2.0,3)",net.sf.ehcache;
  version="[2.10,3)",net.sf.ehcache.config;version="[2.10,3)",org.apache.
@@ -51,5 +51,5 @@ Import-Package: jdbm;version="[2.0,3)",jdbm.btree;version="[2.0,3)",jdbm
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS JDBM Partition
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

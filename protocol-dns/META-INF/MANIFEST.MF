@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840732760
+Bnd-LastModified: 1680166819452
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The DNS protocol provider for ApacheDS
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Dns
 Bundle-SymbolicName: net.xdob.directory.server.protocol.dns
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.dns;uses:="org.apache.direct
  ory.server.dns.messages,org.apache.directory.server.protocol.shared";ve
@@ -34,13 +34,13 @@ Export-Package: org.apache.directory.server.dns;uses:="org.apache.direct
  .server.dns.store.jndi.operations;uses:="javax.naming,javax.naming.dire
  ctory,org.apache.directory.server.dns.messages,org.apache.directory.ser
  ver.dns.store.jndi";version="2.0.0",org.apache.directory.server.dns.uti
- l;version="2.0.0.M24V20191128"
+ l;version="2.0.0.M24V20230330"
 Implementation-Title: ApacheDS Protocol Dns
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-dns
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming,javax.naming.directory,javax.naming.ldap,or
  g.apache.commons.lang.builder;version="[2.6,3)",org.apache.directory.ap
  i.ldap.model.exception;version="[1.0,2)",org.apache.directory.api.ldap.
@@ -66,5 +66,5 @@ Import-Package: javax.naming,javax.naming.directory,javax.naming.ldap,or
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Dns
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

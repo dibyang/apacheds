@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840583359
+Bnd-LastModified: 1680166658571
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Numeric attribute value incrementing interceptor
@@ -9,10 +9,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Interceptor to increment numeric attributes
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.number
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.number;version="2.0.0.M
- 24V20191128";uses:="org.apache.directory.api.ldap.model.exception,org.a
+ 24V20230330";uses:="org.apache.directory.api.ldap.model.exception,org.a
  pache.directory.server.core.api,org.apache.directory.server.core.api.in
  terceptor,org.apache.directory.server.core.api.interceptor.context"
 Implementation-Title: ApacheDS Interceptor to increment numeric attribut
@@ -21,7 +21,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-number
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  1.0,2)",org.apache.directory.api.ldap.model.csn;version="[1.0,2)",org.a
  pache.directory.api.ldap.model.entry;version="[1.0,2)",org.apache.direc
@@ -37,5 +37,5 @@ Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Interceptor to increment numeric attribute
  s
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

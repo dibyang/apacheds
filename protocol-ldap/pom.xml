@@ -22,7 +22,7 @@
   <parent>
     <groupId>net.xdob.directory.server</groupId>
     <artifactId>apacheds-parent</artifactId>
-    <version>2.0.0-M24V20191128</version>
+    <version>2.0.0-M24V20230330</version>
   </parent>
   
   <artifactId>apacheds-protocol-ldap</artifactId>

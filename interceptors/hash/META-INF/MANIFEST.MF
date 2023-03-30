@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840804915
+Bnd-LastModified: 1680166921530
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Password Hashing interceptor
@@ -9,10 +9,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Password Hashing Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.hash
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.hash;version="2.0.0.M24
- V20191128";uses:="org.apache.directory.api.ldap.model.constants,org.apa
+ V20230330";uses:="org.apache.directory.api.ldap.model.constants,org.apa
  che.directory.api.ldap.model.exception,org.apache.directory.api.ldap.mo
  del.schema,org.apache.directory.server.config.beans,org.apache.director
  y.server.core.api,org.apache.directory.server.core.api.interceptor,org.
@@ -22,7 +22,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-hash
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  1.0,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org
  .apache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache
@@ -35,5 +35,5 @@ Import-Package: org.apache.directory.api.ldap.model.constants;version="[
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Password Hashing Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

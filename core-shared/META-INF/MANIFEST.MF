@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840568487
+Bnd-LastModified: 1680166647861
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Contains helper classes that are part of the ApacheD
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core Shared
 Bundle-SymbolicName: net.xdob.directory.server.core.shared
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.shared;uses:="jdbm,jdbm
  .btree,jdbm.helper,net.sf.ehcache,org.apache.directory.api.ldap.model.c
@@ -22,7 +22,7 @@ Export-Package: org.apache.directory.server.core.shared;uses:="jdbm,jdbm
  che.directory.server.core.api.changelog,org.apache.directory.server.cor
  e.api.filtering,org.apache.directory.server.core.api.interceptor.contex
  t,org.apache.mina.core.session";version="2.0.0",org.apache.directory.se
- rver.core.shared.partition;version="2.0.0.M24V20191128";uses:="org.apac
+ rver.core.shared.partition;version="2.0.0.M24V20230330";uses:="org.apac
  he.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.e
  xception,org.apache.directory.api.ldap.model.name,org.apache.directory.
  api.ldap.model.schema,org.apache.directory.server.core.api,org.apache.d
@@ -33,7 +33,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
  re-shared
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming.directory,jdbm;version="[2.0,3)",jdbm.btree
  ;version="[2.0,3)",jdbm.helper;version="[2.0,3)",jdbm.recman;version="[
  2.0,3)",net.sf.ehcache;version="[2.10,3)",org.apache.directory.api.ldap
@@ -61,5 +61,5 @@ Import-Package: javax.naming.directory,jdbm;version="[2.0,3)",jdbm.btree
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core Shared
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840859231
+Bnd-LastModified: 1680166942977
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
@@ -14,17 +14,17 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Jetty HTTP Server Integration
 Bundle-SymbolicName: net.xdob.directory.server.http.integration
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.integration.http;version="2.
- 0.0.M24V20191128";uses:="org.apache.directory.server.core.api,org.apach
+ 0.0.M24V20230330";uses:="org.apache.directory.server.core.api,org.apach
  e.directory.server.protocol.shared.transport"
 Implementation-Title: ApacheDS Jetty HTTP Server Integration
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ht
  tp-integration
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
  2)",org.apache.directory.api.ldap.model.name;version="[1.0,2)",org.apac
  he.directory.server.bridge.http;version="[2.0,3)",org.apache.directory.
@@ -39,5 +39,5 @@ Import-Package: org.apache.directory.api.ldap.model.entry;version="[1.0,
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Jetty HTTP Server Integration
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

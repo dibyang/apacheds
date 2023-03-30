@@ -24,7 +24,7 @@
   <parent>
     <artifactId>apacheds-parent</artifactId>
     <groupId>net.xdob.directory.server</groupId>
-    <version>2.0.0-M24V20191128</version>
+    <version>2.0.0-M24V20230330</version>
   </parent>
   
   <artifactId>apacheds-http-integration</artifactId>

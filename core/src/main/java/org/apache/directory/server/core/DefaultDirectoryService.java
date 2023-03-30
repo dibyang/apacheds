@@ -300,6 +300,7 @@ public class DefaultDirectoryService implements DirectoryService
     private ObjectClassProvider ocProvider;
 
 
+
     // ------------------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------------------
@@ -1337,6 +1338,7 @@ public class DefaultDirectoryService implements DirectoryService
             {
                 lockFile.close();
                 // no need to delete the lock file
+                lockFile=null;
             }
             catch ( IOException e )
             {
@@ -2164,39 +2166,40 @@ public class DefaultDirectoryService implements DirectoryService
      */
     private void lockWorkDir()
     {
-        FileLock fileLock = null;
-
-        try
-        {
-            lockFile = new RandomAccessFile( new File( instanceLayout.getInstanceDirectory(), LOCK_FILE_NAME ), "rw" );
+        if(lockFile == null){
+            FileLock fileLock = null;
             try
             {
-                fileLock = lockFile.getChannel().tryLock( 0, 1, false );
+                lockFile = new RandomAccessFile( new File( instanceLayout.getInstanceDirectory(), LOCK_FILE_NAME ), "rw" );
+                try
+                {
+                    fileLock = lockFile.getChannel().tryLock( 0, 1, false );
+                }
+                catch ( IOException e )
+                {
+                    // shoudn't happen, but log
+                    LOG.error( "failed to lock the work directory", e );
+                }
+                catch ( OverlappingFileLockException e ) // thrown if we can't get a lock
+                {
+                    fileLock = null;
+                }
             }
-            catch ( IOException e )
+            catch ( FileNotFoundException e )
             {
-                // shoudn't happen, but log
+                // shouldn't happen, but log anyway
                 LOG.error( "failed to lock the work directory", e );
             }
-            catch ( OverlappingFileLockException e ) // thrown if we can't get a lock
+
+            if ( ( fileLock == null ) || ( !fileLock.isValid() ) )
             {
-                fileLock = null;
+                lockFile = null;
+                String message = "the working directory " + instanceLayout.getRunDirectory()
+                    + " has been locked by another directory service.";
+                LOG.error( message );
+                throw new RuntimeException( message );
             }
         }
-        catch ( FileNotFoundException e )
-        {
-            // shouldn't happen, but log anyway
-            LOG.error( "failed to lock the work directory", e );
-        }
-
-        if ( ( fileLock == null ) || ( !fileLock.isValid() ) )
-        {
-            String message = "the working directory " + instanceLayout.getRunDirectory()
-                + " has been locked by another directory service.";
-            LOG.error( message );
-            throw new RuntimeException( message );
-        }
-
     }
 
 

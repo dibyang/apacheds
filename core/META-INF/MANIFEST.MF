@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840639716
+Bnd-LastModified: 1680166711466
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Server's core contains the JNDI provider, intercepto
@@ -11,7 +11,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Core
 Bundle-SymbolicName: net.xdob.directory.server.core
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core;uses:="org.apache.direc
  tory.api.ldap.codec.api,org.apache.directory.api.ldap.model.csn,org.apa
@@ -27,7 +27,7 @@ Export-Package: org.apache.directory.server.core;uses:="org.apache.direc
  tory.server.core.api.partition,org.apache.directory.server.core.api.sch
  ema,org.apache.directory.server.core.api.subtree,org.apache.directory.s
  erver.core.shared.partition";version="2.0.0",org.apache.directory.serve
- r.core.security;version="2.0.0.M24V20191128";uses:="org.apache.director
+ r.core.security;version="2.0.0.M24V20230330";uses:="org.apache.director
  y.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,or
  g.apache.directory.server.core.api"
 Implementation-Title: ApacheDS Core
@@ -35,7 +35,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-co
  re
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.security.auth.x500,net.sf.ehcache;version="[2.10,3
  )",org.apache.commons.lang;version="[2.6,3)",org.apache.directory.api.l
  dap.codec.api;version="[1.0,2)",org.apache.directory.api.ldap.model.con
@@ -81,5 +81,5 @@ Import-Package: javax.security.auth.x500,net.sf.ehcache;version="[2.10,3
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Core
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

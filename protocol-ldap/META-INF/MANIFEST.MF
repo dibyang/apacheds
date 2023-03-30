@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840757603
+Bnd-LastModified: 1680166877152
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: The LDAPv3 protocol provider for ApacheDS
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Ldap
 Bundle-SymbolicName: net.xdob.directory.server.protocol.ldap
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.ldap;uses:="javax.net.ssl,or
  g.apache.directory.api.ldap.model.cursor,org.apache.directory.api.ldap.
@@ -89,7 +89,7 @@ Export-Package: org.apache.directory.server.ldap;uses:="javax.net.ssl,or
  server.core.api.interceptor.context,org.apache.directory.server.core.pa
  rtition.impl.btree.jdbm,org.apache.directory.server.ldap,org.apache.dir
  ectory.server.ldap.replication";version="2.0.0",org.apache.directory.se
- rver.ldap.replication;version="2.0.0.M24V20191128";uses:="javax.net.ssl
+ rver.ldap.replication;version="2.0.0.M24V20230330";uses:="javax.net.ssl
  ,jdbm.helper,org.apache.directory.api.ldap.model.entry,org.apache.direc
  tory.api.ldap.model.exception,org.apache.directory.api.ldap.model.messa
  ge,org.apache.directory.api.ldap.model.message.controls,org.apache.dire
@@ -99,7 +99,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-ldap
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: javax.naming,javax.naming.ldap,javax.net.ssl,javax.secur
  ity.auth,javax.security.auth.callback,javax.security.auth.kerberos,java
  x.security.sasl,jdbm;version="[2.0,3)",jdbm.helper;version="[2.0,3)",jd
@@ -175,5 +175,5 @@ Import-Package: javax.naming,javax.naming.ldap,javax.net.ssl,javax.secur
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Protocol Ldap
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906

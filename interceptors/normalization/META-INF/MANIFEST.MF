@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1666840616304
+Bnd-LastModified: 1680166691027
 Build-Jdk: 1.8.0_111
 Built-By: admin
 Bundle-Description: Normalization interceptor
@@ -10,10 +10,10 @@ Bundle-Name: ApacheDS Normalization Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.normalizatio
  n
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20191128
+Bundle-Version: 2.0.0.M24V20230330
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.normalization;version="
- 2.0.0.M24V20191128";uses:="org.apache.directory.api.ldap.model.entry,or
+ 2.0.0.M24V20230330";uses:="org.apache.directory.api.ldap.model.entry,or
  g.apache.directory.api.ldap.model.exception,org.apache.directory.api.ld
  ap.model.filter,org.apache.directory.api.ldap.model.schema,org.apache.d
  irectory.server.core.api,org.apache.directory.server.core.api.filtering
@@ -24,7 +24,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-normalization
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20191128
+Implementation-Version: 2.0.0-M24V20230330
 Import-Package: org.apache.directory.api.ldap.model.cursor;version="[1.0
  ,2)",org.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.ap
  ache.directory.api.ldap.model.exception;version="[1.0,2)",org.apache.di
@@ -42,5 +42,5 @@ Import-Package: org.apache.directory.api.ldap.model.cursor;version="[1.0
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
 Specification-Title: ApacheDS Normalization Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20191128
+Specification-Version: 2.0.0-M24V20230330
 Tool: Bnd-3.3.0.201609221906
