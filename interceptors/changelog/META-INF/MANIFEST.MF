@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166674582
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454263453
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: ChangeLog interceptor
 Bundle-DocURL: https://www.apache.org/
@@ -9,10 +9,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS ChangeLog Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.changelog
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.changelog;version="2.0.
- 0.M24V20230330";uses:="org.apache.directory.api.ldap.model.cursor,org.a
+ 0.M24V20240812";uses:="org.apache.directory.api.ldap.model.cursor,org.a
  pache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.
  model.ldif,org.apache.directory.server.core.api,org.apache.directory.se
  rver.core.api.changelog,org.apache.directory.server.core.api.intercepto
@@ -22,7 +22,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-changelog
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  1.0,2)",org.apache.directory.api.ldap.model.cursor;version="[1.0,2)",or
  g.apache.directory.api.ldap.model.entry;version="[1.0,2)",org.apache.di
@@ -40,8 +40,8 @@ Import-Package: org.apache.directory.api.ldap.model.constants;version="[
  version="[2.0,3)",org.apache.directory.server.core.shared;version="[2.0
  ,3)",org.apache.directory.server.i18n;version="[2.0,3)",org.slf4j;versi
  on="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS ChangeLog Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

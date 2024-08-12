@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166937817
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454389400
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: Integration testing framework for Apache Directory S
  erver.
@@ -10,10 +10,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Server Integration
 Bundle-SymbolicName: net.xdob.directory.server.apacheds-server-integ
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.integ;version="2.0.0.M24V202
- 30330";uses:="javax.naming.ldap,netscape.ldap,org.apache.directory.api.
+ 40812";uses:="javax.naming.ldap,netscape.ldap,org.apache.directory.api.
  ldap.model.message,org.apache.directory.ldap.client.api,org.apache.dire
  ctory.server.core.integ,org.apache.directory.server.ldap"
 Implementation-Title: ApacheDS Server Integration
@@ -21,7 +21,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-se
  rver-integ
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: javax.naming.ldap,netscape.ldap,org.apache.directory.api
  .ldap.codec.api;version="[1.0,2)",org.apache.directory.api.ldap.model.m
  essage;version="[1.0,2)",org.apache.directory.api.ldap.util;version="[1
@@ -30,8 +30,8 @@ Import-Package: javax.naming.ldap,netscape.ldap,org.apache.directory.api
  .api;version="[2.0,3)",org.apache.directory.server.core.integ;version="
  [2.0,3)",org.apache.directory.server.ldap;version="[2.0,3)",org.slf4j;v
  ersion="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS Server Integration
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

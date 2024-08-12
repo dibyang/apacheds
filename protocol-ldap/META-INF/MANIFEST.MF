@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166877152
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454349702
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: The LDAPv3 protocol provider for ApacheDS
 Bundle-DocURL: https://www.apache.org/
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Ldap
 Bundle-SymbolicName: net.xdob.directory.server.protocol.ldap
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.ldap;uses:="javax.net.ssl,or
  g.apache.directory.api.ldap.model.cursor,org.apache.directory.api.ldap.
@@ -89,7 +89,7 @@ Export-Package: org.apache.directory.server.ldap;uses:="javax.net.ssl,or
  server.core.api.interceptor.context,org.apache.directory.server.core.pa
  rtition.impl.btree.jdbm,org.apache.directory.server.ldap,org.apache.dir
  ectory.server.ldap.replication";version="2.0.0",org.apache.directory.se
- rver.ldap.replication;version="2.0.0.M24V20230330";uses:="javax.net.ssl
+ rver.ldap.replication;version="2.0.0.M24V20240812";uses:="javax.net.ssl
  ,jdbm.helper,org.apache.directory.api.ldap.model.entry,org.apache.direc
  tory.api.ldap.model.exception,org.apache.directory.api.ldap.model.messa
  ge,org.apache.directory.api.ldap.model.message.controls,org.apache.dire
@@ -99,7 +99,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-ldap
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: javax.naming,javax.naming.ldap,javax.net.ssl,javax.secur
  ity.auth,javax.security.auth.callback,javax.security.auth.kerberos,java
  x.security.sasl,jdbm;version="[2.0,3)",jdbm.helper;version="[2.0,3)",jd
@@ -171,9 +171,9 @@ Import-Package: javax.naming,javax.naming.ldap,javax.net.ssl,javax.secur
  .apache.mina.filter.executor;version="[2.0,3)",org.apache.mina.filter.s
  sl;version="[2.0,3)",org.apache.mina.handler.demux;version="[2.0,3)",or
  g.apache.mina.transport.socket;version="[2.0,3)",org.bouncycastle.jce.p
- rovider;version="[1.64,2)",org.slf4j;version="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+ rovider;version="[1.70,2)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS Protocol Ldap
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

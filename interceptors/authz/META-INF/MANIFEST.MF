@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166666555
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454260747
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: Authorization interceptor
 Bundle-DocURL: https://www.apache.org/
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Authorization Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.authz
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.authz;uses:="javax.nami
  ng.directory,org.apache.directory.api.ldap.aci,org.apache.directory.api
@@ -18,8 +18,8 @@ Export-Package: org.apache.directory.server.core.authz;uses:="javax.nami
  chema,org.apache.directory.server.core.api,org.apache.directory.server.
  core.api.filtering,org.apache.directory.server.core.api.interceptor,org
  .apache.directory.server.core.api.interceptor.context";version="2.0.0",
- org.apache.directory.server.core.authz.support;version="2.0.0.M24V20230
- 330";uses:="org.apache.directory.api.ldap.aci,org.apache.directory.api.
+ org.apache.directory.server.core.authz.support;version="2.0.0.M24V20240
+ 812";uses:="org.apache.directory.api.ldap.aci,org.apache.directory.api.
  ldap.model.constants,org.apache.directory.api.ldap.model.entry,org.apac
  he.directory.api.ldap.model.exception,org.apache.directory.api.ldap.mod
  el.name,org.apache.directory.api.ldap.model.schema,org.apache.directory
@@ -30,7 +30,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-authz
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: javax.naming.directory,net.sf.ehcache;version="[2.10,3)"
  ,org.apache.directory.api.ldap.aci;version="[1.0,2)",org.apache.directo
  ry.api.ldap.aci.protectedItem;version="[1.0,2)",org.apache.directory.ap
@@ -50,8 +50,8 @@ Import-Package: javax.naming.directory,net.sf.ehcache;version="[2.10,3)"
  3)",org.apache.directory.server.core.api.partition;version="[2.0,3)",or
  g.apache.directory.server.core.api.subtree;version="[2.0,3)",org.apache
  .directory.server.i18n;version="[2.0,3)",org.slf4j;version="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS Authorization Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

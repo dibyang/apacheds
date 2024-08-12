@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166940230
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454392354
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: ApacheDS is an embbedable directory server entirely 
  written in Java, which has been certified LDAPv3 compatible    by the O
@@ -14,10 +14,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS DirectoryService-WebApp bridge
 Bundle-SymbolicName: net.xdob.directory.server.http.directory.bridge
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.bridge.http;version="2.0.0.M
- 24V20230330";uses:="org.apache.directory.api.ldap.model.message,org.apa
+ 24V20240812";uses:="org.apache.directory.api.ldap.model.message,org.apa
  che.directory.api.ldap.model.schema,org.apache.directory.ldap.client.ap
  i,org.apache.directory.server.core.api"
 Implementation-Title: ApacheDS DirectoryService-WebApp bridge
@@ -25,13 +25,13 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-ht
  tp-directory-bridge
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: org.apache.directory.api.ldap.model.message;version="[1.
  0,2)",org.apache.directory.api.ldap.model.schema;version="[1.0,2)",org.
  apache.directory.ldap.client.api;version="[1.0,2)",org.apache.directory
  .server.core.api;version="[2.0,3)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS DirectoryService-WebApp bridge
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

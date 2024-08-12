@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166656300
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454251195
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: Authentication interceptor
 Bundle-DocURL: https://www.apache.org/
@@ -9,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Authentication Interceptor
 Bundle-SymbolicName: net.xdob.directory.server.interceptors.authn
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.core.authn;uses:="org.apache
  .directory.api.ldap.model.constants,org.apache.directory.api.ldap.model
@@ -19,7 +19,7 @@ Export-Package: org.apache.directory.server.core.authn;uses:="org.apache
  e.api.filtering,org.apache.directory.server.core.api.interceptor,org.ap
  ache.directory.server.core.api.interceptor.context,org.apache.directory
  .server.core.authn.ppolicy,org.slf4j";version="2.0.0",org.apache.direct
- ory.server.core.authn.ppolicy;version="2.0.0.M24V20230330";uses:="org.a
+ ory.server.core.authn.ppolicy;version="2.0.0.M24V20240812";uses:="org.a
  pache.directory.api.ldap.model.name,org.apache.directory.server.core.ap
  i.authn.ppolicy"
 Implementation-Title: ApacheDS Authentication Interceptor
@@ -27,7 +27,7 @@ Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-in
  terceptors/apacheds-interceptors-authn
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: javax.net.ssl,org.apache.commons.collections.map;version
  ="[3.2,4)",org.apache.directory.api.ldap.codec.api;version="[1.0,2)",or
  g.apache.directory.api.ldap.extras.controls.ppolicy;version="[1.0,2)",o
@@ -50,8 +50,8 @@ Import-Package: javax.net.ssl,org.apache.commons.collections.map;version
  e.directory.server.core.shared;version="[2.0,3)",org.apache.directory.s
  erver.i18n;version="[2.0,3)",org.apache.mina.core.session;version="[2.0
  ,3)",org.slf4j;version="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS Authentication Interceptor
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906

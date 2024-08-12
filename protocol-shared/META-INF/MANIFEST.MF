@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1680166812128
-Build-Jdk: 1.8.0_111
+Bnd-LastModified: 1723454333922
+Build-Jdk: 22.0.2
 Built-By: admin
 Bundle-Description: Shared library that is used by all protocol provider
  s in ApacheDS
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ApacheDS Protocol Shared
 Bundle-SymbolicName: net.xdob.directory.server.protocol.shared
 Bundle-Vendor: The Apache Software Foundation
-Bundle-Version: 2.0.0.M24V20230330
+Bundle-Version: 2.0.0.M24V20240812
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.apache.directory.server.protocol.shared;uses:="org.a
  pache.directory.server.core.api,org.apache.directory.server.protocol.sh
@@ -26,14 +26,14 @@ Export-Package: org.apache.directory.server.protocol.shared;uses:="org.a
  ntry,org.apache.directory.api.ldap.model.exception,org.apache.directory
  .api.ldap.model.name,org.apache.directory.server.core.api";version="2.0
  .0",org.apache.directory.server.protocol.shared.transport;version="2.0.
- 0.M24V20230330";uses:="org.apache.mina.core.service,org.apache.mina.tra
+ 0.M24V20240812";uses:="org.apache.mina.core.service,org.apache.mina.tra
  nsport.socket"
 Implementation-Title: ApacheDS Protocol Shared
 Implementation-URL: http://directory.apache.org/apacheds/1.5/apacheds-pr
  otocol-shared
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: net.xdob.directory.server
-Implementation-Version: 2.0.0-M24V20230330
+Implementation-Version: 2.0.0-M24V20240812
 Import-Package: javax.security.auth.kerberos,org.apache.directory.api.ld
  ap.model.constants;version="[1.0,2)",org.apache.directory.api.ldap.mode
  l.cursor;version="[1.0,2)",org.apache.directory.api.ldap.model.entry;ve
@@ -53,8 +53,8 @@ Import-Package: javax.security.auth.kerberos,org.apache.directory.api.ld
  .core.service;version="[2.0,3)",org.apache.mina.transport.socket;versio
  n="[2.0,3)",org.apache.mina.transport.socket.nio;version="[2.0,3)",org.
  slf4j;version="[1.7,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Specification-Title: ApacheDS Protocol Shared
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 2.0.0-M24V20230330
+Specification-Version: 2.0.0-M24V20240812
 Tool: Bnd-3.3.0.201609221906
