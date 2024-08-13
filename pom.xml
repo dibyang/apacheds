@@ -30,7 +30,7 @@
 
   <groupId>net.xdob.directory.server</groupId>
   <artifactId>apacheds-parent</artifactId>
-  <version>2.0.0-M24V20240812</version>
+  <version>2.0.0-M24V20240813</version>
   <packaging>pom</packaging>
 
   <name>ApacheDS</name>
@@ -46,7 +46,7 @@
     <additionalparam>-Xdoclint:none</additionalparam>
     <host>nexus.doob.net.cn</host>
     <!-- Set versions for depending projects -->
-    <org.apache.directory.api.version>1.0.0-V20220420</org.apache.directory.api.version>
+    <org.apache.directory.api.version>1.0.0-M20V20240813</org.apache.directory.api.version>
     <org.apache.directory.mavibot.version>1.0.0-M8</org.apache.directory.mavibot.version>
     <org.apache.directory.checkstyle-configuration.version>0.3</org.apache.directory.checkstyle-configuration.version>
     <org.apache.directory.junit.junit-addons.version>0.1</org.apache.directory.junit.junit-addons.version>
