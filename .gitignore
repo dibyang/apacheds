@@ -1,6 +1,8 @@
 *.iml
+*.MF
 /**/META-INF/
 /**/target/
 /**/bin/
 /**/out/
 /.idea/
+/*/META-INF/
