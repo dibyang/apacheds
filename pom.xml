@@ -326,7 +326,13 @@
     <system>JIRA</system>
     <url>http://issues.apache.org/jira/browse/DIRSERVER</url>
   </issueManagement>
-  
+  <repositories>
+    <repository>
+      <id>repo_5</id>
+      <name>repo_5</name>
+      <url>http://${host}:8081/repository/maven-public/</url>
+    </repository>
+  </repositories>
   <modules>
     <module>i18n</module>
     <module>all</module>
@@ -379,13 +385,7 @@
     <!-- module>osgi-integ</module-->
   </modules>
 
-  <repositories>
-    <repository>
-      <id>repo_5</id>
-      <name>repo_5</name>
-      <url>http://${host}:8081/repository/maven-public/</url>
-    </repository>
-  </repositories>
+
 
   <build>
     <pluginManagement>
