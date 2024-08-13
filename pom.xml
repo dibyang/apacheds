@@ -55,7 +55,7 @@
     
     <!-- Set versions for depending jars -->
     <ant.version>1.10.1</ant.version>
-    <bcprov.version>1.70</bcprov.version>
+    <bcprov.version>1.76</bcprov.version>
     <commons.cli.version>1.4</commons.cli.version>
     <commons.collections.version>4.4</commons.collections.version>
     <commons.daemon.version>1.0.15</commons.daemon.version>
@@ -66,7 +66,7 @@
     <ehcache.version>2.10.4</ehcache.version>
     <findbugs.annotations.version>1.0.0</findbugs.annotations.version>
     <jetty.version>9.4.55.v20240627</jetty.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.2</junit.version>
     <ldapsdk.version>4.1</ldapsdk.version>
     <log4j.version>1.2.17</log4j.version>
     <logback.version>1.2.3</logback.version>
@@ -1217,7 +1217,7 @@
 
       <dependency>
         <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk15on</artifactId>
+        <artifactId>bcprov-jdk15to18</artifactId>
         <version>${bcprov.version}</version>
       </dependency>
 
