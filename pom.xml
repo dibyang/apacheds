@@ -47,7 +47,7 @@
     <host>nexus.doob.net.cn</host>
     <!-- Set versions for depending projects -->
     <org.apache.directory.api.version>1.0.0-M20V20240813</org.apache.directory.api.version>
-    <org.apache.directory.mavibot.version>1.0.0-M8</org.apache.directory.mavibot.version>
+    <org.apache.directory.mavibot.version>1.0.0-M8V20240813</org.apache.directory.mavibot.version>
     <org.apache.directory.checkstyle-configuration.version>0.3</org.apache.directory.checkstyle-configuration.version>
     <org.apache.directory.junit.junit-addons.version>0.1</org.apache.directory.junit.junit-addons.version>
     <org.apache.directory.jdbm.version>2.0.0-M3</org.apache.directory.jdbm.version>
@@ -1038,7 +1038,7 @@
       <!-- Mavibot dependencies -->
       
       <dependency>
-        <groupId>org.apache.directory.mavibot</groupId>
+        <groupId>net.xdob.directory.mavibot</groupId>
         <artifactId>mavibot</artifactId>
         <version>${org.apache.directory.mavibot.version}</version>
       </dependency>

@@ -95,7 +95,7 @@
     
     <!-- Other dependencies -->
     <dependency>
-      <groupId>org.apache.directory.mavibot</groupId>
+      <groupId>net.xdob.directory.mavibot</groupId>
       <artifactId>mavibot</artifactId>
     </dependency>
 
