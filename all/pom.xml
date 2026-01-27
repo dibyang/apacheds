@@ -152,6 +152,14 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <!-- 版本继承父POM即可，无需单独指定 -->
+        <configuration>
+          <skip>true</skip> <!-- 关键：设为true，完全跳过发布 -->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <executions>
           <execution>

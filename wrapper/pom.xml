@@ -31,7 +31,7 @@
   <name>ApacheDS Wrapper</name>
   <packaging>jar</packaging>
 
-  <description />
+  <description > ApacheDS Wrapper </description>
 
   <dependencies>
     <dependency>
