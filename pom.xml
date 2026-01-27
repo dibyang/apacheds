@@ -30,7 +30,7 @@
 
   <groupId>net.xdob.directory.server</groupId>
   <artifactId>apacheds-parent</artifactId>
-  <version>2.0.0-M24V20250312</version>
+  <version>2.0.0-M24V20260126</version>
   <packaging>pom</packaging>
 
   <name>ApacheDS</name>
@@ -46,8 +46,8 @@
     <additionalparam>-Xdoclint:none</additionalparam>
     <host>nexus.doob.net.cn</host>
     <!-- Set versions for depending projects -->
-    <org.apache.directory.api.version>1.0.0-M20V20250312</org.apache.directory.api.version>
-    <org.apache.directory.mavibot.version>1.0.0-M8V20250312</org.apache.directory.mavibot.version>
+    <org.apache.directory.api.version>1.0.0-M20V20260126</org.apache.directory.api.version>
+    <org.apache.directory.mavibot.version>1.0.0-M8V20260126</org.apache.directory.mavibot.version>
     <org.apache.directory.checkstyle-configuration.version>0.3</org.apache.directory.checkstyle-configuration.version>
     <org.apache.directory.junit.junit-addons.version>0.1</org.apache.directory.junit.junit-addons.version>
     <org.apache.directory.jdbm.version>2.0.0-M3</org.apache.directory.jdbm.version>
@@ -59,7 +59,7 @@
     <commons.cli.version>1.4</commons.cli.version>
     <commons.collections.version>4.4</commons.collections.version>
     <commons.daemon.version>1.0.15</commons.daemon.version>
-    <commons.lang.version>2.6</commons.lang.version>
+    <commons.lang3.version>3.20.0</commons.lang3.version>
     <commons.net.version>3.6</commons.net.version>
     <commons.pool.version>1.6</commons.pool.version>
     <dnsjava.version>2.1.8</dnsjava.version>
@@ -1066,9 +1066,9 @@
       </dependency>
 
       <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>${commons.lang.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
       </dependency>
 
       <dependency>

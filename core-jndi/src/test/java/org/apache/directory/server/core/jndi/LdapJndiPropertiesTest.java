@@ -25,7 +25,7 @@ import java.util.Hashtable;
 import javax.naming.ConfigurationException;
 import javax.naming.Context;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import com.mycila.junit.concurrent.Concurrency;
 import com.mycila.junit.concurrent.ConcurrentJunitRunner;
 

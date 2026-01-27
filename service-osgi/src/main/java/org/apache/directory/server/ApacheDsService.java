@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.directory.server.config.ConfigPartitionReader;
 import org.apache.directory.server.config.LdifConfigExtractor;
 import org.apache.directory.server.config.beans.ConfigBean;

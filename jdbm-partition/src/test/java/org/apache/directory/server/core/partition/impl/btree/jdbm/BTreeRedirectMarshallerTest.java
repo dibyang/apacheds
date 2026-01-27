@@ -29,7 +29,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.Random;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import com.mycila.junit.concurrent.Concurrency;
 import com.mycila.junit.concurrent.ConcurrentJunitRunner;
 import org.junit.Test;
