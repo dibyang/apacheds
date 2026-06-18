@@ -1,5 +1,3 @@
-import groovy.xml.XmlSlurper
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -15,9 +13,7 @@ dependencyResolutionManagement {
         maven {
             name = 'apacheSnapshots'
             url = uri('https://repository.apache.org/snapshots')
-            mavenContent {
-                snapshotsOnly()
-            }
+            mavenContent { snapshotsOnly() }
         }
         maven {
             name = 'repo5'
@@ -29,37 +25,113 @@ dependencyResolutionManagement {
 
 rootProject.name = 'apacheds-parent'
 
-def readPom = { File pomFile ->
-    new XmlSlurper(false, false).parse(pomFile)
-}
-
-def includePomModules
-includePomModules = { File projectDir, String parentPath ->
-    def pomFile = new File(projectDir, 'pom.xml')
-
-    if (!pomFile.isFile()) {
-        return
-    }
-
-    def pom = readPom(pomFile)
-    pom.modules.module.each { moduleNode ->
-        def moduleName = moduleNode.text().trim()
-
-        if (!moduleName) {
-            return
-        }
-
-        def childDir = new File(projectDir, moduleName)
-
-        if (!new File(childDir, 'pom.xml').isFile()) {
-            return
-        }
-
-        def childPath = parentPath ? "${parentPath}:${moduleName}" : ":${moduleName}"
-        include childPath
-        project(childPath).projectDir = childDir
-        includePomModules(childDir, childPath)
-    }
-}
-
-includePomModules(settingsDir, '')
+include ':i18n'
+project(':i18n').projectDir = file('i18n')
+include ':all'
+project(':all').projectDir = file('all')
+include ':jdbm-partition'
+project(':jdbm-partition').projectDir = file('jdbm-partition')
+include ':mavibot-partition'
+project(':mavibot-partition').projectDir = file('mavibot-partition')
+include ':xdbm-partition'
+project(':xdbm-partition').projectDir = file('xdbm-partition')
+include ':core-shared'
+project(':core-shared').projectDir = file('core-shared')
+include ':core-api'
+project(':core-api').projectDir = file('core-api')
+include ':interceptors'
+project(':interceptors').projectDir = file('interceptors')
+include ':interceptors:normalization'
+project(':interceptors:normalization').projectDir = file('interceptors/normalization')
+include ':interceptors:event'
+project(':interceptors:event').projectDir = file('interceptors/event')
+include ':interceptors:subtree'
+project(':interceptors:subtree').projectDir = file('interceptors/subtree')
+include ':interceptors:authz'
+project(':interceptors:authz').projectDir = file('interceptors/authz')
+include ':interceptors:admin'
+project(':interceptors:admin').projectDir = file('interceptors/admin')
+include ':interceptors:authn'
+project(':interceptors:authn').projectDir = file('interceptors/authn')
+include ':interceptors:changelog'
+project(':interceptors:changelog').projectDir = file('interceptors/changelog')
+include ':interceptors:journal'
+project(':interceptors:journal').projectDir = file('interceptors/journal')
+include ':interceptors:referral'
+project(':interceptors:referral').projectDir = file('interceptors/referral')
+include ':interceptors:operational'
+project(':interceptors:operational').projectDir = file('interceptors/operational')
+include ':interceptors:collective'
+project(':interceptors:collective').projectDir = file('interceptors/collective')
+include ':interceptors:logger'
+project(':interceptors:logger').projectDir = file('interceptors/logger')
+include ':interceptors:exception'
+project(':interceptors:exception').projectDir = file('interceptors/exception')
+include ':interceptors:hash'
+project(':interceptors:hash').projectDir = file('interceptors/hash')
+include ':interceptors:schema'
+project(':interceptors:schema').projectDir = file('interceptors/schema')
+include ':interceptors:trigger'
+project(':interceptors:trigger').projectDir = file('interceptors/trigger')
+include ':interceptors:number'
+project(':interceptors:number').projectDir = file('interceptors/number')
+include ':core'
+project(':core').projectDir = file('core')
+include ':core-annotations'
+project(':core-annotations').projectDir = file('core-annotations')
+include ':server-annotations'
+project(':server-annotations').projectDir = file('server-annotations')
+include ':core-jndi'
+project(':core-jndi').projectDir = file('core-jndi')
+include ':core-constants'
+project(':core-constants').projectDir = file('core-constants')
+include ':core-integ'
+project(':core-integ').projectDir = file('core-integ')
+include ':core-avl'
+project(':core-avl').projectDir = file('core-avl')
+include ':ldif-partition'
+project(':ldif-partition').projectDir = file('ldif-partition')
+include ':protocol-shared'
+project(':protocol-shared').projectDir = file('protocol-shared')
+include ':kerberos-codec'
+project(':kerberos-codec').projectDir = file('kerberos-codec')
+include ':protocol-ntp'
+project(':protocol-ntp').projectDir = file('protocol-ntp')
+include ':protocol-ldap'
+project(':protocol-ldap').projectDir = file('protocol-ldap')
+include ':protocol-kerberos'
+project(':protocol-kerberos').projectDir = file('protocol-kerberos')
+include ':protocol-dhcp'
+project(':protocol-dhcp').projectDir = file('protocol-dhcp')
+include ':protocol-dns'
+project(':protocol-dns').projectDir = file('protocol-dns')
+include ':server-integ'
+project(':server-integ').projectDir = file('server-integ')
+include ':server-config'
+project(':server-config').projectDir = file('server-config')
+include ':service-builder'
+project(':service-builder').projectDir = file('service-builder')
+include ':server-jndi'
+project(':server-jndi').projectDir = file('server-jndi')
+include ':interceptor-kerberos'
+project(':interceptor-kerberos').projectDir = file('interceptor-kerberos')
+include ':kerberos-test'
+project(':kerberos-test').projectDir = file('kerberos-test')
+include ':http-directory-bridge'
+project(':http-directory-bridge').projectDir = file('http-directory-bridge')
+include ':http-integration'
+project(':http-integration').projectDir = file('http-integration')
+include ':test-framework'
+project(':test-framework').projectDir = file('test-framework')
+include ':ldap-client-test'
+project(':ldap-client-test').projectDir = file('ldap-client-test')
+include ':kerberos-client'
+project(':kerberos-client').projectDir = file('kerberos-client')
+include ':service'
+project(':service').projectDir = file('service')
+include ':wrapper'
+project(':wrapper').projectDir = file('wrapper')
+include ':installers-maven-plugin'
+project(':installers-maven-plugin').projectDir = file('installers-maven-plugin')
+include ':installers'
+project(':installers').projectDir = file('installers')

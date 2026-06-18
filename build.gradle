@@ -1,90 +1,819 @@
-import groovy.xml.XmlSlurper
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
-def readPom(File pomFile) {
-    new XmlSlurper(false, false).parse(pomFile)
+group = 'net.xdob.directory.server'
+version = '2.0.0-M24V20260126'
+
+ext.dependencyManagement = [
+    'ch.qos.logback:logback-classic': '1.2.3',
+    'commons-cli:commons-cli': '1.4',
+    'commons-daemon:commons-daemon': '1.0.15',
+    'commons-net:commons-net': '3.6',
+    'commons-pool:commons-pool': '1.6',
+    'dnsjava:dnsjava': '2.1.8',
+    'findbugs:annotations': '1.0.0',
+    'junit:junit': '4.13.2',
+    'ldapsdk:ldapsdk': '4.1',
+    'log4j:log4j': '1.2.17',
+    'net.sf.ehcache:ehcache': '2.10.4',
+    'net.xdob.directory.api:api-all': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-asn1-api': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-asn1-ber': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-dsml-engine': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-dsml-parser': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-i18n': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-client-api': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-codec-core': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-codec-standalone': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-aci': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-codec': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-codec-api': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-sp': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-trigger': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-extras-util': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-model': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-ldap-schema-data': '1.0.0-M20V20260126',
+    'net.xdob.directory.api:api-util': '1.0.0-M20V20260126',
+    'net.xdob.directory.jdbm:apacheds-jdbm1': '2.0.0-M4',
+    'net.xdob.directory.mavibot:mavibot': '1.0.0-M8V20260126',
+    'net.xdob.directory.server:apacheds-all': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-benchmarks': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-annotations': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-api': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-avl': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-constants': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-integ': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-jndi': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-core-shared': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-default-config': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-http-directory-bridge': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-http-integration': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-i18n': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-installers': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-installers-maven-plugin': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptor-kerberos': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-admin': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-authn': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-authz': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-changelog': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-collective': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-event': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-exception': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-hash': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-journal': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-logger': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-normalization': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-number': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-operational': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-referral': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-schema': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-subtree': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-interceptors-trigger': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-jdbm-partition': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-kerberos-codec': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-kerberos-shared': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-kerberos-test': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-ldap-client-test': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-ldif-partition': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-mavibot-partition': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-dhcp': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-dns': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-kerberos': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-ldap': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-ntp': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-protocol-shared': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-annotations': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-config': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-config-builder': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-integ': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-jndi': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-server-sar': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-service': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-service-builder': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-syncrepl': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-test-framework': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-wrapper': '2.0.0-M24V20260126',
+    'net.xdob.directory.server:apacheds-xdbm-partition': '2.0.0-M24V20260126',
+    'org.apache.ant:ant': '1.10.1',
+    'org.apache.commons:commons-collections4': '4.4',
+    'org.apache.commons:commons-lang3': '3.20.0',
+    'org.apache.directory.junit:junit-addons': '0.1',
+    'org.apache.felix:org.apache.felix.framework': '5.6.4',
+    'org.apache.maven:maven-archiver': '3.1.1',
+    'org.apache.maven:maven-artifact': '3.3.9',
+    'org.apache.maven:maven-plugin-api': '3.3.9',
+    'org.apache.maven:maven-project': '3.0-alpha-2',
+    'org.apache.mina:mina-core': '2.0.27',
+    'org.bouncycastle:bcprov-jdk15to18': '1.76',
+    'org.codehaus.plexus:plexus-utils': '3.0.24',
+    'org.eclipse.jetty:jetty-webapp': '9.4.55.v20240627',
+    'org.ops4j.pax.exam:pax-exam-container-forked': '4.11.0',
+    'org.ops4j.pax.exam:pax-exam-junit4': '4.11.0',
+    'org.ops4j.pax.exam:pax-exam-link-mvn': '4.11.0',
+    'org.ops4j.pax.url:pax-url-aether': '2.5.2',
+    'org.slf4j:slf4j-api': '1.7.25',
+    'org.slf4j:slf4j-log4j12': '1.7.25',
+    'tanukisoft:wrapper': '3.2.3',
+]
+
+ext.projectModel = [
+    ':i18n': [artifactId: 'apacheds-i18n', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':all': [artifactId: 'apacheds-all', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
+    ':jdbm-partition': [artifactId: 'apacheds-jdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':mavibot-partition': [artifactId: 'apacheds-mavibot-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':xdbm-partition': [artifactId: 'apacheds-xdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-shared': [artifactId: 'apacheds-core-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-api': [artifactId: 'apacheds-core-api', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors': [artifactId: 'apacheds-interceptors', packaging: 'pom', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
+    ':interceptors:normalization': [artifactId: 'apacheds-interceptors-normalization', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:event': [artifactId: 'apacheds-interceptors-event', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:subtree': [artifactId: 'apacheds-interceptors-subtree', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:authz': [artifactId: 'apacheds-interceptors-authz', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:admin': [artifactId: 'apacheds-interceptors-admin', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:authn': [artifactId: 'apacheds-interceptors-authn', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:changelog': [artifactId: 'apacheds-interceptors-changelog', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:journal': [artifactId: 'apacheds-interceptors-journal', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:referral': [artifactId: 'apacheds-interceptors-referral', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:operational': [artifactId: 'apacheds-interceptors-operational', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:collective': [artifactId: 'apacheds-interceptors-collective', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:logger': [artifactId: 'apacheds-interceptors-logger', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:exception': [artifactId: 'apacheds-interceptors-exception', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:hash': [artifactId: 'apacheds-interceptors-hash', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:schema': [artifactId: 'apacheds-interceptors-schema', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:trigger': [artifactId: 'apacheds-interceptors-trigger', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptors:number': [artifactId: 'apacheds-interceptors-number', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core': [artifactId: 'apacheds-core', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-annotations': [artifactId: 'apacheds-core-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':server-annotations': [artifactId: 'apacheds-server-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-jndi': [artifactId: 'apacheds-core-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-constants': [artifactId: 'apacheds-core-constants', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-integ': [artifactId: 'apacheds-core-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':core-avl': [artifactId: 'apacheds-core-avl', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':ldif-partition': [artifactId: 'apacheds-ldif-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-shared': [artifactId: 'apacheds-protocol-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':kerberos-codec': [artifactId: 'apacheds-kerberos-codec', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-ntp': [artifactId: 'apacheds-protocol-ntp', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-ldap': [artifactId: 'apacheds-protocol-ldap', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-kerberos': [artifactId: 'apacheds-protocol-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-dhcp': [artifactId: 'apacheds-protocol-dhcp', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':protocol-dns': [artifactId: 'apacheds-protocol-dns', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':server-integ': [artifactId: 'apacheds-server-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':server-config': [artifactId: 'apacheds-server-config', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':service-builder': [artifactId: 'apacheds-service-builder', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':server-jndi': [artifactId: 'apacheds-server-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':interceptor-kerberos': [artifactId: 'apacheds-interceptor-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':kerberos-test': [artifactId: 'apacheds-kerberos-test', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':http-directory-bridge': [artifactId: 'apacheds-http-directory-bridge', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':http-integration': [artifactId: 'apacheds-http-integration', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':test-framework': [artifactId: 'apacheds-test-framework', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':ldap-client-test': [artifactId: 'ldap-client-test', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':kerberos-client': [artifactId: 'kerberos-client', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':service': [artifactId: 'apacheds-service', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':wrapper': [artifactId: 'apacheds-wrapper', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':installers-maven-plugin': [artifactId: 'apacheds-installers-maven-plugin', packaging: 'maven-plugin', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
+    ':installers': [artifactId: 'apacheds-installers', packaging: 'pom', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
+]
+
+ext.projectDependencies = [
+    ':i18n': [
+    ],
+    ':all': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-avl', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-constants', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.jdbm', artifactId: 'apacheds-jdbm1', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-jdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-ldif-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-dhcp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-dns', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ntp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-config', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':jdbm-partition': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-avl', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.jdbm', artifactId: 'apacheds-jdbm1', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':mavibot-partition': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.mavibot', artifactId: 'mavibot', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-avl', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':xdbm-partition': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-avl', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-collections4', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core-shared': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.jdbm', artifactId: 'apacheds-jdbm1', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core-api': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-constants', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-aci', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors': [
+    ],
+    ':interceptors:normalization': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:event': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:subtree': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:authz': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-aci', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:admin': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:authn': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-collections4', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:changelog': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:journal': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:referral': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:operational': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:collective': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:logger': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-collections4', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'provided', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-aci', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-trigger', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'provided', type: 'jar'],
+    ],
+    ':interceptors:exception': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-collections4', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:hash': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-collections4', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-config', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'provided', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-aci', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-trigger', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'provided', type: 'jar'],
+    ],
+    ':interceptors:schema': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:trigger': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-trigger', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptors:number': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-admin', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-authn', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-number', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-authz', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-changelog', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-collective', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-event', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-exception', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-journal', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-normalization', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-operational', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-referral', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-schema', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-subtree', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-trigger', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.bouncycastle', artifactId: 'bcprov-jdk15to18', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core-annotations': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-ldif-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-jdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.mavibot', artifactId: 'mavibot', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-mavibot-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'junit', artifactId: 'junit', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':server-annotations': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'provided', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'junit', artifactId: 'junit', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core-jndi': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'provided', type: 'jar'],
+    ],
+    ':core-constants': [
+    ],
+    ':core-integ': [
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-authn', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-hash', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'provided', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'provided', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-sp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':core-avl': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':ldif-partition': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':protocol-shared': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':kerberos-codec': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-ber', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':protocol-ntp': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'commons-net', artifactId: 'commons-net', version: '', scope: 'test', type: 'jar'],
+    ],
+    ':protocol-ldap': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.jdbm', artifactId: 'apacheds-jdbm1', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-jdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-ber', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-sp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.bouncycastle', artifactId: 'bcprov-jdk15to18', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':protocol-kerberos': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.sf.ehcache', artifactId: 'ehcache', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':protocol-dhcp': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':protocol-dns': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':server-integ': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-integ', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-test', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'ldapsdk', artifactId: 'ldapsdk', version: '', scope: 'compile', type: 'jar'],
+        [group: 'log4j', artifactId: 'log4j', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-sp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-extras-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'commons-net', artifactId: 'commons-net', version: '', scope: 'test', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-dsml-engine', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':server-config': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-ldif-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+    ],
+    ':service-builder': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptors-hash', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-jdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-ldif-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-dhcp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-dns', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ntp', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-http-integration', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-config', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-mavibot-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.mina', artifactId: 'mina-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':server-jndi': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-ldif-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-xdbm-partition', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':interceptor-kerberos': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-asn1-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':kerberos-test': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-jndi', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.commons', artifactId: 'commons-lang3', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':http-directory-bridge': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':http-integration': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-constants', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-http-directory-bridge', version: '2.0.0-M24V20260126', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.bouncycastle', artifactId: 'bcprov-jdk15to18', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.eclipse.jetty', artifactId: 'jetty-webapp', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':test-framework': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-i18n', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'junit', artifactId: 'junit', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':ldap-client-test': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-ldap', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-test', version: '', scope: 'test', type: 'test-jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.mavibot', artifactId: 'mavibot', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-client-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+    ],
+    ':kerberos-client': [
+        [group: 'org.apache.directory.junit', artifactId: 'junit-addons', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-codec', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-server-annotations', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-test-framework', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-interceptor-kerberos', version: '', scope: 'test', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-kerberos-test', version: '', scope: 'test', type: 'test-jar'],
+    ],
+    ':service': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-annotations', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-service-builder', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-codec-standalone', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-ldap-schema-data', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.api', artifactId: 'api-util', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.slf4j', artifactId: 'slf4j-log4j12', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':wrapper': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-service', version: '', scope: 'compile', type: 'jar'],
+        [group: 'tanukisoft', artifactId: 'wrapper', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':installers-maven-plugin': [
+        [group: 'org.apache.maven', artifactId: 'maven-plugin-api', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.maven', artifactId: 'maven-project', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.codehaus.plexus', artifactId: 'plexus-utils', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.apache.ant', artifactId: 'ant', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-service', version: '', scope: 'compile', type: 'jar'],
+    ],
+    ':installers': [
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-service', version: '', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-wrapper', version: '', scope: 'compile', type: 'jar'],
+        [group: 'org.slf4j', artifactId: 'slf4j-api', version: '', scope: 'provided', type: 'jar'],
+    ],
+]
+
+ext.moduleMetadata = projectModel.collectEntries { path, model ->
+    [(model.artifactId): [path: path, group: model.group, packaging: model.packaging]]
 }
-
-def directText(node, String name) {
-    def child = node.children().find { it.name() == name }
-    child == null ? null : child.text().trim()
-}
-
-def rootPom = readPom(file('pom.xml'))
-def rootGroupId = directText(rootPom, 'groupId') ?: directText(rootPom.parent, 'groupId')
-def rootVersion = directText(rootPom, 'version') ?: directText(rootPom.parent, 'version')
-def rootProperties = [:]
-
-rootPom.properties.children().each { property ->
-    rootProperties[property.name().toString()] = property.text().trim()
-}
-
-group = rootGroupId
-version = rootVersion
-
-def resolveValue
-resolveValue = { String value, Project owner = rootProject ->
-    if (value == null) {
-        return null
-    }
-
-    value.replaceAll(/\$\{([^}]+)\}/) { full, key ->
-        switch (key) {
-            case 'project.groupId':
-            case 'pom.groupId':
-                return owner.group.toString()
-            case 'project.version':
-            case 'pom.version':
-                return owner.version.toString()
-            case 'project.artifactId':
-            case 'pom.artifactId':
-                return owner.ext.mavenArtifactId.toString()
-            default:
-                return rootProperties[key] ?: full
-        }
-    }
-}
-
-def dependencyManagement = [:]
-rootPom.dependencyManagement.dependencies.dependency.each { dep ->
-    def groupId = resolveValue(directText(dep, 'groupId'))
-    def artifactId = resolveValue(directText(dep, 'artifactId'))
-    def version = resolveValue(directText(dep, 'version'))
-
-    if (groupId && artifactId && version) {
-        dependencyManagement["${groupId}:${artifactId}"] = version
-    }
-}
-
-def moduleMetadata = [:]
 
 allprojects { project ->
-    def pomFile = project.file('pom.xml')
+    def model = rootProject.ext.projectModel[project.path]
 
-    if (pomFile.isFile()) {
-        def pom = readPom(pomFile)
-        def artifactId = directText(pom, 'artifactId') ?: project.name
-        def packaging = directText(pom, 'packaging') ?: 'jar'
-        def groupId = directText(pom, 'groupId') ?: directText(pom.parent, 'groupId') ?: rootGroupId
-        def versionText = directText(pom, 'version') ?: directText(pom.parent, 'version') ?: rootVersion
-
-        project.group = resolveValue(groupId, project)
-        project.version = resolveValue(versionText, project)
-        project.ext.mavenPom = pom
-        project.ext.mavenArtifactId = artifactId
-        project.ext.mavenPackaging = packaging
-        project.ext.hasJavaSources = project.file('src/main/java').isDirectory() || project.file('src/test/java').isDirectory()
-
-        moduleMetadata[artifactId] = [
-            path: project.path,
-            group: project.group.toString(),
-            packaging: packaging
-        ]
+    if (project == rootProject) {
+        project.group = rootProject.group
+        project.version = rootProject.version
+    } else if (model) {
+        project.group = model.group
+        project.version = model.version
+        project.ext.mavenArtifactId = model.artifactId
+        project.ext.mavenPackaging = model.packaging
+        project.ext.hasJavaSources = model.hasJavaSources
     }
 }
 
 subprojects { project ->
-    def isPomOnly = project.ext.mavenPackaging == 'pom' && !project.ext.hasJavaSources
+    def model = rootProject.ext.projectModel[project.path]
+    def isPomOnly = model?.packaging == 'pom' && !model?.hasJavaSources
 
     if (isPomOnly) {
         return
@@ -123,33 +852,19 @@ subprojects { project ->
         }
         if (project.path in [':xdbm-partition', ':jdbm-partition']) {
             implementation project.dependencies.project(path: ':core-constants')
-            implementation "net.sf.ehcache:ehcache:${dependencyManagement['net.sf.ehcache:ehcache']}"
+            implementation "net.sf.ehcache:ehcache:${rootProject.ext.dependencyManagement['net.sf.ehcache:ehcache']}"
         }
         if (project.path == ':jdbm-partition') {
-            testImplementation "net.xdob.directory.api:api-ldap-extras-util:${dependencyManagement['net.xdob.directory.api:api-ldap-extras-util']}"
+            testImplementation "net.xdob.directory.api:api-ldap-extras-util:${rootProject.ext.dependencyManagement['net.xdob.directory.api:api-ldap-extras-util']}"
         }
         if (project.file('src/test/java').isDirectory()) {
-            testImplementation "junit:junit:${dependencyManagement['junit:junit']}"
+            testImplementation "junit:junit:${rootProject.ext.dependencyManagement['junit:junit']}"
         }
 
-        def pom = project.ext.mavenPom
-
-        pom.dependencies.dependency.each { dep ->
-            def groupId = resolveValue(directText(dep, 'groupId'), project)
-            def artifactId = resolveValue(directText(dep, 'artifactId'), project)
-            def versionText = resolveValue(directText(dep, 'version'), project)
-            def scope = directText(dep, 'scope') ?: 'compile'
-            def type = directText(dep, 'type') ?: 'jar'
-            def classifier = directText(dep, 'classifier')
-
-            if (!groupId || !artifactId) {
-                return
-            }
-
-            def targetModule = moduleMetadata[artifactId]
+        rootProject.ext.projectDependencies[project.path].each { dep ->
             def configurationName
 
-            switch (scope) {
+            switch (dep.scope) {
                 case 'test':
                     configurationName = 'testImplementation'
                     break
@@ -164,8 +879,10 @@ subprojects { project ->
                     break
             }
 
-            if (targetModule && targetModule.group == groupId) {
-                if (type == 'test-jar') {
+            def targetModule = rootProject.ext.moduleMetadata[dep.artifactId]
+
+            if (targetModule && targetModule.group == dep.group) {
+                if (dep.type == 'test-jar') {
                     add(configurationName, project.dependencies.project(path: targetModule.path, configuration: 'testArtifacts'))
                 } else {
                     add(configurationName, project.dependencies.project(path: targetModule.path))
@@ -173,16 +890,16 @@ subprojects { project ->
                 return
             }
 
-            def managedVersion = versionText ?: dependencyManagement["${groupId}:${artifactId}"]
+            def managedVersion = dep.version ?: rootProject.ext.dependencyManagement["${dep.group}:${dep.artifactId}"]
 
             if (!managedVersion) {
-                throw new GradleException("No version found for ${groupId}:${artifactId} in ${project.path}")
+                throw new GradleException("No version found for ${dep.group}:${dep.artifactId} in ${project.path}")
             }
 
-            def notation = "${groupId}:${artifactId}:${managedVersion}"
+            def notation = "${dep.group}:${dep.artifactId}:${managedVersion}"
 
-            if (classifier) {
-                notation = "${notation}:${classifier}"
+            if (dep.classifier) {
+                notation = "${notation}:${dep.classifier}"
             }
 
             add(configurationName, notation)
