@@ -2,7 +2,9 @@
 *.MF
 /**/META-INF/
 /**/target/
+/**/build/
 /**/bin/
 /**/out/
+/.gradle/
 /.idea/
 /*/META-INF/

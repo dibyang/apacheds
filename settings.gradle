@@ -1,0 +1,65 @@
+import groovy.xml.XmlSlurper
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            name = 'apacheSnapshots'
+            url = uri('https://repository.apache.org/snapshots')
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
+        maven {
+            name = 'repo5'
+            url = uri('http://nexus.doob.net.cn:8081/repository/maven-public/')
+            allowInsecureProtocol = true
+        }
+    }
+}
+
+rootProject.name = 'apacheds-parent'
+
+def readPom = { File pomFile ->
+    new XmlSlurper(false, false).parse(pomFile)
+}
+
+def includePomModules
+includePomModules = { File projectDir, String parentPath ->
+    def pomFile = new File(projectDir, 'pom.xml')
+
+    if (!pomFile.isFile()) {
+        return
+    }
+
+    def pom = readPom(pomFile)
+    pom.modules.module.each { moduleNode ->
+        def moduleName = moduleNode.text().trim()
+
+        if (!moduleName) {
+            return
+        }
+
+        def childDir = new File(projectDir, moduleName)
+
+        if (!new File(childDir, 'pom.xml').isFile()) {
+            return
+        }
+
+        def childPath = parentPath ? "${parentPath}:${moduleName}" : ":${moduleName}"
+        include childPath
+        project(childPath).projectDir = childDir
+        includePomModules(childDir, childPath)
+    }
+}
+
+includePomModules(settingsDir, '')

@@ -1,0 +1,295 @@
+import groovy.xml.XmlSlurper
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
+def readPom(File pomFile) {
+    new XmlSlurper(false, false).parse(pomFile)
+}
+
+def directText(node, String name) {
+    def child = node.children().find { it.name() == name }
+    child == null ? null : child.text().trim()
+}
+
+def rootPom = readPom(file('pom.xml'))
+def rootGroupId = directText(rootPom, 'groupId') ?: directText(rootPom.parent, 'groupId')
+def rootVersion = directText(rootPom, 'version') ?: directText(rootPom.parent, 'version')
+def rootProperties = [:]
+
+rootPom.properties.children().each { property ->
+    rootProperties[property.name().toString()] = property.text().trim()
+}
+
+group = rootGroupId
+version = rootVersion
+
+def resolveValue
+resolveValue = { String value, Project owner = rootProject ->
+    if (value == null) {
+        return null
+    }
+
+    value.replaceAll(/\$\{([^}]+)\}/) { full, key ->
+        switch (key) {
+            case 'project.groupId':
+            case 'pom.groupId':
+                return owner.group.toString()
+            case 'project.version':
+            case 'pom.version':
+                return owner.version.toString()
+            case 'project.artifactId':
+            case 'pom.artifactId':
+                return owner.ext.mavenArtifactId.toString()
+            default:
+                return rootProperties[key] ?: full
+        }
+    }
+}
+
+def dependencyManagement = [:]
+rootPom.dependencyManagement.dependencies.dependency.each { dep ->
+    def groupId = resolveValue(directText(dep, 'groupId'))
+    def artifactId = resolveValue(directText(dep, 'artifactId'))
+    def version = resolveValue(directText(dep, 'version'))
+
+    if (groupId && artifactId && version) {
+        dependencyManagement["${groupId}:${artifactId}"] = version
+    }
+}
+
+def moduleMetadata = [:]
+
+allprojects { project ->
+    def pomFile = project.file('pom.xml')
+
+    if (pomFile.isFile()) {
+        def pom = readPom(pomFile)
+        def artifactId = directText(pom, 'artifactId') ?: project.name
+        def packaging = directText(pom, 'packaging') ?: 'jar'
+        def groupId = directText(pom, 'groupId') ?: directText(pom.parent, 'groupId') ?: rootGroupId
+        def versionText = directText(pom, 'version') ?: directText(pom.parent, 'version') ?: rootVersion
+
+        project.group = resolveValue(groupId, project)
+        project.version = resolveValue(versionText, project)
+        project.ext.mavenPom = pom
+        project.ext.mavenArtifactId = artifactId
+        project.ext.mavenPackaging = packaging
+        project.ext.hasJavaSources = project.file('src/main/java').isDirectory() || project.file('src/test/java').isDirectory()
+
+        moduleMetadata[artifactId] = [
+            path: project.path,
+            group: project.group.toString(),
+            packaging: packaging
+        ]
+    }
+}
+
+subprojects { project ->
+    def isPomOnly = project.ext.mavenPackaging == 'pom' && !project.ext.hasJavaSources
+
+    if (isPomOnly) {
+        return
+    }
+
+    apply plugin: 'java-library'
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'ISO-8859-1'
+    }
+
+    configurations {
+        testArtifacts {
+            canBeConsumed = true
+            canBeResolved = false
+        }
+    }
+
+    tasks.register('testJar', Jar) {
+        archiveClassifier.set('tests')
+        from sourceSets.test.output
+    }
+
+    artifacts {
+        testArtifacts tasks.named('testJar')
+    }
+
+    dependencies {
+        if (project.path == ':core-shared') {
+            implementation project.dependencies.project(path: ':core-constants')
+        }
+        if (project.path in [':xdbm-partition', ':jdbm-partition']) {
+            implementation project.dependencies.project(path: ':core-constants')
+            implementation "net.sf.ehcache:ehcache:${dependencyManagement['net.sf.ehcache:ehcache']}"
+        }
+        if (project.path == ':jdbm-partition') {
+            testImplementation "net.xdob.directory.api:api-ldap-extras-util:${dependencyManagement['net.xdob.directory.api:api-ldap-extras-util']}"
+        }
+        if (project.file('src/test/java').isDirectory()) {
+            testImplementation "junit:junit:${dependencyManagement['junit:junit']}"
+        }
+
+        def pom = project.ext.mavenPom
+
+        pom.dependencies.dependency.each { dep ->
+            def groupId = resolveValue(directText(dep, 'groupId'), project)
+            def artifactId = resolveValue(directText(dep, 'artifactId'), project)
+            def versionText = resolveValue(directText(dep, 'version'), project)
+            def scope = directText(dep, 'scope') ?: 'compile'
+            def type = directText(dep, 'type') ?: 'jar'
+            def classifier = directText(dep, 'classifier')
+
+            if (!groupId || !artifactId) {
+                return
+            }
+
+            def targetModule = moduleMetadata[artifactId]
+            def configurationName
+
+            switch (scope) {
+                case 'test':
+                    configurationName = 'testImplementation'
+                    break
+                case 'provided':
+                    configurationName = 'compileOnly'
+                    break
+                case 'runtime':
+                    configurationName = 'runtimeOnly'
+                    break
+                default:
+                    configurationName = 'api'
+                    break
+            }
+
+            if (targetModule && targetModule.group == groupId) {
+                if (type == 'test-jar') {
+                    add(configurationName, project.dependencies.project(path: targetModule.path, configuration: 'testArtifacts'))
+                } else {
+                    add(configurationName, project.dependencies.project(path: targetModule.path))
+                }
+                return
+            }
+
+            def managedVersion = versionText ?: dependencyManagement["${groupId}:${artifactId}"]
+
+            if (!managedVersion) {
+                throw new GradleException("No version found for ${groupId}:${artifactId} in ${project.path}")
+            }
+
+            def notation = "${groupId}:${artifactId}:${managedVersion}"
+
+            if (classifier) {
+                notation = "${notation}:${classifier}"
+            }
+
+            add(configurationName, notation)
+        }
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnit()
+        systemProperty 'workingDirectory', "${project.buildDir}/server-work"
+        doFirst {
+            delete "${project.buildDir}/server-work"
+        }
+        testLogging {
+            events 'failed'
+            exceptionFormat = TestExceptionFormat.FULL
+        }
+    }
+
+    tasks.named('test', Test) {
+        exclude '**/*IT.class'
+        exclude '**/*ITest.class'
+        exclude '**/*PerfIT.class'
+        exclude '**/*PerfITest.class'
+    }
+
+    def integrationTestSources = project.fileTree('src/test/java') {
+        include '**/*IT.java'
+        include '**/*ITest.java'
+    }
+
+    if (!integrationTestSources.isEmpty()) {
+        tasks.register('integrationTest', Test) {
+            description = 'Runs integration tests separated from the default unit test lifecycle.'
+            group = 'verification'
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.runtimeClasspath
+            include '**/*IT.class'
+            include '**/*ITest.class'
+            exclude '**/*PerfIT.class'
+            exclude '**/*PerfITest.class'
+            shouldRunAfter tasks.named('test')
+        }
+    }
+
+    if (project.path == ':jdbm-partition') {
+        tasks.named('test', Test) {
+            exclude '**/DIRSERVER2102JdbmConcurrencyTest.class'
+        }
+
+        tasks.register('jdbmConcurrencyTest', Test) {
+            description = 'Runs the DIRSERVER-2102 JDBM concurrency reproducer.'
+            group = 'verification'
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.runtimeClasspath
+            include '**/DIRSERVER2102JdbmConcurrencyTest.class'
+            shouldRunAfter tasks.named('test')
+        }
+    }
+
+    if (project.path == ':ldap-client-test') {
+        tasks.named('test', Test) {
+            exclude '**/LdapSSLConnectionTest.class'
+        }
+
+        tasks.register('ldapSslConnectionTest', Test) {
+            description = 'Runs LDAP SSL and StartTLS tests that are sensitive to local TLS settings.'
+            group = 'verification'
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.runtimeClasspath
+            include '**/LdapSSLConnectionTest.class'
+            shouldRunAfter tasks.named('test')
+        }
+    }
+
+    if (project.path == ':server-annotations') {
+        tasks.named('test', Test) {
+            exclude '**/CreateKdcServerAnnotationTest.class'
+            exclude '**/DirectoryServiceAnnotationTest.class'
+        }
+
+        tasks.register('serverAnnotationIntegrationTest', Test) {
+            description = 'Runs server annotation tests that start DirectoryService, LDAP, and KDC services.'
+            group = 'verification'
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.runtimeClasspath
+            include '**/CreateKdcServerAnnotationTest.class'
+            include '**/DirectoryServiceAnnotationTest.class'
+            shouldRunAfter tasks.named('test')
+        }
+    }
+
+    if (project.path == ':test-framework') {
+        tasks.named('test', Test) {
+            exclude '**/Test*.class'
+            exclude '**/*Test.class'
+            exclude '**/*Test*.class'
+        }
+
+        tasks.register('testFrameworkIntegrationTest', Test) {
+            description = 'Runs tests that exercise the ApacheDS integration test framework itself.'
+            group = 'verification'
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.runtimeClasspath
+            include '**/Test*.class'
+            include '**/*Test.class'
+            include '**/*Test*.class'
+            shouldRunAfter tasks.named('test')
+        }
+    }
+}
