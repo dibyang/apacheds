@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0-M25
+## 2.0.0-M26
 
 - Switch the ApacheDS JDBM dependency to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`.
 - Fix ApacheDS-side `JdbmTable` duplicate BTree demotion races by coordinating cursor lifetimes with `put`, `remove`, and `sync` through a table-level read-write lock.
