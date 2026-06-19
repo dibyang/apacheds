@@ -3,6 +3,29 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 group = 'net.xdob.directory.server'
 version = '2.0.0-M24V20260126'
 
+ext.releaseProperties = new Properties()
+def releasePropertiesFile = rootProject.file('signing.properties')
+
+if (releasePropertiesFile.isFile()) {
+    releasePropertiesFile.withInputStream { stream ->
+        releaseProperties.load(stream)
+    }
+}
+
+ext.releaseProperty = { String name ->
+    def value = rootProject.findProperty(name)
+
+    if (value == null) {
+        value = releaseProperties.getProperty(name)
+    }
+
+    if (value == null) {
+        value = System.getenv(name.replace('.', '_').toUpperCase())
+    }
+
+    return value
+}
+
 ext.dependencyManagement = [
     'ch.qos.logback:logback-classic': '1.2.3',
     'commons-cli:commons-cli': '1.4',
@@ -815,38 +838,48 @@ subprojects { project ->
     def model = rootProject.ext.projectModel[project.path]
     def isPomOnly = model?.packaging == 'pom' && !model?.hasJavaSources
 
-    if (isPomOnly) {
-        return
-    }
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
 
-    apply plugin: 'java-library'
+    if (!isPomOnly) {
+        apply plugin: 'java-library'
 
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+        java {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+            withSourcesJar()
+            withJavadocJar()
+        }
 
-    tasks.withType(JavaCompile).configureEach {
-        options.encoding = 'ISO-8859-1'
-    }
+        tasks.withType(JavaCompile).configureEach {
+            options.encoding = 'ISO-8859-1'
+        }
 
-    configurations {
-        testArtifacts {
-            canBeConsumed = true
-            canBeResolved = false
+        tasks.withType(Javadoc).configureEach {
+            failOnError = false
+            options.encoding = 'ISO-8859-1'
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+
+        configurations {
+            testArtifacts {
+                canBeConsumed = true
+                canBeResolved = false
+            }
+        }
+
+        tasks.register('testJar', Jar) {
+            archiveClassifier.set('tests')
+            from sourceSets.test.output
+        }
+
+        artifacts {
+            testArtifacts tasks.named('testJar')
         }
     }
 
-    tasks.register('testJar', Jar) {
-        archiveClassifier.set('tests')
-        from sourceSets.test.output
-    }
-
-    artifacts {
-        testArtifacts tasks.named('testJar')
-    }
-
-    dependencies {
+    if (!isPomOnly) {
+        dependencies {
         if (project.path == ':core-shared') {
             implementation project.dependencies.project(path: ':core-constants')
         }
@@ -904,6 +937,126 @@ subprojects { project ->
 
             add(configurationName, notation)
         }
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = model.group
+                artifactId = model.artifactId
+                version = model.version
+
+                if (!isPomOnly) {
+                    from components.java
+                }
+
+                pom {
+                    name = model.artifactId
+                    description = 'Apache Directory Server module ' + model.artifactId
+                    url = 'https://directory.apache.org/apacheds/'
+                    packaging = model.packaging
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'apache'
+                            name = 'Apache Directory Project'
+                            email = 'dev@directory.apache.org'
+                            organization = 'Apache Software Foundation'
+                            organizationUrl = 'https://www.apache.org/'
+                        }
+                    }
+
+                    scm {
+                        connection = 'scm:git:https://github.com/apache/directory-server.git'
+                        developerConnection = 'scm:git:https://github.com/apache/directory-server.git'
+                        url = 'https://github.com/apache/directory-server'
+                    }
+
+                    withXml {
+                        def root = asNode()
+
+                        if (isPomOnly) {
+                            def dependenciesNode = root.appendNode('dependencies')
+
+                            rootProject.ext.projectDependencies[project.path].each { dep ->
+                                def managedVersion = dep.version ?: rootProject.ext.dependencyManagement["${dep.group}:${dep.artifactId}"]
+
+                                if (!managedVersion) {
+                                    throw new GradleException("No version found for ${dep.group}:${dep.artifactId} in ${project.path}")
+                                }
+
+                                def dependencyNode = dependenciesNode.appendNode('dependency')
+                                dependencyNode.appendNode('groupId', dep.group)
+                                dependencyNode.appendNode('artifactId', dep.artifactId)
+                                dependencyNode.appendNode('version', managedVersion)
+
+                                if (dep.scope && dep.scope != 'compile') {
+                                    dependencyNode.appendNode('scope', dep.scope)
+                                }
+
+                                if (dep.type == 'test-jar') {
+                                    dependencyNode.appendNode('type', 'test-jar')
+                                } else if (dep.type && dep.type != 'jar') {
+                                    dependencyNode.appendNode('type', dep.type)
+                                }
+
+                                if (dep.classifier) {
+                                    dependencyNode.appendNode('classifier', dep.classifier)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = 'sonatypeCentral'
+                def releasesRepository = rootProject.ext.releaseProperty('releasesRepository')
+                def snapshotsRepository = rootProject.ext.releaseProperty('snapshotsRepository')
+                url = uri(project.version.toString().endsWith('-SNAPSHOT') ? snapshotsRepository : releasesRepository)
+                credentials {
+                    username = rootProject.ext.releaseProperty('ossrhUsername')
+                    password = rootProject.ext.releaseProperty('ossrhPassword')
+                }
+            }
+        }
+    }
+
+    signing {
+        def signingKeyId = rootProject.ext.releaseProperty('signing.keyId')
+        def signingPassword = rootProject.ext.releaseProperty('signing.password')
+        def signingSecretKeyRingFile = rootProject.ext.releaseProperty('signing.secretKeyRingFile')
+
+        if (signingKeyId && signingPassword && signingSecretKeyRingFile) {
+            project.ext.set('signing.keyId', signingKeyId)
+            project.ext.set('signing.password', signingPassword)
+            project.ext.set('signing.secretKeyRingFile', signingSecretKeyRingFile)
+        }
+
+        sign publishing.publications.mavenJava
+    }
+
+    tasks.withType(Sign).configureEach {
+        onlyIf {
+            rootProject.ext.releaseProperty('signing.keyId') &&
+                rootProject.ext.releaseProperty('signing.password') &&
+                rootProject.ext.releaseProperty('signing.secretKeyRingFile')
+        }
+    }
+
+    if (isPomOnly) {
+        return
     }
 
     tasks.withType(Test).configureEach {

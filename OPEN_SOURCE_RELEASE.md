@@ -21,6 +21,30 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 .\gradlew.bat :jdbm-partition:jdbmConcurrencyTest
 ```
 
+发布到 Maven Central / Sonatype 兼容仓库前，需在本地准备 `signing.properties` 或等价 Gradle 属性/环境变量：
+
+- `releasesRepository`
+- `snapshotsRepository`
+- `ossrhUsername`
+- `ossrhPassword`
+- `signing.keyId`
+- `signing.password`
+- `signing.secretKeyRingFile`
+
+本地发布验证：
+
+```powershell
+.\gradlew.bat publishToMavenLocal
+```
+
+发布到中央仓库 staging：
+
+```powershell
+.\gradlew.bat publishAllPublicationsToSonatypeCentralRepository
+```
+
+该命令负责上传全部模块的 Maven publication。staging close/release 仍需通过 Sonatype Central Portal 或对应 API 完成。
+
 ## 发布前检查
 
 - 确认仓库中没有 `pom.xml` 残留，避免 Maven 元数据影响 Gradle 项目识别。
@@ -28,6 +52,7 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 - 确认 `build.gradle` 中的 `projectModel`、`projectDependencies`、`dependencyManagement` 与实际模块依赖一致。
 - 执行 `.\gradlew.bat :jdbm-partition:dependencyInsight --dependency apacheds-jdbm1 --configuration compileClasspath`，确认解析到正式版 `2.0.0-M5`。
 - 执行 `.\gradlew.bat :jdbm-partition:jdbmConcurrencyTest`，观察 JDBM 并发回归测试是否稳定通过。
+- 执行 `.\gradlew.bat publishToMavenLocal`，确认所有模块可以生成 POM、主 jar、sources jar、javadoc jar 和 `.asc` 签名。
 - 执行 `.\gradlew.bat build`，确认全量构建通过。
 - 检查 `LICENSE`、`NOTICE`、`DEPENDENCIES` 是否覆盖当前第三方依赖。
 - 检查 `README.txt` 是否需要补充 Gradle 构建说明、JDK 要求和模块范围。
@@ -52,6 +77,7 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 - `.\gradlew.bat :jdbm-partition:jdbmConcurrencyTest --rerun-tasks`：通过。
 - `.\gradlew.bat --% :jdbm-partition:jdbmConcurrencyTest --rerun-tasks --tests org.apache.directory.server.core.partition.impl.btree.jdbm.DIRSERVER2102JdbmConcurrencyTest.testConcurrentBTreeDemotionAndValueCursorDoNotReadDeletedBTree -Ddirserver2102.threadCount=24 -Ddirserver2102.iterations=600`：通过。
 - `.\gradlew.bat assemble`：通过，确认所有模块产物可装配。
+- `.\gradlew.bat publishToMavenLocal`：通过，确认所有模块 publication、POM 元数据、sources/javadoc jar 和 `.asc` 签名可生成。
 - `.\gradlew.bat build`：执行两次，分别超过 15 分钟和 30 分钟后由当前工具超时中断，未得到有效失败日志；正式发布前仍建议在不受工具超时限制的环境中补跑全量构建。
 
 ## 发布产物建议
