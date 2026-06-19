@@ -23,6 +23,8 @@ package org.apache.directory.server.core.partition.impl.btree.jdbm;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import jdbm.RecordManager;
 import jdbm.btree.BTree;
@@ -32,7 +34,9 @@ import jdbm.helper.TupleBrowser;
 import jdbm.recman.BaseRecordManager;
 import jdbm.recman.CacheRecordManager;
 
+import org.apache.directory.api.ldap.model.cursor.AbstractCursor;
 import org.apache.directory.api.ldap.model.cursor.Cursor;
+import org.apache.directory.api.ldap.model.cursor.CursorException;
 import org.apache.directory.api.ldap.model.cursor.EmptyCursor;
 import org.apache.directory.api.ldap.model.cursor.SingletonCursor;
 import org.apache.directory.api.ldap.model.exception.LdapException;
@@ -76,6 +80,9 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
 
     /** a cache of duplicate BTrees */
     private final Map<Long, BTree<K, V>> duplicateBtrees;
+
+    /** Coordinates duplicate BTree cursor lifetimes with redirect demotion. */
+    private final ReentrantReadWriteLock duplicateBtreeLock = new ReentrantReadWriteLock();
 
     /** A Key serializer */
     private final Serializer keySerializer;
@@ -577,6 +584,8 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     @SuppressWarnings("unchecked")
     public synchronized void put( K key, V value ) throws Exception
     {
+        duplicateBtreeLock.writeLock().lock();
+
         try
         {
             if ( LOG.isDebugEnabled() )
@@ -669,6 +678,10 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
             LOG.error( I18n.err( I18n.ERR_131, key, name ), e );
             throw e;
         }
+        finally
+        {
+            duplicateBtreeLock.writeLock().unlock();
+        }
     }
 
 
@@ -679,6 +692,8 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     @SuppressWarnings("unchecked")
     public synchronized void remove( K key, V value ) throws IOException
     {
+        duplicateBtreeLock.writeLock().lock();
+
         try
         {
             if ( LOG.isDebugEnabled() )
@@ -784,6 +799,10 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         {
             LOG.error( I18n.err( I18n.ERR_132, key, value, name ), e );
         }
+        finally
+        {
+            duplicateBtreeLock.writeLock().unlock();
+        }
     }
 
 
@@ -792,6 +811,8 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
      */
     public synchronized void remove( K key )
     {
+        duplicateBtreeLock.writeLock().lock();
+
         try
         {
             if ( LOG.isDebugEnabled() )
@@ -868,84 +889,121 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         {
             LOG.error( I18n.err( I18n.ERR_133, key, name ), e );
         }
+        finally
+        {
+            duplicateBtreeLock.writeLock().unlock();
+        }
     }
 
 
     public Cursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>> cursor() throws LdapException
     {
-        if ( allowsDuplicates )
-        {
-            return new DupsCursor<K, V>( this );
-        }
+        Lock readLock = duplicateBtreeLock.readLock();
+        readLock.lock();
 
-        return new NoDupsCursor<K, V>( this );
+        try
+        {
+            if ( allowsDuplicates )
+            {
+                return lockedCursor( new DupsCursor<K, V>( this ), readLock );
+            }
+
+            return lockedCursor( new NoDupsCursor<K, V>( this ), readLock );
+        }
+        catch ( RuntimeException e )
+        {
+            readLock.unlock();
+            throw e;
+        }
     }
 
 
     @SuppressWarnings("unchecked")
     public Cursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>> cursor( K key ) throws Exception
     {
-        if ( key == null )
+        Lock readLock = duplicateBtreeLock.readLock();
+        readLock.lock();
+
+        try
         {
-            return new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>();
+            if ( key == null )
+            {
+                return lockedCursor( new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(), readLock );
+            }
+
+            V raw = bt.find( key );
+
+            if ( null == raw )
+            {
+                return lockedCursor( new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(), readLock );
+            }
+
+            if ( !allowsDuplicates )
+            {
+                return lockedCursor( new SingletonCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(
+                    new org.apache.directory.api.ldap.model.cursor.Tuple<K, V>( key, raw ) ), readLock );
+            }
+
+            byte[] serialized = ( byte[] ) raw;
+
+            if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
+            {
+                BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
+                return lockedCursor( new KeyTupleBTreeCursor<K, V>( tree, key, valueComparator ), readLock );
+            }
+
+            ArrayTree<V> set = marshaller.deserialize( serialized );
+
+            return lockedCursor( new KeyTupleArrayCursor<K, V>( set, key ), readLock );
         }
-
-        V raw = bt.find( key );
-
-        if ( null == raw )
+        catch ( Exception e )
         {
-            return new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>();
+            readLock.unlock();
+            throw e;
         }
-
-        if ( !allowsDuplicates )
-        {
-            return new SingletonCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(
-                new org.apache.directory.api.ldap.model.cursor.Tuple<K, V>( key, raw ) );
-        }
-
-        byte[] serialized = ( byte[] ) raw;
-
-        if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
-        {
-            BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
-            return new KeyTupleBTreeCursor<K, V>( tree, key, valueComparator );
-        }
-
-        ArrayTree<V> set = marshaller.deserialize( serialized );
-
-        return new KeyTupleArrayCursor<K, V>( set, key );
     }
 
 
     @SuppressWarnings("unchecked")
     public Cursor<V> valueCursor( K key ) throws Exception
     {
-        if ( key == null )
+        Lock readLock = duplicateBtreeLock.readLock();
+        readLock.lock();
+
+        try
         {
-            return new EmptyCursor<V>();
+            if ( key == null )
+            {
+                return lockedCursor( new EmptyCursor<V>(), readLock );
+            }
+
+            V raw = bt.find( key );
+
+            if ( null == raw )
+            {
+                return lockedCursor( new EmptyCursor<V>(), readLock );
+            }
+
+            if ( !allowsDuplicates )
+            {
+                return lockedCursor( new SingletonCursor<V>( raw ), readLock );
+            }
+
+            byte[] serialized = ( byte[] ) raw;
+
+            if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
+            {
+                BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
+                return lockedCursor( new KeyBTreeCursor<V>( tree, valueComparator ), readLock );
+            }
+
+            return lockedCursor( new ArrayTreeCursor<V>( marshaller.deserialize( serialized ) ), readLock );
         }
-
-        V raw = bt.find( key );
-
-        if ( null == raw )
+        catch ( Exception e )
         {
-            return new EmptyCursor<V>();
+            readLock.unlock();
+            throw e;
         }
-
-        if ( !allowsDuplicates )
-        {
-            return new SingletonCursor<V>( raw );
-        }
-
-        byte[] serialized = ( byte[] ) raw;
-
-        if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
-        {
-            BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
-            return new KeyBTreeCursor<V>( tree, valueComparator );
-        }
-
-        return new ArrayTreeCursor<V>( marshaller.deserialize( serialized ) );
     }
 
 
@@ -969,27 +1027,36 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
      */
     public synchronized void sync() throws IOException
     {
-        long recId = recMan.getNamedObject( name + SZSUFFIX );
-        recMan.update( recId, count );
+        duplicateBtreeLock.writeLock().lock();
 
-        // Commit
-        recMan.commit();
-
-        // And flush the journal
-        if ( ( commitNumber.get() % 2000 ) == 0 )
+        try
         {
-            BaseRecordManager baseRecordManager = null;
+            long recId = recMan.getNamedObject( name + SZSUFFIX );
+            recMan.update( recId, count );
 
-            if ( recMan instanceof CacheRecordManager )
-            {
-                baseRecordManager = ( ( BaseRecordManager ) ( ( CacheRecordManager ) recMan ).getRecordManager() );
-            }
-            else
-            {
-                baseRecordManager = ( ( BaseRecordManager ) recMan );
-            }
+            // Commit
+            recMan.commit();
 
-            baseRecordManager.getTransactionManager().synchronizeLog();
+            // And flush the journal
+            if ( ( commitNumber.get() % 2000 ) == 0 )
+            {
+                BaseRecordManager baseRecordManager = null;
+
+                if ( recMan instanceof CacheRecordManager )
+                {
+                    baseRecordManager = ( ( BaseRecordManager ) ( ( CacheRecordManager ) recMan ).getRecordManager() );
+                }
+                else
+                {
+                    baseRecordManager = ( ( BaseRecordManager ) recMan );
+                }
+
+                baseRecordManager.getTransactionManager().synchronizeLog();
+            }
+        }
+        finally
+        {
+            duplicateBtreeLock.writeLock().unlock();
         }
     }
 
@@ -997,6 +1064,137 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     public Marshaller<ArrayTree<V>> getMarshaller()
     {
         return marshaller;
+    }
+
+
+    private <E> Cursor<E> lockedCursor( Cursor<E> cursor, Lock readLock )
+    {
+        return new LockedCursor<E>( cursor, readLock );
+    }
+
+
+    private static final class LockedCursor<E> extends AbstractCursor<E>
+    {
+        private final Cursor<E> delegate;
+        private final Lock readLock;
+        private boolean lockReleased;
+
+
+        private LockedCursor( Cursor<E> delegate, Lock readLock )
+        {
+            this.delegate = delegate;
+            this.readLock = readLock;
+        }
+
+
+        public boolean available()
+        {
+            return delegate.available();
+        }
+
+
+        public void before( E element ) throws LdapException, CursorException
+        {
+            delegate.before( element );
+        }
+
+
+        public void after( E element ) throws LdapException, CursorException
+        {
+            delegate.after( element );
+        }
+
+
+        public void beforeFirst() throws LdapException, CursorException
+        {
+            delegate.beforeFirst();
+        }
+
+
+        public void afterLast() throws LdapException, CursorException
+        {
+            delegate.afterLast();
+        }
+
+
+        public boolean first() throws LdapException, CursorException
+        {
+            return delegate.first();
+        }
+
+
+        public boolean last() throws LdapException, CursorException
+        {
+            return delegate.last();
+        }
+
+
+        public boolean previous() throws LdapException, CursorException
+        {
+            return delegate.previous();
+        }
+
+
+        public boolean next() throws LdapException, CursorException
+        {
+            return delegate.next();
+        }
+
+
+        public E get() throws CursorException
+        {
+            return delegate.get();
+        }
+
+
+        public void close() throws IOException
+        {
+            try
+            {
+                delegate.close();
+            }
+            finally
+            {
+                try
+                {
+                    super.close();
+                }
+                finally
+                {
+                    releaseLock();
+                }
+            }
+        }
+
+
+        public void close( Exception cause ) throws IOException
+        {
+            try
+            {
+                delegate.close( cause );
+            }
+            finally
+            {
+                try
+                {
+                    super.close( cause );
+                }
+                finally
+                {
+                    releaseLock();
+                }
+            }
+        }
+
+
+        private void releaseLock()
+        {
+            if ( !lockReleased )
+            {
+                lockReleased = true;
+                readLock.unlock();
+            }
+        }
     }
 
 

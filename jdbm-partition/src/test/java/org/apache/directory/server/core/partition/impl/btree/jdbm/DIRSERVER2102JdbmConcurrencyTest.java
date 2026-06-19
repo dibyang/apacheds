@@ -37,6 +37,7 @@ import jdbm.recman.CacheRecordManager;
 
 import org.apache.directory.api.ldap.model.constants.SchemaConstants;
 import org.apache.directory.api.ldap.model.cursor.Cursor;
+import org.apache.directory.api.ldap.model.cursor.Tuple;
 import org.apache.directory.api.ldap.model.schema.SchemaManager;
 import org.apache.directory.api.ldap.model.schema.comparators.SerializableComparator;
 import org.apache.directory.api.ldap.schema.extractor.SchemaLdifExtractor;
@@ -56,8 +57,8 @@ import org.junit.Test;
  */
 public class DIRSERVER2102JdbmConcurrencyTest
 {
-    private static final int THREAD_COUNT = 12;
-    private static final int ITERATIONS = 250;
+    private static final int THREAD_COUNT = Integer.getInteger( "dirserver2102.threadCount", 12 );
+    private static final int ITERATIONS = Integer.getInteger( "dirserver2102.iterations", 250 );
     private static final int DUP_LIMIT = 4;
     private static final String DUP_KEY = "1";
 
@@ -210,6 +211,206 @@ public class DIRSERVER2102JdbmConcurrencyTest
                 {
                     table.remove( DUP_KEY, value );
                     table.put( DUP_KEY, value );
+                }
+
+                Thread.yield();
+            }
+        } );
+    }
+
+
+    /**
+     * LDAP index scans use DupsCursor to walk the main table and then the
+     * duplicate-value tree. Concurrent table scans and duplicate updates must
+     * not corrupt either BTree browser path.
+     */
+    @Test
+    public void testConcurrentTableCursorAndUpdatesDoNotCorruptDuplicateBTree() throws Exception
+    {
+        for ( int key = 0; key < THREAD_COUNT; key++ )
+        {
+            for ( int value = 0; value < ITERATIONS; value++ )
+            {
+                table.put( Integer.toString( key ), Integer.toString( value ) );
+            }
+
+            assertTrue( table.isKeyUsingBTree( Integer.toString( key ) ) );
+        }
+
+        runConcurrent( "jdbm-table full duplicate cursor", new ConcurrentOperation()
+        {
+            public void run( int threadIndex, int iteration ) throws Exception
+            {
+                String key = Integer.toString( threadIndex % THREAD_COUNT );
+                String value = Integer.toString( iteration );
+
+                if ( ( threadIndex & 1 ) == 0 )
+                {
+                    Cursor<Tuple<String, String>> cursor = table.cursor();
+
+                    try
+                    {
+                        cursor.beforeFirst();
+
+                        while ( cursor.next() )
+                        {
+                            cursor.get();
+                        }
+                    }
+                    finally
+                    {
+                        cursor.close();
+                    }
+                }
+                else
+                {
+                    table.remove( key, value );
+                    table.put( key, value );
+                }
+
+                Thread.yield();
+            }
+        } );
+    }
+
+
+    /**
+     * ApacheDS demotes duplicate values from a redirected BTree back to an
+     * ArrayTree when the duplicate count drops below the limit. A cursor over
+     * the old redirected BTree must not race with removal of that BTree record.
+     */
+    @Test
+    public void testConcurrentBTreeDemotionAndValueCursorDoNotReadDeletedBTree() throws Exception
+    {
+        for ( int i = 0; i <= DUP_LIMIT; i++ )
+        {
+            table.put( DUP_KEY, Integer.toString( i ) );
+        }
+
+        assertTrue( table.isKeyUsingBTree( DUP_KEY ) );
+
+        runConcurrent( "jdbm-table btree demotion cursor", new ConcurrentOperation()
+        {
+            public void run( int threadIndex, int iteration ) throws Exception
+            {
+                String boundaryValue = Integer.toString( DUP_LIMIT );
+
+                if ( ( threadIndex & 1 ) == 0 )
+                {
+                    Cursor<String> cursor = table.valueCursor( DUP_KEY );
+
+                    try
+                    {
+                        cursor.beforeFirst();
+
+                        while ( cursor.next() )
+                        {
+                            cursor.get();
+                        }
+                    }
+                    finally
+                    {
+                        cursor.close();
+                    }
+                }
+                else
+                {
+                    table.remove( DUP_KEY, boundaryValue );
+                    table.put( DUP_KEY, boundaryValue );
+                }
+
+                Thread.yield();
+            }
+        } );
+    }
+
+
+    /**
+     * Two ApacheDS table objects can load the same named JDBM table from one
+     * RecordManager. Their synchronized methods do not share a monitor, so the
+     * underlying BTree handle sharing must remain safe.
+     */
+    @Test
+    public void testConcurrentSharedNamedTableHandlesDoNotCorruptBTree() throws Exception
+    {
+        for ( int i = 0; i < THREAD_COUNT * ITERATIONS; i++ )
+        {
+            table.put( DUP_KEY, Integer.toString( i ) );
+        }
+
+        secondTable = newDupsTable( "test" );
+
+        assertTrue( table.isKeyUsingBTree( DUP_KEY ) );
+        assertTrue( secondTable.isKeyUsingBTree( DUP_KEY ) );
+
+        runConcurrent( "jdbm-table shared named handles", new ConcurrentOperation()
+        {
+            public void run( int threadIndex, int iteration ) throws Exception
+            {
+                String value = Integer.toString( threadIndex * ITERATIONS + iteration );
+                JdbmTable<String, String> target = ( threadIndex & 2 ) == 0 ? table : secondTable;
+
+                if ( ( threadIndex & 1 ) == 0 )
+                {
+                    Cursor<String> cursor = target.valueCursor( DUP_KEY );
+
+                    try
+                    {
+                        cursor.beforeFirst();
+
+                        while ( cursor.next() )
+                        {
+                            cursor.get();
+                        }
+                    }
+                    finally
+                    {
+                        cursor.close();
+                    }
+                }
+                else
+                {
+                    target.remove( DUP_KEY, value );
+                    target.put( DUP_KEY, value );
+                }
+
+                Thread.yield();
+            }
+        } );
+    }
+
+
+    /**
+     * ApacheDS opens many JDBM tables and indexes on the same RecordManager.
+     * Concurrent table creation exercises named-object updates plus BTree
+     * allocation and commit on shared JDBM metadata pages.
+     */
+    @Test
+    public void testConcurrentJdbmTableCreationDoesNotCorruptNamedObjects() throws Exception
+    {
+        runConcurrent( "jdbm-table creation", new ConcurrentOperation()
+        {
+            public void run( int threadIndex, int iteration ) throws Exception
+            {
+                if ( iteration >= 60 )
+                {
+                    return;
+                }
+
+                JdbmTable<String, String> createdTable = null;
+                String tableName = "created-" + threadIndex + '-' + iteration;
+
+                try
+                {
+                    createdTable = newDupsTable( tableName );
+                    createdTable.put( DUP_KEY, Integer.toString( iteration ) );
+                    createdTable.sync();
+                    assertTrue( recMan.getNamedObject( tableName ) != 0 );
+                    assertTrue( recMan.getNamedObject( tableName + "_btree_sz" ) != 0 );
+                }
+                finally
+                {
+                    closeQuietly( createdTable );
                 }
 
                 Thread.yield();

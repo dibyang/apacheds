@@ -33,7 +33,7 @@ ext.dependencyManagement = [
     'net.xdob.directory.api:api-ldap-model': '1.0.0-M20V20260126',
     'net.xdob.directory.api:api-ldap-schema-data': '1.0.0-M20V20260126',
     'net.xdob.directory.api:api-util': '1.0.0-M20V20260126',
-    'net.xdob.directory.jdbm:apacheds-jdbm1': '2.0.0-M4',
+    'net.xdob.directory.jdbm:apacheds-jdbm1': '2.0.0-M5',
     'net.xdob.directory.mavibot:mavibot': '1.0.0-M8V20260126',
     'net.xdob.directory.server:apacheds-all': '2.0.0-M24V20260126',
     'net.xdob.directory.server:apacheds-benchmarks': '2.0.0-M24V20260126',
@@ -909,6 +909,7 @@ subprojects { project ->
     tasks.withType(Test).configureEach {
         useJUnit()
         systemProperty 'workingDirectory', "${project.buildDir}/server-work"
+        systemProperties System.properties.findAll { key, value -> key.toString().startsWith('dirserver2102.') }
         doFirst {
             delete "${project.buildDir}/server-work"
         }
