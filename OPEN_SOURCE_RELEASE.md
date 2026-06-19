@@ -1,6 +1,6 @@
 # 开源发布说明
 
-语言：中文 | [English](OPEN_SOURCE_RELEASE.en.md)
+语言：中文 | [English](docs/en/OPEN_SOURCE_RELEASE.md)
 
 本文是 `2.0.0-M26` 的开源发布说明入口。正式发布操作以 [RELEASE.md](RELEASE.md) 为准。
 
@@ -100,6 +100,6 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 
 ## 发布产物建议
 
-- 源码包应包含 Gradle Wrapper、`settings.gradle`、`build.gradle`、`LICENSE`、`NOTICE`、`DEPENDENCIES`、`README.md`、`CHANGELOG.md`、`OPEN_SOURCE_RELEASE.md`、`RELEASE.md` 和对应英文文档。
+- 源码包应包含 Gradle Wrapper、`settings.gradle`、`build.gradle`、`LICENSE`、`NOTICE`、`DEPENDENCIES`、`README.md`、`CHANGELOG.md`、`OPEN_SOURCE_RELEASE.md`、`RELEASE.md` 和 `docs/en/` 英文文档副本。
 - 不再发布或维护 Maven POM 作为构建入口。
 - 对外说明 JDBM 已固定到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`。该版本配合 ApacheDS 侧 `JdbmTable` 互斥修复，作为当前固定版本使用。

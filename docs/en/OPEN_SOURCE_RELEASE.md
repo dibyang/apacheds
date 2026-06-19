@@ -1,8 +1,8 @@
 # Open Source Release Notes
 
-Language: [中文](OPEN_SOURCE_RELEASE.md) | English
+Language: [中文](../../OPEN_SOURCE_RELEASE.md) | English
 
-This document is the release-notes entry for `2.0.0-M26`. The formal release process is defined in [RELEASE.en.md](RELEASE.en.md).
+This document is the release-notes entry for `2.0.0-M26`. The formal release process is defined in [RELEASE.md](RELEASE.md).
 
 ## Current Version
 
@@ -13,10 +13,10 @@ This document is the release-notes entry for `2.0.0-M26`. The formal release pro
 
 ## Documentation Entry Points
 
-- [README.en.md](README.en.md): project overview, build entry, and usage notes.
-- [CHANGELOG.en.md](CHANGELOG.en.md): version changelog.
-- [RELEASE.en.md](RELEASE.en.md): formal release process.
-- [CONTRIBUTING.en.md](CONTRIBUTING.en.md): contribution and validation requirements.
+- [README.md](README.md): project overview, build entry, and usage notes.
+- [CHANGELOG.md](CHANGELOG.md): version changelog.
+- [RELEASE.md](RELEASE.md): formal release process.
+- [CONTRIBUTING.md](CONTRIBUTING.md): contribution and validation requirements.
 - `LICENSE`, `NOTICE`, `DEPENDENCIES`: license, notice, and dependency information.
 
 ## Build
@@ -49,7 +49,7 @@ Local secrets must not be committed. Store them in `signing.properties`, Gradle 
 
 ## Pre-release Checks
 
-Before a formal release, follow the full checklist in [RELEASE.en.md](RELEASE.en.md). Common local validation commands are:
+Before a formal release, follow the full checklist in [RELEASE.md](RELEASE.md). Common local validation commands are:
 
 ```powershell
 .\gradlew.bat validateReleaseConfiguration
@@ -79,7 +79,7 @@ By default, only upload-for-review is allowed. Do not publish automatically to M
 - Add ApacheDS-side DIRSERVER-2102 concurrency regression coverage for demotion/valueCursor, table cursor/update races, shared named table handles, and concurrent table creation.
 - Pass through `dirserver2102.*` system properties to Gradle Test tasks for release-time stress tuning.
 - Move public version, dependency, and POM metadata to `gradle.properties`.
-- Add the formal [RELEASE.en.md](RELEASE.en.md) runbook for Central Portal manual review and failure handling.
+- Add the formal [RELEASE.md](RELEASE.md) runbook for Central Portal manual review and failure handling.
 
 ## Known Test Notes
 
@@ -100,6 +100,6 @@ By default, only upload-for-review is allowed. Do not publish automatically to M
 
 ## Release Artifact Recommendation
 
-- Source distributions should include Gradle Wrapper, `settings.gradle`, `build.gradle`, `LICENSE`, `NOTICE`, `DEPENDENCIES`, `README.md`, `CHANGELOG.md`, `OPEN_SOURCE_RELEASE.md`, `RELEASE.md`, and the matching English documents.
+- Source distributions should include Gradle Wrapper, `settings.gradle`, `build.gradle`, `LICENSE`, `NOTICE`, `DEPENDENCIES`, root Chinese documents, and matching English copies under `docs/en/`.
 - Maven POM files are no longer maintained as build entries.
 - Public release notes should state that JDBM is fixed to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`, used together with the ApacheDS-side `JdbmTable` concurrency fix.

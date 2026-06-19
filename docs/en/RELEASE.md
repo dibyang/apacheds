@@ -1,6 +1,6 @@
 # Release Runbook
 
-Language: [中文](RELEASE.md) | English
+Language: [中文](../../RELEASE.md) | English
 
 This runbook is required for formal releases. The default flow is upload to Sonatype Central Portal for manual review, not automatic publication to Maven Central.
 
@@ -26,8 +26,8 @@ jdbmVersion=2.0.0-M5
 Before release, verify:
 
 - The fallback version in `build.gradle` matches `projectVersion`.
-- [CHANGELOG.en.md](CHANGELOG.en.md) documents user-facing changes.
-- [OPEN_SOURCE_RELEASE.en.md](OPEN_SOURCE_RELEASE.en.md) records validation results, known risks, and release notes.
+- [CHANGELOG.md](CHANGELOG.md) documents user-facing changes.
+- [OPEN_SOURCE_RELEASE.md](OPEN_SOURCE_RELEASE.md) records validation results, known risks, and release notes.
 - This runbook reflects the latest release process.
 - No obsolete `pom.xml` files remain.
 

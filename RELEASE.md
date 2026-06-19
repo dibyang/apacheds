@@ -1,6 +1,6 @@
 # 发布手册
 
-语言：中文 | [English](RELEASE.en.md)
+语言：中文 | [English](docs/en/RELEASE.md)
 
 本文是本项目正式发布必须遵循的操作手册。默认流程是“上传到 Sonatype Central Portal 待人工审核”，不是自动发布到 Maven Central。
 

@@ -1,6 +1,6 @@
 # Changelog
 
-Language: [中文](CHANGELOG.md) | English
+Language: [中文](../../CHANGELOG.md) | English
 
 ## 2.0.0-M26
 
@@ -10,5 +10,5 @@ Language: [中文](CHANGELOG.md) | English
 - Keep `dirserver2102.*` test properties pass-through in Gradle so release validation can raise thread counts and iteration counts without code changes.
 - Add Gradle `maven-publish` and `signing` configuration for Maven Central staging publication.
 - Move public release settings such as project versions and POM metadata into `gradle.properties`.
-- Add the formal [RELEASE.en.md](RELEASE.en.md) runbook and update [OPEN_SOURCE_RELEASE.en.md](OPEN_SOURCE_RELEASE.en.md) as a Chinese-primary, English-switchable release notes entry.
-- Add [README.en.md](README.en.md), [CONTRIBUTING.en.md](CONTRIBUTING.en.md), and matching Chinese documents to provide standard open source entry points.
+- Add the formal [RELEASE.md](RELEASE.md) runbook and update [OPEN_SOURCE_RELEASE.md](OPEN_SOURCE_RELEASE.md) as the English release notes copy under `docs/en/`.
+- Add [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md), and matching Chinese documents to provide standard open source entry points.

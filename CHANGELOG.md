@@ -1,6 +1,6 @@
 # 变更日志
 
-语言：中文 | [English](CHANGELOG.en.md)
+语言：中文 | [English](docs/en/CHANGELOG.md)
 
 ## 2.0.0-M26
 

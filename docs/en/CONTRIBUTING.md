@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Language: [中文](CONTRIBUTING.md) | English
+Language: [中文](../../CONTRIBUTING.md) | English
 
 ## Basic Requirements
 
@@ -28,9 +28,9 @@ For Java code changes, run the smallest relevant test or compile task. For JDBM,
 
 For version, publication configuration, Sonatype Central, signing, POM metadata, or release documentation changes, check:
 
-- [RELEASE.en.md](RELEASE.en.md)
-- [OPEN_SOURCE_RELEASE.en.md](OPEN_SOURCE_RELEASE.en.md)
-- [CHANGELOG.en.md](CHANGELOG.en.md)
+- [RELEASE.md](RELEASE.md)
+- [OPEN_SOURCE_RELEASE.md](OPEN_SOURCE_RELEASE.md)
+- [CHANGELOG.md](CHANGELOG.md)
 - `gradle.properties`
 
 Central publication defaults to upload-for-manual-review only. Do not publish automatically to Maven Central without explicit approval.
@@ -38,6 +38,6 @@ Central publication defaults to upload-for-manual-review only. Do not publish au
 ## Documentation Rules
 
 - Chinese documents are the default entry points.
-- English documents use matching `.en.md` files.
-- Chinese documents should link to the English version at the top, and English documents should link back to the Chinese version.
+- English copies live under `docs/en/` instead of beside the Chinese root documents.
+- Chinese documents should link to the English copy under `docs/en/`, and English documents should link back to the Chinese root document.
 - Do not scatter secondary-language paragraphs inside the primary document. Maintain separate language versions when bilingual documentation is needed.
