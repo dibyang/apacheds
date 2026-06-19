@@ -27,7 +27,7 @@ ext.releaseProperty = { String name ->
 }
 
 ext.directoryApiVersion = rootProject.ext.releaseProperty('directoryApiVersion')
-ext.directoryServerVersion = rootProject.ext.releaseProperty('directoryServerVersion')
+ext.directoryServerVersion = rootProject.version.toString()
 ext.jdbmVersion = rootProject.ext.releaseProperty('jdbmVersion')
 ext.mavibotVersion = rootProject.ext.releaseProperty('mavibotVersion')
 
