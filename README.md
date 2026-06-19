@@ -2,7 +2,7 @@
 
 语言：中文 | [English](docs/en/README.md)
 
-本仓库是 Apache Directory Server 的 Gradle 构建与发布整理分支，当前发布版本为 `2.0.0-M26`。本分支固定使用 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`，并保留 DIRSERVER-2102 相关并发回归测试。
+本仓库是 Apache Directory Server 的 Gradle 构建与发布整理分支，当前开发版本为 `2.0.0-M27-SNAPSHOT`，最近发布版本为 `2.0.0-M26`。本分支固定使用 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`，并保留 DIRSERVER-2102 相关并发回归测试。
 
 ## 文档
 

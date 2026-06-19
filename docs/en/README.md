@@ -2,7 +2,7 @@
 
 Language: [中文](../../README.md) | English
 
-This repository is a Gradle build and publication branch for Apache Directory Server. The current release version is `2.0.0-M26`. This branch fixes JDBM to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5` and keeps DIRSERVER-2102 concurrency regression coverage.
+This repository is a Gradle build and publication branch for Apache Directory Server. The current development version is `2.0.0-M27-SNAPSHOT`, and the latest release version is `2.0.0-M26`. This branch fixes JDBM to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5` and keeps DIRSERVER-2102 concurrency regression coverage.
 
 ## Documentation
 

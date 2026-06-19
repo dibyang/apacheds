@@ -2,6 +2,10 @@
 
 Language: [中文](../../CHANGELOG.md) | English
 
+## 2.0.0-M27-SNAPSHOT
+
+- Start the next development cycle as `2.0.0-M27-SNAPSHOT`.
+
 ## 2.0.0-M26
 
 - Switch the ApacheDS JDBM dependency to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`.

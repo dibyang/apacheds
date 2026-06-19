@@ -19,7 +19,7 @@ This runbook is required for formal releases. The default flow is upload to Sona
 Update `gradle.properties`:
 
 ```properties
-projectVersion=2.0.0-M26
+projectVersion=<release-version>
 jdbmVersion=2.0.0-M5
 ```
 
@@ -119,7 +119,7 @@ At minimum, manual review must verify:
 
 - Portal deployment state is `VALIDATED`.
 - `errors` is empty.
-- All `purls` use the current version, for example `2.0.0-M26`.
+- All `purls` use the current release version.
 - No abandoned version such as `2.0.0-M25` is mixed in.
 - Key modules exist, for example `apacheds-jdbm-partition`, `apacheds-ldif-partition`, `apacheds-core-api`, `apacheds-service`, and `apacheds-all`.
 - Internal ApacheDS dependency versions are consistent in POMs.

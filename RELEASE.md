@@ -19,7 +19,7 @@
 更新 `gradle.properties`：
 
 ```properties
-projectVersion=2.0.0-M26
+projectVersion=<待发布版本>
 jdbmVersion=2.0.0-M5
 ```
 
@@ -119,7 +119,7 @@ Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'gradle|pub
 
 - Portal deployment state 为 `VALIDATED`。
 - `errors` 为空。
-- 所有 `purls` 都是本次版本号，例如 `2.0.0-M26`。
+- 所有 `purls` 都是本次发布版本号。
 - 没有混入已废弃版本，例如 `2.0.0-M25`。
 - 关键模块均存在，例如 `apacheds-jdbm-partition`、`apacheds-ldif-partition`、`apacheds-core-api`、`apacheds-service`、`apacheds-all`。
 - POM 中内部 ApacheDS 依赖版本一致。

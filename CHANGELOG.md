@@ -2,6 +2,10 @@
 
 语言：中文 | [English](docs/en/CHANGELOG.md)
 
+## 2.0.0-M27-SNAPSHOT
+
+- 进入 `2.0.0-M27-SNAPSHOT` 下一轮开发版本。
+
 ## 2.0.0-M26
 
 - 将 ApacheDS JDBM 依赖切换为 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`。
