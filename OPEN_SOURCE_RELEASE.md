@@ -21,7 +21,7 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 .\gradlew.bat :jdbm-partition:jdbmConcurrencyTest
 ```
 
-发布到 Maven Central / Sonatype 兼容仓库前，需在本地准备 `signing.properties` 或等价 Gradle 属性/环境变量：
+公开发布配置位于 `gradle.properties`，包括项目版本、内部依赖版本和 POM 元数据。发布到 Maven Central / Sonatype 兼容仓库前，还需在本地准备 `signing.properties` 或等价 Gradle 属性/环境变量：
 
 - `releasesRepository`
 - `snapshotsRepository`

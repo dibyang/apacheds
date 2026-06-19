@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
-group = 'net.xdob.directory.server'
-version = '2.0.0-M24V20260126'
+group = findProperty('projectGroup') ?: 'net.xdob.directory.server'
+version = findProperty('projectVersion') ?: '2.0.0-M24V20260126'
 
 ext.releaseProperties = new Properties()
 def releasePropertiesFile = rootProject.file('signing.properties')
@@ -26,6 +26,11 @@ ext.releaseProperty = { String name ->
     return value
 }
 
+ext.directoryApiVersion = rootProject.ext.releaseProperty('directoryApiVersion')
+ext.directoryServerVersion = rootProject.ext.releaseProperty('directoryServerVersion')
+ext.jdbmVersion = rootProject.ext.releaseProperty('jdbmVersion')
+ext.mavibotVersion = rootProject.ext.releaseProperty('mavibotVersion')
+
 ext.dependencyManagement = [
     'ch.qos.logback:logback-classic': '1.2.3',
     'commons-cli:commons-cli': '1.4',
@@ -38,85 +43,85 @@ ext.dependencyManagement = [
     'ldapsdk:ldapsdk': '4.1',
     'log4j:log4j': '1.2.17',
     'net.sf.ehcache:ehcache': '2.10.4',
-    'net.xdob.directory.api:api-all': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-asn1-api': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-asn1-ber': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-dsml-engine': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-dsml-parser': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-i18n': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-client-api': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-codec-core': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-codec-standalone': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-aci': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-codec': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-codec-api': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-sp': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-trigger': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-extras-util': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-model': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-ldap-schema-data': '1.0.0-M20V20260126',
-    'net.xdob.directory.api:api-util': '1.0.0-M20V20260126',
-    'net.xdob.directory.jdbm:apacheds-jdbm1': '2.0.0-M5',
-    'net.xdob.directory.mavibot:mavibot': '1.0.0-M8V20260126',
-    'net.xdob.directory.server:apacheds-all': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-benchmarks': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-annotations': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-api': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-avl': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-constants': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-integ': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-jndi': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-core-shared': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-default-config': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-http-directory-bridge': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-http-integration': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-i18n': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-installers': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-installers-maven-plugin': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptor-kerberos': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-admin': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-authn': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-authz': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-changelog': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-collective': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-event': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-exception': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-hash': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-journal': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-logger': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-normalization': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-number': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-operational': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-referral': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-schema': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-subtree': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-interceptors-trigger': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-jdbm-partition': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-kerberos-codec': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-kerberos-shared': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-kerberos-test': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-ldap-client-test': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-ldif-partition': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-mavibot-partition': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-dhcp': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-dns': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-kerberos': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-ldap': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-ntp': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-protocol-shared': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-annotations': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-config': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-config-builder': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-integ': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-jndi': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-server-sar': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-service': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-service-builder': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-syncrepl': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-test-framework': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-wrapper': '2.0.0-M24V20260126',
-    'net.xdob.directory.server:apacheds-xdbm-partition': '2.0.0-M24V20260126',
+    'net.xdob.directory.api:api-all': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-asn1-api': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-asn1-ber': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-dsml-engine': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-dsml-parser': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-i18n': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-client-api': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-codec-core': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-codec-standalone': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-aci': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-codec': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-codec-api': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-sp': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-trigger': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-extras-util': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-model': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-ldap-schema-data': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.api:api-util': rootProject.ext.directoryApiVersion,
+    'net.xdob.directory.jdbm:apacheds-jdbm1': rootProject.ext.jdbmVersion,
+    'net.xdob.directory.mavibot:mavibot': rootProject.ext.mavibotVersion,
+    'net.xdob.directory.server:apacheds-all': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-benchmarks': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-annotations': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-api': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-avl': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-constants': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-integ': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-jndi': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-core-shared': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-default-config': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-http-directory-bridge': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-http-integration': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-i18n': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-installers': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-installers-maven-plugin': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptor-kerberos': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-admin': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-authn': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-authz': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-changelog': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-collective': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-event': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-exception': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-hash': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-journal': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-logger': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-normalization': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-number': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-operational': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-referral': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-schema': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-subtree': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-interceptors-trigger': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-jdbm-partition': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-kerberos-codec': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-kerberos-shared': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-kerberos-test': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-ldap-client-test': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-ldif-partition': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-mavibot-partition': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-dhcp': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-dns': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-kerberos': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-ldap': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-ntp': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-protocol-shared': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-annotations': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-config': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-config-builder': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-integ': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-jndi': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-server-sar': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-service': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-service-builder': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-syncrepl': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-test-framework': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-wrapper': rootProject.ext.directoryServerVersion,
+    'net.xdob.directory.server:apacheds-xdbm-partition': rootProject.ext.directoryServerVersion,
     'org.apache.ant:ant': '1.10.1',
     'org.apache.commons:commons-collections4': '4.4',
     'org.apache.commons:commons-lang3': '3.20.0',
@@ -140,61 +145,61 @@ ext.dependencyManagement = [
 ]
 
 ext.projectModel = [
-    ':i18n': [artifactId: 'apacheds-i18n', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':all': [artifactId: 'apacheds-all', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
-    ':jdbm-partition': [artifactId: 'apacheds-jdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':mavibot-partition': [artifactId: 'apacheds-mavibot-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':xdbm-partition': [artifactId: 'apacheds-xdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-shared': [artifactId: 'apacheds-core-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-api': [artifactId: 'apacheds-core-api', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors': [artifactId: 'apacheds-interceptors', packaging: 'pom', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
-    ':interceptors:normalization': [artifactId: 'apacheds-interceptors-normalization', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:event': [artifactId: 'apacheds-interceptors-event', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:subtree': [artifactId: 'apacheds-interceptors-subtree', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:authz': [artifactId: 'apacheds-interceptors-authz', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:admin': [artifactId: 'apacheds-interceptors-admin', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:authn': [artifactId: 'apacheds-interceptors-authn', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:changelog': [artifactId: 'apacheds-interceptors-changelog', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:journal': [artifactId: 'apacheds-interceptors-journal', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:referral': [artifactId: 'apacheds-interceptors-referral', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:operational': [artifactId: 'apacheds-interceptors-operational', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:collective': [artifactId: 'apacheds-interceptors-collective', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:logger': [artifactId: 'apacheds-interceptors-logger', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:exception': [artifactId: 'apacheds-interceptors-exception', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:hash': [artifactId: 'apacheds-interceptors-hash', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:schema': [artifactId: 'apacheds-interceptors-schema', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:trigger': [artifactId: 'apacheds-interceptors-trigger', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptors:number': [artifactId: 'apacheds-interceptors-number', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core': [artifactId: 'apacheds-core', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-annotations': [artifactId: 'apacheds-core-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':server-annotations': [artifactId: 'apacheds-server-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-jndi': [artifactId: 'apacheds-core-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-constants': [artifactId: 'apacheds-core-constants', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-integ': [artifactId: 'apacheds-core-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':core-avl': [artifactId: 'apacheds-core-avl', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':ldif-partition': [artifactId: 'apacheds-ldif-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-shared': [artifactId: 'apacheds-protocol-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':kerberos-codec': [artifactId: 'apacheds-kerberos-codec', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-ntp': [artifactId: 'apacheds-protocol-ntp', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-ldap': [artifactId: 'apacheds-protocol-ldap', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-kerberos': [artifactId: 'apacheds-protocol-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-dhcp': [artifactId: 'apacheds-protocol-dhcp', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':protocol-dns': [artifactId: 'apacheds-protocol-dns', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':server-integ': [artifactId: 'apacheds-server-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':server-config': [artifactId: 'apacheds-server-config', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':service-builder': [artifactId: 'apacheds-service-builder', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':server-jndi': [artifactId: 'apacheds-server-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':interceptor-kerberos': [artifactId: 'apacheds-interceptor-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':kerberos-test': [artifactId: 'apacheds-kerberos-test', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':http-directory-bridge': [artifactId: 'apacheds-http-directory-bridge', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':http-integration': [artifactId: 'apacheds-http-integration', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':test-framework': [artifactId: 'apacheds-test-framework', packaging: 'bundle', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':ldap-client-test': [artifactId: 'ldap-client-test', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':kerberos-client': [artifactId: 'kerberos-client', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':service': [artifactId: 'apacheds-service', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':wrapper': [artifactId: 'apacheds-wrapper', packaging: 'jar', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':installers-maven-plugin': [artifactId: 'apacheds-installers-maven-plugin', packaging: 'maven-plugin', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: true],
-    ':installers': [artifactId: 'apacheds-installers', packaging: 'pom', group: 'net.xdob.directory.server', version: '2.0.0-M24V20260126', hasJavaSources: false],
+    ':i18n': [artifactId: 'apacheds-i18n', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':all': [artifactId: 'apacheds-all', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: false],
+    ':jdbm-partition': [artifactId: 'apacheds-jdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':mavibot-partition': [artifactId: 'apacheds-mavibot-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':xdbm-partition': [artifactId: 'apacheds-xdbm-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-shared': [artifactId: 'apacheds-core-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-api': [artifactId: 'apacheds-core-api', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors': [artifactId: 'apacheds-interceptors', packaging: 'pom', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: false],
+    ':interceptors:normalization': [artifactId: 'apacheds-interceptors-normalization', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:event': [artifactId: 'apacheds-interceptors-event', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:subtree': [artifactId: 'apacheds-interceptors-subtree', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:authz': [artifactId: 'apacheds-interceptors-authz', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:admin': [artifactId: 'apacheds-interceptors-admin', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:authn': [artifactId: 'apacheds-interceptors-authn', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:changelog': [artifactId: 'apacheds-interceptors-changelog', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:journal': [artifactId: 'apacheds-interceptors-journal', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:referral': [artifactId: 'apacheds-interceptors-referral', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:operational': [artifactId: 'apacheds-interceptors-operational', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:collective': [artifactId: 'apacheds-interceptors-collective', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:logger': [artifactId: 'apacheds-interceptors-logger', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:exception': [artifactId: 'apacheds-interceptors-exception', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:hash': [artifactId: 'apacheds-interceptors-hash', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:schema': [artifactId: 'apacheds-interceptors-schema', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:trigger': [artifactId: 'apacheds-interceptors-trigger', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptors:number': [artifactId: 'apacheds-interceptors-number', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core': [artifactId: 'apacheds-core', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-annotations': [artifactId: 'apacheds-core-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':server-annotations': [artifactId: 'apacheds-server-annotations', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-jndi': [artifactId: 'apacheds-core-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-constants': [artifactId: 'apacheds-core-constants', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-integ': [artifactId: 'apacheds-core-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':core-avl': [artifactId: 'apacheds-core-avl', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':ldif-partition': [artifactId: 'apacheds-ldif-partition', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-shared': [artifactId: 'apacheds-protocol-shared', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':kerberos-codec': [artifactId: 'apacheds-kerberos-codec', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-ntp': [artifactId: 'apacheds-protocol-ntp', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-ldap': [artifactId: 'apacheds-protocol-ldap', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-kerberos': [artifactId: 'apacheds-protocol-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-dhcp': [artifactId: 'apacheds-protocol-dhcp', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':protocol-dns': [artifactId: 'apacheds-protocol-dns', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':server-integ': [artifactId: 'apacheds-server-integ', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':server-config': [artifactId: 'apacheds-server-config', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':service-builder': [artifactId: 'apacheds-service-builder', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':server-jndi': [artifactId: 'apacheds-server-jndi', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':interceptor-kerberos': [artifactId: 'apacheds-interceptor-kerberos', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':kerberos-test': [artifactId: 'apacheds-kerberos-test', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':http-directory-bridge': [artifactId: 'apacheds-http-directory-bridge', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':http-integration': [artifactId: 'apacheds-http-integration', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':test-framework': [artifactId: 'apacheds-test-framework', packaging: 'bundle', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':ldap-client-test': [artifactId: 'ldap-client-test', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':kerberos-client': [artifactId: 'kerberos-client', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':service': [artifactId: 'apacheds-service', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':wrapper': [artifactId: 'apacheds-wrapper', packaging: 'jar', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':installers-maven-plugin': [artifactId: 'apacheds-installers-maven-plugin', packaging: 'maven-plugin', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: true],
+    ':installers': [artifactId: 'apacheds-installers', packaging: 'pom', group: 'net.xdob.directory.server', version: rootProject.ext.directoryServerVersion, hasJavaSources: false],
 ]
 
 ext.projectDependencies = [
@@ -747,7 +752,7 @@ ext.projectDependencies = [
         [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-api', version: '', scope: 'compile', type: 'jar'],
         [group: 'net.xdob.directory.server', artifactId: 'apacheds-core-constants', version: '', scope: 'compile', type: 'jar'],
         [group: 'net.xdob.directory.server', artifactId: 'apacheds-protocol-shared', version: '', scope: 'compile', type: 'jar'],
-        [group: 'net.xdob.directory.server', artifactId: 'apacheds-http-directory-bridge', version: '2.0.0-M24V20260126', scope: 'compile', type: 'jar'],
+        [group: 'net.xdob.directory.server', artifactId: 'apacheds-http-directory-bridge', version: rootProject.ext.directoryServerVersion, scope: 'compile', type: 'jar'],
         [group: 'net.xdob.directory.api', artifactId: 'api-ldap-model', version: '', scope: 'compile', type: 'jar'],
         [group: 'org.bouncycastle', artifactId: 'bcprov-jdk15to18', version: '', scope: 'compile', type: 'jar'],
         [group: 'org.eclipse.jetty', artifactId: 'jetty-webapp', version: '', scope: 'compile', type: 'jar'],
@@ -954,31 +959,31 @@ subprojects { project ->
                 pom {
                     name = model.artifactId
                     description = 'Apache Directory Server module ' + model.artifactId
-                    url = 'https://directory.apache.org/apacheds/'
+                    url = rootProject.ext.releaseProperty('releasePomUrl')
                     packaging = model.packaging
 
                     licenses {
                         license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                            name = rootProject.ext.releaseProperty('releasePomLicenseName')
+                            url = rootProject.ext.releaseProperty('releasePomLicenseUrl')
                             distribution = 'repo'
                         }
                     }
 
                     developers {
                         developer {
-                            id = 'apache'
-                            name = 'Apache Directory Project'
-                            email = 'dev@directory.apache.org'
-                            organization = 'Apache Software Foundation'
-                            organizationUrl = 'https://www.apache.org/'
+                            id = rootProject.ext.releaseProperty('releasePomDeveloperId')
+                            name = rootProject.ext.releaseProperty('releasePomDeveloperName')
+                            email = rootProject.ext.releaseProperty('releasePomDeveloperEmail')
+                            organization = rootProject.ext.releaseProperty('releasePomDeveloperOrganization')
+                            organizationUrl = rootProject.ext.releaseProperty('releasePomDeveloperOrganizationUrl')
                         }
                     }
 
                     scm {
-                        connection = 'scm:git:https://github.com/apache/directory-server.git'
-                        developerConnection = 'scm:git:https://github.com/apache/directory-server.git'
-                        url = 'https://github.com/apache/directory-server'
+                        connection = rootProject.ext.releaseProperty('releasePomScmConnection')
+                        developerConnection = rootProject.ext.releaseProperty('releasePomScmDeveloperConnection')
+                        url = rootProject.ext.releaseProperty('releasePomScmUrl')
                     }
 
                     withXml {
