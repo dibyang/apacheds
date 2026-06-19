@@ -31,6 +31,34 @@ ext.directoryServerVersion = rootProject.version.toString()
 ext.jdbmVersion = rootProject.ext.releaseProperty('jdbmVersion')
 ext.mavibotVersion = rootProject.ext.releaseProperty('mavibotVersion')
 
+tasks.register('validateReleaseConfiguration') {
+    group = 'publishing'
+    description = '检查发布到 Sonatype Central 所需的仓库、账号和签名配置。'
+
+    doLast {
+        def repositoryProperty = rootProject.version.toString().endsWith('-SNAPSHOT') ? 'snapshotsRepository' : 'releasesRepository'
+        def requiredProperties = [
+            repositoryProperty,
+            'ossrhUsername',
+            'ossrhPassword',
+            'signing.keyId',
+            'signing.password',
+            'signing.secretKeyRingFile'
+        ]
+        def missingProperties = requiredProperties.findAll { !rootProject.ext.releaseProperty(it) }
+
+        if (!missingProperties.isEmpty()) {
+            throw new GradleException('Missing release properties: ' + missingProperties.join(', '))
+        }
+
+        def keyRingFile = rootProject.file(rootProject.ext.releaseProperty('signing.secretKeyRingFile'))
+
+        if (!keyRingFile.isFile()) {
+            throw new GradleException('Signing secret key ring file does not exist: ' + keyRingFile)
+        }
+    }
+}
+
 ext.dependencyManagement = [
     'ch.qos.logback:logback-classic': '1.2.3',
     'commons-cli:commons-cli': '1.4',
@@ -1058,6 +1086,12 @@ subprojects { project ->
                 rootProject.ext.releaseProperty('signing.password') &&
                 rootProject.ext.releaseProperty('signing.secretKeyRingFile')
         }
+    }
+
+    tasks.matching { task ->
+        task.name.startsWith('publish') && task.name.endsWith('ToSonatypeCentralRepository')
+    }.configureEach {
+        dependsOn rootProject.tasks.named('validateReleaseConfiguration')
     }
 
     if (isPomOnly) {

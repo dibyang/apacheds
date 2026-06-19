@@ -37,6 +37,12 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 .\gradlew.bat publishToMavenLocal
 ```
 
+中央仓库发布配置预检：
+
+```powershell
+.\gradlew.bat validateReleaseConfiguration
+```
+
 发布到中央仓库 staging：
 
 ```powershell
@@ -52,6 +58,7 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 - 确认 `build.gradle` 中的 `projectModel`、`projectDependencies`、`dependencyManagement` 与实际模块依赖一致。
 - 执行 `.\gradlew.bat :jdbm-partition:dependencyInsight --dependency apacheds-jdbm1 --configuration compileClasspath`，确认解析到正式版 `2.0.0-M5`。
 - 执行 `.\gradlew.bat :jdbm-partition:jdbmConcurrencyTest`，观察 JDBM 并发回归测试是否稳定通过。
+- 执行 `.\gradlew.bat validateReleaseConfiguration`，确认中央仓库地址、账号和 GPG 签名配置可用。
 - 执行 `.\gradlew.bat publishToMavenLocal`，确认所有模块可以生成 POM、主 jar、sources jar、javadoc jar 和 `.asc` 签名。
 - 执行 `.\gradlew.bat build`，确认全量构建通过。
 - 检查 `LICENSE`、`NOTICE`、`DEPENDENCIES` 是否覆盖当前第三方依赖。
@@ -77,6 +84,7 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 - `.\gradlew.bat :jdbm-partition:jdbmConcurrencyTest --rerun-tasks`：通过。
 - `.\gradlew.bat --% :jdbm-partition:jdbmConcurrencyTest --rerun-tasks --tests org.apache.directory.server.core.partition.impl.btree.jdbm.DIRSERVER2102JdbmConcurrencyTest.testConcurrentBTreeDemotionAndValueCursorDoNotReadDeletedBTree -Ddirserver2102.threadCount=24 -Ddirserver2102.iterations=600`：通过。
 - `.\gradlew.bat assemble`：通过，确认所有模块产物可装配。
+- `.\gradlew.bat validateReleaseConfiguration`：通过，确认当前本机中央仓库地址、账号和 GPG 签名配置可用。
 - `.\gradlew.bat :jdbm-partition:publishToMavenLocal`：通过，确认 `2.0.0-M25` 下 `jdbm-partition` 的 POM、主 jar、sources/javadoc jar、Gradle module metadata 和 `.asc` 签名可生成。
 - `.\gradlew.bat build`：执行两次，分别超过 15 分钟和 30 分钟后由当前工具超时中断，未得到有效失败日志；正式发布前仍建议在不受工具超时限制的环境中补跑全量构建。
 
