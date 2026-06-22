@@ -5,6 +5,7 @@
 ## 2.0.0-M27-SNAPSHOT
 
 - 进入 `2.0.0-M27-SNAPSHOT` 下一轮开发版本。
+- 增加 `JdbmTable` duplicate BTree 锁等待诊断日志，用于定位 redirected BTree 长 cursor 是否阻塞 `put`、`remove`、`sync`；默认阈值为 1000 ms，可通过 `-Djdbm.table.duplicate.btree.lock.warn.millis=0` 关闭。
 
 ## 2.0.0-M26
 

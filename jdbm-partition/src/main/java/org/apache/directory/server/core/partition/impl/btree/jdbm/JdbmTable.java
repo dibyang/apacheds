@@ -23,6 +23,7 @@ package org.apache.directory.server.core.partition.impl.btree.jdbm;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -74,6 +75,10 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
 
     /** Number of table updates to batch before forcing a transaction-log flush. */
     private static final int DEFAULT_LOG_SYNC_INTERVAL = positiveSystemInteger( "jdbm.table.log.sync.interval", 20000 );
+
+    /** Logs duplicate BTree lock waits at or above this threshold; 0 disables the warning. */
+    private static final long DUPLICATE_BTREE_LOCK_WARN_NANOS = TimeUnit.MILLISECONDS.toNanos(
+        nonNegativeSystemInteger( "jdbm.table.duplicate.btree.lock.warn.millis", 1000 ) );
 
     /** the JDBM record manager for the file this table is managed in */
     private final RecordManager recMan;
@@ -595,7 +600,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     @SuppressWarnings("unchecked")
     public synchronized void put( K key, V value ) throws Exception
     {
-        duplicateBtreeLock.writeLock().lock();
+        Lock writeLock = acquireDuplicateBtreeWriteLock( "put" );
 
         try
         {
@@ -691,7 +696,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         }
         finally
         {
-            duplicateBtreeLock.writeLock().unlock();
+            writeLock.unlock();
         }
     }
 
@@ -703,7 +708,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     @SuppressWarnings("unchecked")
     public synchronized void remove( K key, V value ) throws IOException
     {
-        duplicateBtreeLock.writeLock().lock();
+        Lock writeLock = acquireDuplicateBtreeWriteLock( "remove-value" );
 
         try
         {
@@ -812,7 +817,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         }
         finally
         {
-            duplicateBtreeLock.writeLock().unlock();
+            writeLock.unlock();
         }
     }
 
@@ -822,7 +827,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
      */
     public synchronized void remove( K key )
     {
-        duplicateBtreeLock.writeLock().lock();
+        Lock writeLock = acquireDuplicateBtreeWriteLock( "remove-key" );
 
         try
         {
@@ -902,7 +907,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         }
         finally
         {
-            duplicateBtreeLock.writeLock().unlock();
+            writeLock.unlock();
         }
     }
 
@@ -1061,7 +1066,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
      */
     public synchronized void sync() throws IOException
     {
-        duplicateBtreeLock.writeLock().lock();
+        Lock writeLock = acquireDuplicateBtreeWriteLock( "sync" );
 
         try
         {
@@ -1090,7 +1095,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         }
         finally
         {
-            duplicateBtreeLock.writeLock().unlock();
+            writeLock.unlock();
         }
     }
 
@@ -1104,8 +1109,47 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     Lock acquireDuplicateBtreeReadLock()
     {
         Lock readLock = duplicateBtreeLock.readLock();
+        long waitStart = duplicateBtreeLockWarningEnabled() ? System.nanoTime() : 0;
         readLock.lock();
+        logDuplicateBtreeLockWait( "redirected-btree-cursor", "read", waitStart );
         return readLock;
+    }
+
+
+    private Lock acquireDuplicateBtreeWriteLock( String operation )
+    {
+        Lock writeLock = duplicateBtreeLock.writeLock();
+        long waitStart = duplicateBtreeLockWarningEnabled() ? System.nanoTime() : 0;
+        writeLock.lock();
+        logDuplicateBtreeLockWait( operation, "write", waitStart );
+        return writeLock;
+    }
+
+
+    private boolean duplicateBtreeLockWarningEnabled()
+    {
+        return ( DUPLICATE_BTREE_LOCK_WARN_NANOS > 0 ) && LOG.isWarnEnabled();
+    }
+
+
+    private void logDuplicateBtreeLockWait( String operation, String lockType, long waitStart )
+    {
+        if ( waitStart == 0 )
+        {
+            return;
+        }
+
+        long waitedNanos = System.nanoTime() - waitStart;
+
+        if ( waitedNanos < DUPLICATE_BTREE_LOCK_WARN_NANOS )
+        {
+            return;
+        }
+
+        LOG.warn( "JDBM table {} waited {} ms for duplicate BTree {} lock during {}; activeReadLocks={}, "
+            + "writeLocked={}, queuedThreads={}, hasQueuedThreads={}", name,
+            TimeUnit.NANOSECONDS.toMillis( waitedNanos ), lockType, operation, duplicateBtreeLock.getReadLockCount(),
+            duplicateBtreeLock.isWriteLocked(), duplicateBtreeLock.getQueueLength(), duplicateBtreeLock.hasQueuedThreads() );
     }
 
 
@@ -1423,6 +1467,28 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         {
             int parsed = Integer.parseInt( value );
             return parsed > 0 ? parsed : defaultValue;
+        }
+        catch ( NumberFormatException e )
+        {
+            LOG.warn( "Invalid " + propertyName + " value '" + value + "', using " + defaultValue );
+            return defaultValue;
+        }
+    }
+
+
+    private static int nonNegativeSystemInteger( String propertyName, int defaultValue )
+    {
+        String value = System.getProperty( propertyName );
+
+        if ( value == null )
+        {
+            return defaultValue;
+        }
+
+        try
+        {
+            int parsed = Integer.parseInt( value );
+            return parsed >= 0 ? parsed : defaultValue;
         }
         catch ( NumberFormatException e )
         {

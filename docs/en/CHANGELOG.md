@@ -5,6 +5,7 @@ Language: [中文](../../CHANGELOG.md) | English
 ## 2.0.0-M27-SNAPSHOT
 
 - Start the next development cycle as `2.0.0-M27-SNAPSHOT`.
+- Add `JdbmTable` duplicate BTree lock-wait diagnostics to identify whether long redirected-BTree cursors block `put`, `remove`, or `sync`; the default threshold is 1000 ms and can be disabled with `-Djdbm.table.duplicate.btree.lock.warn.millis=0`.
 
 ## 2.0.0-M26
 
