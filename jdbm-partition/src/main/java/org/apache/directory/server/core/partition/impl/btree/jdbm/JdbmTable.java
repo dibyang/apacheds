@@ -909,112 +909,135 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
 
     public Cursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>> cursor() throws LdapException
     {
-        Lock readLock = duplicateBtreeLock.readLock();
-        readLock.lock();
-
-        try
+        if ( allowsDuplicates )
         {
-            if ( allowsDuplicates )
-            {
-                return lockedCursor( new DupsCursor<K, V>( this ), readLock );
-            }
+            return new DupsCursor<K, V>( this );
+        }
 
-            return lockedCursor( new NoDupsCursor<K, V>( this ), readLock );
-        }
-        catch ( RuntimeException e )
-        {
-            readLock.unlock();
-            throw e;
-        }
+        return new NoDupsCursor<K, V>( this );
     }
 
 
     @SuppressWarnings("unchecked")
     public Cursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>> cursor( K key ) throws Exception
     {
-        Lock readLock = duplicateBtreeLock.readLock();
-        readLock.lock();
-
-        try
+        if ( key == null )
         {
-            if ( key == null )
+            return new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>();
+        }
+
+        V raw = bt.find( key );
+
+        if ( null == raw )
+        {
+            return new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>();
+        }
+
+        if ( !allowsDuplicates )
+        {
+            return new SingletonCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(
+                new org.apache.directory.api.ldap.model.cursor.Tuple<K, V>( key, raw ) );
+        }
+
+        byte[] serialized = ( byte[] ) raw;
+
+        if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
+        {
+            Lock readLock = duplicateBtreeLock.readLock();
+            readLock.lock();
+
+            try
             {
-                return lockedCursor( new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(), readLock );
-            }
+                raw = bt.find( key );
 
-            V raw = bt.find( key );
+                if ( null == raw )
+                {
+                    readLock.unlock();
+                    return new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>();
+                }
 
-            if ( null == raw )
-            {
-                return lockedCursor( new EmptyCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(), readLock );
-            }
+                serialized = ( byte[] ) raw;
 
-            if ( !allowsDuplicates )
-            {
-                return lockedCursor( new SingletonCursor<org.apache.directory.api.ldap.model.cursor.Tuple<K, V>>(
-                    new org.apache.directory.api.ldap.model.cursor.Tuple<K, V>( key, raw ) ), readLock );
-            }
+                if ( !BTreeRedirectMarshaller.isRedirect( serialized ) )
+                {
+                    ArrayTree<V> set = marshaller.deserialize( serialized );
+                    readLock.unlock();
+                    return new KeyTupleArrayCursor<K, V>( set, key );
+                }
 
-            byte[] serialized = ( byte[] ) raw;
-
-            if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
-            {
                 BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
                 return lockedCursor( new KeyTupleBTreeCursor<K, V>( tree, key, valueComparator ), readLock );
             }
-
-            ArrayTree<V> set = marshaller.deserialize( serialized );
-
-            return lockedCursor( new KeyTupleArrayCursor<K, V>( set, key ), readLock );
+            catch ( Exception e )
+            {
+                readLock.unlock();
+                throw e;
+            }
         }
-        catch ( Exception e )
-        {
-            readLock.unlock();
-            throw e;
-        }
+
+        ArrayTree<V> set = marshaller.deserialize( serialized );
+
+        return new KeyTupleArrayCursor<K, V>( set, key );
     }
 
 
     @SuppressWarnings("unchecked")
     public Cursor<V> valueCursor( K key ) throws Exception
     {
-        Lock readLock = duplicateBtreeLock.readLock();
-        readLock.lock();
-
-        try
+        if ( key == null )
         {
-            if ( key == null )
+            return new EmptyCursor<V>();
+        }
+
+        V raw = bt.find( key );
+
+        if ( null == raw )
+        {
+            return new EmptyCursor<V>();
+        }
+
+        if ( !allowsDuplicates )
+        {
+            return new SingletonCursor<V>( raw );
+        }
+
+        byte[] serialized = ( byte[] ) raw;
+
+        if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
+        {
+            Lock readLock = duplicateBtreeLock.readLock();
+            readLock.lock();
+
+            try
             {
-                return lockedCursor( new EmptyCursor<V>(), readLock );
-            }
+                raw = bt.find( key );
 
-            V raw = bt.find( key );
+                if ( null == raw )
+                {
+                    readLock.unlock();
+                    return new EmptyCursor<V>();
+                }
 
-            if ( null == raw )
-            {
-                return lockedCursor( new EmptyCursor<V>(), readLock );
-            }
+                serialized = ( byte[] ) raw;
 
-            if ( !allowsDuplicates )
-            {
-                return lockedCursor( new SingletonCursor<V>( raw ), readLock );
-            }
+                if ( !BTreeRedirectMarshaller.isRedirect( serialized ) )
+                {
+                    ArrayTree<V> values = marshaller.deserialize( serialized );
+                    readLock.unlock();
+                    return new ArrayTreeCursor<V>( values );
+                }
 
-            byte[] serialized = ( byte[] ) raw;
-
-            if ( BTreeRedirectMarshaller.isRedirect( serialized ) )
-            {
                 BTree tree = getBTree( BTreeRedirectMarshaller.INSTANCE.deserialize( serialized ) );
                 return lockedCursor( new KeyBTreeCursor<V>( tree, valueComparator ), readLock );
             }
+            catch ( Exception e )
+            {
+                readLock.unlock();
+                throw e;
+            }
+        }
 
-            return lockedCursor( new ArrayTreeCursor<V>( marshaller.deserialize( serialized ) ), readLock );
-        }
-        catch ( Exception e )
-        {
-            readLock.unlock();
-            throw e;
-        }
+        return new ArrayTreeCursor<V>( marshaller.deserialize( serialized ) );
     }
 
 
@@ -1078,7 +1101,15 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     }
 
 
-    private <E> Cursor<E> lockedCursor( Cursor<E> cursor, Lock readLock )
+    Lock acquireDuplicateBtreeReadLock()
+    {
+        Lock readLock = duplicateBtreeLock.readLock();
+        readLock.lock();
+        return readLock;
+    }
+
+
+    <E> Cursor<E> lockedCursor( Cursor<E> cursor, Lock readLock )
     {
         return new LockedCursor<E>( cursor, readLock );
     }

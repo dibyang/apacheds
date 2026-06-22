@@ -27,6 +27,12 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import jdbm.RecordManager;
 import jdbm.helper.DefaultSerializer;
@@ -163,6 +169,53 @@ public class JdbmTableWithDuplicatesTest
     {
         assertNotNull( table.getKeySerializer() );
         assertNotNull( ( ( JdbmTable<?, ?> ) table ).getValueSerializer() );
+    }
+
+
+    @Test
+    public void testOpenArrayTreeValueCursorDoesNotBlockPut() throws Exception
+    {
+        table.put( "1", "1" );
+        table.put( "1", "2" );
+
+        Cursor<String> cursor = table.valueCursor( "1" );
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        try
+        {
+            cursor.beforeFirst();
+            assertTrue( cursor.next() );
+
+            Future<Void> put = executor.submit( new Callable<Void>()
+            {
+                public Void call() throws Exception
+                {
+                    table.put( "2", "2" );
+                    return null;
+                }
+            } );
+
+            assertCompletesWithoutWaitingForCursorClose( put );
+            assertTrue( table.has( "2", "2" ) );
+        }
+        finally
+        {
+            cursor.close();
+            executor.shutdownNow();
+        }
+    }
+
+
+    private void assertCompletesWithoutWaitingForCursorClose( Future<Void> operation ) throws Exception
+    {
+        try
+        {
+            operation.get( 500, TimeUnit.MILLISECONDS );
+        }
+        catch ( TimeoutException e )
+        {
+            fail( "Write operation waited for an unrelated open cursor to close" );
+        }
     }
 
 
