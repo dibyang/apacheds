@@ -20,7 +20,7 @@
 
 ```properties
 projectVersion=<待发布版本>
-jdbmVersion=2.0.0-M5
+jdbmVersion=2.0.0-M6
 ```
 
 发布前必须同步检查：
@@ -123,7 +123,7 @@ Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'gradle|pub
 - 没有混入已废弃版本，例如 `2.0.0-M25`。
 - 关键模块均存在，例如 `apacheds-jdbm-partition`、`apacheds-ldif-partition`、`apacheds-core-api`、`apacheds-service`、`apacheds-all`。
 - POM 中内部 ApacheDS 依赖版本一致。
-- POM 中 `net.xdob.directory.jdbm:apacheds-jdbm1` 固定为 `2.0.0-M5`。
+- POM 中 `net.xdob.directory.jdbm:apacheds-jdbm1` 固定为 `2.0.0-M6`。
 - sources jar、javadoc jar 和 `.asc` 签名齐全。
 - `LICENSE`、`NOTICE`、`DEPENDENCIES` 和 POM license/scm/developer 元数据合理。
 

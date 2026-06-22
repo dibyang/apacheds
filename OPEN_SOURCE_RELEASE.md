@@ -2,14 +2,14 @@
 
 语言：中文 | [English](docs/en/OPEN_SOURCE_RELEASE.md)
 
-本文是 `2.0.0-M26` 的开源发布说明入口。正式发布操作以 [RELEASE.md](RELEASE.md) 为准。
+本文是 `2.0.0-M27` 的开源发布说明入口。正式发布操作以 [RELEASE.md](RELEASE.md) 为准。
 
 ## 当前版本
 
-- 项目版本：`2.0.0-M26`
+- 项目版本：`2.0.0-M27`
 - 构建系统：Gradle Wrapper
 - JDK 目标版本：Java 8
-- JDBM 固定版本：`net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`
+- JDBM 固定版本：`net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`
 
 ## 文档入口
 
@@ -74,32 +74,34 @@ DIRSERVER-2102 的 JDBM 并发回归测试保留为独立任务，默认 `build`
 
 ## 本次发布变更
 
-- JDBM 依赖升级到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`。
-- `JdbmTable` 在 `valueCursor(key)` / `cursor(key)` / `cursor()` 与同表 `put`、`remove`、`sync` 之间增加读写锁互斥，避免 duplicate value demotion 删除 redirected BTree 时，并发 cursor 仍通过旧 recid 加载已删除记录。
-- DIRSERVER-2102 并发回归测试增加 ApacheDS 侧覆盖，包括 demotion/valueCursor、表级 cursor 与更新、共享 named table handle、并发表创建等场景。
+- JDBM 依赖升级到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`。
+- 保留 `JdbmTable` 在 redirected BTree cursor 生命周期与同表 `put`、`remove`、`sync` 之间的互斥，避免 duplicate value demotion 删除 redirected BTree 时，并发 cursor 仍通过旧 recid 加载已删除记录。
+- 缩小 duplicate BTree cursor 写入阻塞范围，普通无重复值 cursor、内联重复值 cursor 和表级 cursor 不再持有 redirected BTree 读锁，降低 LDAP 高频写入场景的阻塞风险。
+- 优化 JDBM 写入批处理与重复值降级路径，并增加 duplicate BTree 锁等待诊断日志，便于定位 redirected BTree 长 cursor 是否仍阻塞 `put`、`remove`、`sync`。
+- DIRSERVER-2102 并发回归测试继续覆盖 ApacheDS 侧 demotion/valueCursor、表级 cursor 与更新、共享 named table handle、并发表创建等场景。
 - `dirserver2102.*` 系统属性会透传到 Gradle Test 任务，可用于发布前提高线程数和迭代次数进行专项加压。
 - 发布相关版本号、依赖版本和 POM 元数据集中到 `gradle.properties`。
 - 新增正式发布手册 [RELEASE.md](RELEASE.md)，明确 Central Portal 人工审核流程和异常处理规则。
 
 ## 已知测试注意事项
 
-- `jdbm-partition` 的 DIRSERVER-2102 并发回归测试默认不进入 `build`，发布前应执行专项任务确认 JDBM 并发路径。当前在 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5` 下，`jdbmConcurrencyTest` 和 demotion/valueCursor 加压用例均已通过。
+- `jdbm-partition` 的 DIRSERVER-2102 并发回归测试默认不进入 `build`，发布前应执行专项任务确认 JDBM 并发路径。当前目标版本固定为 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`。
 - `ldap-client-test` 中部分 LDAP 连接测试对本机端口和线程时序敏感。如全量构建偶发失败，可单独重跑 `.\gradlew.bat :ldap-client-test:test` 进行确认。
 - `interceptors:subtree` 中属性类型相关测试曾在全量顺序运行中出现过一次失败，单独重跑通过；如果再次出现，应优先排查测试隔离和共享 schema 状态。
 
 ## 当前验证结果
 
-- `.\gradlew.bat --refresh-dependencies :jdbm-partition:dependencyInsight --dependency apacheds-jdbm1 --configuration compileClasspath`：通过，确认解析到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`。
+- `.\gradlew.bat validateReleaseConfiguration`：通过，确认当前本机中央仓库 release 地址、账号和 GPG 签名配置可用。
+- `.\gradlew.bat --refresh-dependencies :jdbm-partition:dependencyInsight --dependency apacheds-jdbm1 --configuration compileClasspath`：通过，确认解析到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`。
 - `.\gradlew.bat :jdbm-partition:jdbmConcurrencyTest --rerun-tasks`：通过。
 - `.\gradlew.bat --% :jdbm-partition:jdbmConcurrencyTest --rerun-tasks --tests org.apache.directory.server.core.partition.impl.btree.jdbm.DIRSERVER2102JdbmConcurrencyTest.testConcurrentBTreeDemotionAndValueCursorDoNotReadDeletedBTree -Ddirserver2102.threadCount=24 -Ddirserver2102.iterations=600`：通过。
 - `.\gradlew.bat assemble`：通过，确认所有模块产物可装配。
-- `.\gradlew.bat validateReleaseConfiguration`：通过，确认当前本机中央仓库地址、账号和 GPG 签名配置可用。
-- `.\gradlew.bat publishToMavenLocal`：通过，确认 `2.0.0-M26` 下所有模块的 POM、主 jar、sources/javadoc jar、Gradle module metadata 和 `.asc` 签名可生成。
-- `.\gradlew.bat build`：执行两次，分别超过 15 分钟和 30 分钟后由当前工具超时中断，未得到有效失败日志；正式发布前仍建议在不受工具超时限制的环境中补跑全量构建。
-- Sonatype Central Portal：`2.0.0-M26` 已上传并校验为 `VALIDATED`，deployment id 为 `c7357a79-8d74-48dd-a00e-11028916c4e7`，等待人工审核后再发布。
+- `.\gradlew.bat publishToMavenLocal`：通过，确认 `2.0.0-M27` 下所有模块的 POM、主 jar、sources/javadoc jar、Gradle module metadata 和 `.asc` 签名可生成。
+- `.\gradlew.bat build`：本轮尚未补跑；如时间允许，在不受短超时影响的终端补跑。
+- Sonatype Central Portal：尚未上传 `2.0.0-M27`，后续只能上传到待人工审核状态。
 
 ## 发布产物建议
 
 - 源码包应包含 Gradle Wrapper、`settings.gradle`、`build.gradle`、`LICENSE`、`NOTICE`、`DEPENDENCIES`、`README.md`、`CHANGELOG.md`、`OPEN_SOURCE_RELEASE.md`、`RELEASE.md` 和 `docs/en/` 英文文档副本。
 - 不再发布或维护 Maven POM 作为构建入口。
-- 对外说明 JDBM 已固定到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`。该版本配合 ApacheDS 侧 `JdbmTable` 互斥修复，作为当前固定版本使用。
+- 对外说明 JDBM 已固定到 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`。该版本配合 ApacheDS 侧 `JdbmTable` 互斥与写入阻塞优化，作为当前固定版本使用。

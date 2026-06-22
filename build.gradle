@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 group = findProperty('projectGroup') ?: 'net.xdob.directory.server'
-version = findProperty('projectVersion') ?: '2.0.0-M27-SNAPSHOT'
+version = findProperty('projectVersion') ?: '2.0.0-M27'
 
 ext.releaseProperties = new Properties()
 def releasePropertiesFile = rootProject.file('signing.properties')
@@ -36,6 +36,10 @@ tasks.register('validateReleaseConfiguration') {
     description = '检查发布到 Sonatype Central 所需的仓库、账号和签名配置。'
 
     doLast {
+        if (rootProject.version.toString().endsWith('-SNAPSHOT')) {
+            throw new GradleException('Release version must not end with -SNAPSHOT: ' + rootProject.version)
+        }
+
         def repositoryProperty = rootProject.version.toString().endsWith('-SNAPSHOT') ? 'snapshotsRepository' : 'releasesRepository'
         def requiredProperties = [
             repositoryProperty,

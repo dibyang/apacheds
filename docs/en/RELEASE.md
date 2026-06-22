@@ -20,7 +20,7 @@ Update `gradle.properties`:
 
 ```properties
 projectVersion=<release-version>
-jdbmVersion=2.0.0-M5
+jdbmVersion=2.0.0-M6
 ```
 
 Before release, verify:
@@ -123,7 +123,7 @@ At minimum, manual review must verify:
 - No abandoned version such as `2.0.0-M25` is mixed in.
 - Key modules exist, for example `apacheds-jdbm-partition`, `apacheds-ldif-partition`, `apacheds-core-api`, `apacheds-service`, and `apacheds-all`.
 - Internal ApacheDS dependency versions are consistent in POMs.
-- `net.xdob.directory.jdbm:apacheds-jdbm1` is fixed to `2.0.0-M5` in POMs.
+- `net.xdob.directory.jdbm:apacheds-jdbm1` is fixed to `2.0.0-M6` in POMs.
 - sources jars, javadoc jars, and `.asc` signatures are present.
 - `LICENSE`, `NOTICE`, `DEPENDENCIES`, and POM license/scm/developer metadata are reasonable.
 
