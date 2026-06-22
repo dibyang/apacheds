@@ -88,6 +88,9 @@ public class JdbmPartition extends AbstractBTreePartition
     /** static logger */
     private static final Logger LOG = LoggerFactory.getLogger( JdbmPartition.class );
 
+    /** Default JDBM record cache size for the master table RecordManager. */
+    private static final int DEFAULT_RECORD_CACHE_SIZE = positiveSystemInteger( "jdbm.recman.cache.size", 1024 );
+
     private static final String JDBM_DB_FILE_EXTN = ".db";
 
     private static final FilenameFilter DB_FILTER = new FilenameFilter()
@@ -447,12 +450,10 @@ public class JdbmPartition extends AbstractBTreePartition
 
             // prevent the OOM when more than 50k users are loaded at a stretch
             // adding this system property to make it configurable till JDBM gets replaced by Mavibot
-            String cacheSizeVal = System.getProperty( "jdbm.recman.cache.size", "100" );
-            
-            int recCacheSize = Integer.parseInt( cacheSizeVal );
-            
-            LOG.info( "Setting CacheRecondManager's cache size to {}", recCacheSize );
-            
+            int recCacheSize = DEFAULT_RECORD_CACHE_SIZE;
+
+            LOG.info( "Setting CacheRecordManager's cache size to {}", recCacheSize );
+
             recMan = new CacheRecordManager( base, new MRU( recCacheSize ) );
 
             // Create the master table (the table containing all the entries)
@@ -529,6 +530,27 @@ public class JdbmPartition extends AbstractBTreePartition
         }
     }
 
+
+    private static int positiveSystemInteger( String propertyName, int defaultValue )
+    {
+        String value = System.getProperty( propertyName );
+
+        if ( value == null )
+        {
+            return defaultValue;
+        }
+
+        try
+        {
+            int parsed = Integer.parseInt( value );
+            return parsed > 0 ? parsed : defaultValue;
+        }
+        catch ( NumberFormatException e )
+        {
+            LOG.warn( "Invalid " + propertyName + " value '" + value + "', using " + defaultValue );
+            return defaultValue;
+        }
+    }
 
     /**
      * {@inheritDoc}}

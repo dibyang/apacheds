@@ -65,6 +65,15 @@ public class JdbmIndex<K> extends AbstractIndex<K, String>
      */
     public static final int DEFAULT_DUPLICATE_LIMIT = 512;
 
+    /** Default JDBM record cache size for each index RecordManager. */
+    private static final int DEFAULT_RECORD_CACHE_SIZE = positiveSystemInteger( "jdbm.recman.cache.size", 1024 );
+
+    /** Number of index updates to batch before forcing a RecordManager commit. */
+    private static final int DEFAULT_SYNC_INTERVAL = positiveSystemInteger( "jdbm.index.sync.interval", 10000 );
+
+    /** Number of index updates to batch before forcing a transaction-log flush. */
+    private static final int DEFAULT_LOG_SYNC_INTERVAL = positiveSystemInteger( "jdbm.index.log.sync.interval", 20000 );
+
     /**  the key used for the forward btree name */
     public static final String FORWARD_BTREE = "_forward";
 
@@ -165,11 +174,9 @@ public class JdbmIndex<K> extends AbstractIndex<K, String>
         // see DIRSERVER-2002
         // prevent the OOM when more than 50k users are loaded at a stretch
         // adding this system property to make it configurable till JDBM gets replaced by Mavibot
-        String cacheSizeVal = System.getProperty( "jdbm.recman.cache.size", "100" );
-        
-        int recCacheSize = Integer.parseInt( cacheSizeVal );
-        
-        LOG.info( "Setting CacheRecondManager's cache size to {}", recCacheSize );
+        int recCacheSize = DEFAULT_RECORD_CACHE_SIZE;
+
+        LOG.info( "Setting CacheRecordManager's cache size to {}", recCacheSize );
 
         recMan = new CacheRecordManager( base, new MRU( recCacheSize ) );
 
@@ -590,7 +597,7 @@ public class JdbmIndex<K> extends AbstractIndex<K, String>
         recMan.commit();
 
         // And flush the journal
-        if ( ( commitNumber.get() % 4000 ) == 0 )
+        if ( ( commitNumber.get() % DEFAULT_LOG_SYNC_INTERVAL ) == 0 )
         {
             BaseRecordManager baseRecordManager = null;
 
@@ -624,6 +631,27 @@ public class JdbmIndex<K> extends AbstractIndex<K, String>
     }
 
 
+    private static int positiveSystemInteger( String propertyName, int defaultValue )
+    {
+        String value = System.getProperty( propertyName );
+
+        if ( value == null )
+        {
+            return defaultValue;
+        }
+
+        try
+        {
+            int parsed = Integer.parseInt( value );
+            return parsed > 0 ? parsed : defaultValue;
+        }
+        catch ( NumberFormatException e )
+        {
+            LOG.warn( "Invalid " + propertyName + " value '" + value + "', using " + defaultValue );
+            return defaultValue;
+        }
+    }
+
     /**
      * Commit the modification on disk
      * 
@@ -631,7 +659,7 @@ public class JdbmIndex<K> extends AbstractIndex<K, String>
      */
     private void commit( RecordManager recordManager ) throws IOException
     {
-        if ( commitNumber.incrementAndGet() % 2000 == 0 )
+        if ( commitNumber.incrementAndGet() % DEFAULT_SYNC_INTERVAL == 0 )
         {
             sync();
         }

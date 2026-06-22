@@ -493,19 +493,27 @@ public class JdbmTableWithDuplicatesTest
         assertEquals( SIZE + 1, table.count( "1" ) );
         assertTrue( table.isKeyUsingBTree( "1" ) );
 
-        // this switches to AvlTree from B+Trees
+        // hysteresis keeps the redirected BTree while the duplicate count is near the promotion limit
         table.remove( "1", SIZE_STR );
         assertFalse( table.has( "1", SIZE_STR ) );
         assertEquals( SIZE, table.count() );
         assertEquals( SIZE, table.count( "1" ) );
         assertEquals( "0", table.get( "1" ) );
-        assertFalse( table.isKeyUsingBTree( "1" ) );
+        assertTrue( table.isKeyUsingBTree( "1" ) );
 
         for ( int i = SIZE - 1; i >= 0; i-- )
         {
             String istr = Integer.toString( i );
             table.remove( "1", istr );
-            assertFalse( table.isKeyUsingBTree( "1" ) );
+
+            if ( i > SIZE / 2 )
+            {
+                assertTrue( table.isKeyUsingBTree( "1" ) );
+            }
+            else
+            {
+                assertFalse( table.isKeyUsingBTree( "1" ) );
+            }
         }
 
         assertEquals( 0, table.count() );

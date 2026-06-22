@@ -69,6 +69,12 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     /** the key to store and retreive the count information */
     private static final String SZSUFFIX = "_btree_sz";
 
+    /** Number of table updates to batch before forcing a RecordManager commit. */
+    private static final int DEFAULT_SYNC_INTERVAL = positiveSystemInteger( "jdbm.table.sync.interval", 10000 );
+
+    /** Number of table updates to batch before forcing a transaction-log flush. */
+    private static final int DEFAULT_LOG_SYNC_INTERVAL = positiveSystemInteger( "jdbm.table.log.sync.interval", 20000 );
+
     /** the JDBM record manager for the file this table is managed in */
     private final RecordManager recMan;
 
@@ -77,6 +83,9 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
 
     /** the limit at which we start using btree redirection for duplicates */
     private int numDupLimit = JdbmIndex.DEFAULT_DUPLICATE_LIMIT;
+
+    /** the lower limit at which redirected duplicate BTrees are demoted */
+    private final int numDupDemotionLimit;
 
     /** a cache of duplicate BTrees */
     private final Map<Long, BTree<K, V>> duplicateBtrees;
@@ -141,6 +150,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
         }
 
         this.numDupLimit = numDupLimit;
+        this.numDupDemotionLimit = Math.max( 1, numDupLimit / 2 );
         this.recMan = manager;
 
         this.keySerializer = keySerializer;
@@ -205,6 +215,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
 
         this.duplicateBtrees = null;
         this.numDupLimit = Integer.MAX_VALUE;
+        this.numDupDemotionLimit = Integer.MAX_VALUE;
         this.recMan = manager;
 
         this.keySerializer = keySerializer;
@@ -776,7 +787,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
                  * If we drop below the duplicate limit then we revert from using
                  * a Jdbm BTree to using an in memory AvlTree.
                  */
-                if ( tree.size() <= numDupLimit )
+                if ( tree.size() <= numDupDemotionLimit )
                 {
                     ArrayTree<V> avlTree = convertToArrayTree( tree );
                     bt.insert( key, ( V ) marshaller.serialize( avlTree ), true );
@@ -1038,7 +1049,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
             recMan.commit();
 
             // And flush the journal
-            if ( ( commitNumber.get() % 2000 ) == 0 )
+            if ( ( commitNumber.get() % DEFAULT_LOG_SYNC_INTERVAL ) == 0 )
             {
                 BaseRecordManager baseRecordManager = null;
 
@@ -1368,6 +1379,27 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
     }
 
 
+    private static int positiveSystemInteger( String propertyName, int defaultValue )
+    {
+        String value = System.getProperty( propertyName );
+
+        if ( value == null )
+        {
+            return defaultValue;
+        }
+
+        try
+        {
+            int parsed = Integer.parseInt( value );
+            return parsed > 0 ? parsed : defaultValue;
+        }
+        catch ( NumberFormatException e )
+        {
+            LOG.warn( "Invalid " + propertyName + " value '" + value + "', using " + defaultValue );
+            return defaultValue;
+        }
+    }
+
     /**
      * Commit the modification on disk
      * 
@@ -1375,7 +1407,7 @@ public class JdbmTable<K, V> extends AbstractTable<K, V>
      */
     private void commit( RecordManager recordManager ) throws IOException
     {
-        if ( commitNumber.incrementAndGet() % 2000 == 0 )
+        if ( commitNumber.incrementAndGet() % DEFAULT_SYNC_INTERVAL == 0 )
         {
             sync();
         }
