@@ -17,6 +17,7 @@ This document is the release-notes entry for `2.0.0-M27`. The formal release pro
 - [CHANGELOG.md](CHANGELOG.md): version changelog.
 - [RELEASE.md](RELEASE.md): formal release process.
 - [CONTRIBUTING.md](CONTRIBUTING.md): contribution and validation requirements.
+- [SECURITY.md](SECURITY.md): private security vulnerability reporting process.
 - `LICENSE`, `NOTICE`, `DEPENDENCIES`: license, notice, and dependency information.
 
 ## Build

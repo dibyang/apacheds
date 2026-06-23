@@ -8,6 +8,7 @@ Language: [中文](../../CHANGELOG.md) | English
 - Narrow `JdbmTable` duplicate-BTree cursor write blocking so ordinary no-duplicate cursors, inline duplicate cursors, and table-level cursors no longer hold the redirected-BTree read lock.
 - Optimize JDBM write batching and duplicate-value demotion paths to reduce sync overhead in high-frequency LDAP write workloads.
 - Add `JdbmTable` duplicate BTree lock-wait diagnostics to identify whether long redirected-BTree cursors block `put`, `remove`, or `sync`; the default threshold is 1000 ms and can be disabled with `-Djdbm.table.duplicate.btree.lock.warn.millis=0`.
+- Add GitHub bug report templates, private security vulnerability reporting entry points, and contribution flow documentation.
 
 ## 2.0.0-M26
 

@@ -2,7 +2,7 @@
 
 语言：中文 | [English](docs/en/README.md)
 
-本仓库是 Apache Directory Server 的 Gradle 构建与发布整理分支，当前开发版本为 `2.0.0-M27-SNAPSHOT`，最近发布版本为 `2.0.0-M26`。本分支固定使用 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5`，并保留 DIRSERVER-2102 相关并发回归测试。
+本仓库是 Apache Directory Server 的 Gradle 构建与发布整理分支，当前发布版本为 `2.0.0-M27`。本分支固定使用 `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6`，并保留 DIRSERVER-2102 相关并发回归测试。
 
 ## 文档
 
@@ -10,7 +10,14 @@
 - [OPEN_SOURCE_RELEASE.md](OPEN_SOURCE_RELEASE.md)：本次开源发布说明。
 - [RELEASE.md](RELEASE.md)：正式发布手册。
 - [CONTRIBUTING.md](CONTRIBUTING.md)：贡献与验证要求。
+- [SECURITY.md](SECURITY.md)：安全漏洞私密报告流程。
 - `LICENSE`、`NOTICE`、`DEPENDENCIES`：许可证、声明和依赖信息。
+
+## 反馈入口
+
+- 普通 bug、回归、性能问题和兼容性问题请使用 GitHub issue 的 bug 模板提交。
+- 安全漏洞、利用细节、凭据或生产数据不得公开提交，请按 [SECURITY.md](SECURITY.md) 私密报告。
+- 贡献代码或文档前，请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 构建要求
 

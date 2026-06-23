@@ -8,6 +8,7 @@
 - 缩小 `JdbmTable` duplicate BTree cursor 写入阻塞范围，普通无重复值 cursor、内联重复值 cursor 和表级 cursor 不再持有 redirected BTree 读锁。
 - 优化 JDBM 写入批处理与重复值降级路径，降低 LDAP 高频写入场景下的同步开销。
 - 增加 `JdbmTable` duplicate BTree 锁等待诊断日志，用于定位 redirected BTree 长 cursor 是否阻塞 `put`、`remove`、`sync`；默认阈值为 1000 ms，可通过 `-Djdbm.table.duplicate.btree.lock.warn.millis=0` 关闭。
+- 补齐 GitHub bug 提交模板、安全漏洞私密报告入口和贡献流程说明。
 
 ## 2.0.0-M26
 

@@ -2,7 +2,7 @@
 
 Language: [中文](../../README.md) | English
 
-This repository is a Gradle build and publication branch for Apache Directory Server. The current development version is `2.0.0-M27-SNAPSHOT`, and the latest release version is `2.0.0-M26`. This branch fixes JDBM to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M5` and keeps DIRSERVER-2102 concurrency regression coverage.
+This repository is a Gradle build and publication branch for Apache Directory Server. The current release version is `2.0.0-M27`. This branch fixes JDBM to `net.xdob.directory.jdbm:apacheds-jdbm1:2.0.0-M6` and keeps DIRSERVER-2102 concurrency regression coverage.
 
 ## Documentation
 
@@ -10,7 +10,14 @@ This repository is a Gradle build and publication branch for Apache Directory Se
 - [OPEN_SOURCE_RELEASE.md](OPEN_SOURCE_RELEASE.md): release notes for this open source publication.
 - [RELEASE.md](RELEASE.md): formal release runbook.
 - [CONTRIBUTING.md](CONTRIBUTING.md): contribution and validation requirements.
+- [SECURITY.md](SECURITY.md): private security vulnerability reporting process.
 - `LICENSE`, `NOTICE`, `DEPENDENCIES`: license, notice, and dependency information.
+
+## Feedback Entry Points
+
+- Use the GitHub bug template for ordinary bugs, regressions, performance issues, and compatibility issues.
+- Do not report security vulnerabilities, exploit details, credentials, or production data publicly. Follow [SECURITY.md](SECURITY.md) for private reporting.
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing code or documentation.
 
 ## Requirements
 

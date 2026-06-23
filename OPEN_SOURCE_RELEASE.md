@@ -17,6 +17,7 @@
 - [CHANGELOG.md](CHANGELOG.md)：版本变更记录。
 - [RELEASE.md](RELEASE.md)：正式发布流程。
 - [CONTRIBUTING.md](CONTRIBUTING.md)：贡献与验证要求。
+- [SECURITY.md](SECURITY.md)：安全漏洞私密报告流程。
 - `LICENSE`、`NOTICE`、`DEPENDENCIES`：许可证、声明和依赖信息。
 
 ## 构建方式

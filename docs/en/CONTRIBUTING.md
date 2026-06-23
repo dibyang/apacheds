@@ -9,6 +9,21 @@ Language: [中文](../../CONTRIBUTING.md) | English
 - Use Gradle Wrapper as the build entry. Maven POM files are no longer build entries.
 - Changes to release, build, dependency, or persistence logic must update related documentation.
 
+## Feedback Entry Points
+
+- Use the GitHub bug template for ordinary bugs, regressions, performance issues, and compatibility issues.
+- Bug reports should include version, JDK, operating system, storage backend, reproduction steps, actual behavior, expected behavior, and relevant logs.
+- Do not publicly report issues involving passwords, tokens, private keys, production DNs, real user data, or exploit details. Follow [SECURITY.md](SECURITY.md) for private reporting.
+- If you are unsure whether an issue is security-sensitive, use the security reporting path first.
+
+## Contribution Flow
+
+1. Search existing issues and changes first to avoid duplicates.
+2. For behavior, compatibility, persistence, or concurrency changes, describe the approach, risks, and rollback path in the issue or pull request.
+3. Keep pull requests focused. One pull request should address one issue or a tightly related set of issues.
+4. Pull request descriptions should include change summary, validation commands, compatibility impact, and remaining risk.
+5. Do not commit local credentials, signing files, build caches, production logs, or incompletely redacted data.
+
 ## Development Checks
 
 Before committing, at least run:
@@ -22,6 +37,12 @@ For Java code changes, run the smallest relevant test or compile task. For JDBM,
 
 ```powershell
 .\gradlew.bat :jdbm-partition:jdbmConcurrencyTest
+```
+
+For Markdown-only, GitHub issue-template, or security-policy changes, at least run:
+
+```powershell
+git diff --check
 ```
 
 ## Release-related Changes

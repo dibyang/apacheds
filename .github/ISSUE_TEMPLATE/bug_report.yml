@@ -1,0 +1,86 @@
+name: Bug 报告 / Bug report
+description: 报告可复现的问题、回归或异常行为。Report a reproducible defect, regression, or unexpected behavior.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈问题。请尽量提供可复现信息，尤其是 ApacheDS 版本、JDK、操作系统、存储后端和相关日志。
+
+        Thanks for reporting a bug. Please include reproducible details, especially ApacheDS version, JDK, operating system, storage backend, and logs.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前检查 / Pre-flight checks
+      options:
+        - label: 我已经搜索过现有 issue，未发现重复问题。 / I searched existing issues and did not find a duplicate.
+          required: true
+        - label: 这不是安全漏洞报告；安全问题会按 SECURITY.md 的私密渠道提交。 / This is not a security vulnerability report; security issues go through the private channel in SECURITY.md.
+          required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / Version
+      description: 例如 2.0.0-M27，或提交 hash。Example: 2.0.0-M27 or a commit hash.
+      placeholder: 2.0.0-M27
+    validations:
+      required: true
+  - type: dropdown
+    id: backend
+    attributes:
+      label: 存储后端 / Storage backend
+      options:
+        - JDBM
+        - LDIF
+        - Mavibot
+        - 不确定 / Not sure
+        - 不适用 / Not applicable
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 环境 / Environment
+      description: JDK、操作系统、CPU/内存、部署方式。JDK, OS, CPU/memory, deployment mode.
+      placeholder: JDK 8, Windows Server 2022, standalone
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际表现 / Actual behavior
+      description: 描述发生了什么，包含异常、日志、性能现象或数据状态。
+      placeholder: 写入延迟升高，日志出现 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期表现 / Expected behavior
+      description: 描述你认为应该发生什么。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      description: 提供最小复现步骤、测试代码、配置片段或命令。
+      placeholder: |
+        1. 使用 ...
+        2. 执行 ...
+        3. 观察到 ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志和诊断信息 / Logs and diagnostics
+      description: 粘贴相关日志、堆栈、线程 dump 或 JDBM 诊断日志。请先移除密码、token、DN 中的敏感信息。
+      render: text
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响范围 / Impact
+      description: 说明是否影响生产、数据完整性、升级、兼容性或性能。
